@@ -12,6 +12,16 @@ const { User } = require("../models/user.model.js");
 
 
 
+const main = async (req,res) => {
+	try {
+		res.send("Hello World!");
+	}catch(error){
+		console.log("Error in main ", error);
+	}
+};
+
+
+
 // <============ Sign Up =============>
 	const signup = async (req, res) => {
 		const { email, password, name } = req.body;
@@ -220,7 +230,10 @@ const checkAuth = async (req, res) => {
 };
 
 
+
+
 module.exports = {
+	main,
     login,
     logout,
     signup,
