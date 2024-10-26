@@ -1,0 +1,49 @@
+/*======================================SIDE NAVBAR SECTION STARTS=============================*/
+.sidenavbar {
+    top: 0;
+    position: fixed;
+    height: 100vh;
+    width: 5.5rem;
+    background-color: var(--white); 
+    -webkit-box-shadow: 3px 3px 15.5px -3.5px #d8d6d6;
+    -moz-box-shadow: 3px 3px 15.5px -3.5px #d8d6d6;
+    box-shadow: 3px 3px 15.5px -3.5px #d8d6d6;
+    left: 0;
+  }
+  
+  .sidenavbar .container{
+    display: inline-table;
+    margin-top: 45px;
+    height: 100%;
+  }
+  
+  
+  .sidenavbar .container .option {
+    border-left: 2.5px solid var(--green);
+    border-radius: 3px 0 3px 0;
+    margin: 5rem 0 2rem 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .sidenavbar .container .option p {
+    font-weight: 500;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color:var(--dark-black);
+  }
+  
+  .sidenavbar .container .option .icon i {
+    color: var(--active-color);
+    font-size: 3rem;
+    text-shadow: 1px 1px 1px var(--clr);
+    cursor: pointer;
+  }
+  /*======================================SIDE NAVBAR SECTION endS=============================*/
+  
+  
+  
+  
+  
