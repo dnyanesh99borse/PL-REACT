@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Space+Grotesk:wght@300..700&display=swap');
+
+:root {
+  --green: #00E77F;
+  --white: #fff;
+  --light-white: #aaa;
+  --black: #3d3d3d;
+  --light-bg: #4b4b4b;
+  --clr: #222327;
+  --bg-lavender: #E6E6FA;
+  --active-color: #29fd53;
+  --shade3: #ACE1AF;
+  --lavender-grey: #B6B5D8;
+  --shade4: #17B169;
+  --primary-300: #ffceff;
+  --text-100: #FFFFFF;
+  --otherbgcl: rgba(178, 233, 205, 0.315);
+  --border: #00000029;
+  --dark-black:black;
+
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  transition: .2s linear;
+  text-transform: capitalize;
+}
+
+::-webkit-scrollbar {
+  height: 1rem;
+  width: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color:transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--green);
+  border-radius: .5rem;
+}
+
+/*--===========================that homepage main searchbar section starts===============================-->*/
+/*home section styling starts*/
+.home {
+    width: calc(100% - 5.5rem) ;
+    height: calc(100% - 55px);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This keeps content centered vertically inside the section */
+  }
+  
+  
+  .home .left{
+    width: 50%;
+    height: 100%;
+    background-color: rgb(54, 212, 226);
+    position: relative;
+  }
+  
+  .home .right{
+    width: 50%;
+    height: 100%;
+    background-color:rgb(224, 205, 205);
+  }
+  
+  .homebgimage {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5rem;
+}
+
+.homebgimage a{
+  position: absolute;
+  background-color: var(--);
+  border:2px solid var(--active-color);
+  color: black;
+  background-color: var(--shade4);
+  border-radius: 9px 9px;
+  -webkit-box-shadow: 2px 2px 14px -3px #070707;
+  -moz-box-shadow: 2px 2px 14px -3px #111111;
+  box-shadow: 1px 1px 9px -3px #151515;
+  text-align: center;
+  font-size: 1.4rem;
+  padding: .92vw;
+  padding-left: 10px;
+  font-family: "Space Grotesk", serif;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px var(--lavender-grey);
+  z-index: 1;
+  width: 5vw;
+  transform: translate(2.42vw,10.59vw);
+}
+
+.homebgimage a:hover{
+  background-color: var(--shade3);
+  border: 1px dashed black;
+  box-shadow: 0px 2px 3px black;
+}
+
+.homebgimage a:active{
+  background-color: #17B169;
+}
+
+.homebgimage img {
+    width: 100%;
+    transition: transform 0.2s ease-out;
+    filter: drop-shadow(3px 3px 1.5px black);
+}
+
