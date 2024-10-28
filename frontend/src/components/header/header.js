@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 
 function Header() {
-    {/*the logic of the menutoggle button starts here */}
+    /*the logic of the menutoggle button starts here */
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => {
         // Check if the window width is <= 600
@@ -22,6 +22,42 @@ function Header() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+
+
+    // Declare state for dark mode
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    // Load theme from localStorage on initial mount
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setIsDarkMode(savedTheme === 'dark');
+        } else {
+            localStorage.setItem('theme', 'light'); // Default to light mode
+        }
+    }, []);
+
+    // Function to toggle theme
+    const toggleTheme = () => {
+        setIsDarkMode(prevMode => {
+            const newMode = !prevMode;
+            localStorage.setItem('theme', newMode ? 'dark' : 'light');
+
+            // Apply styles based on the new mode
+            if (newMode) {
+                document.body.style.backgroundColor = 'black'; // Set background to black
+                document.body.style.color = '#ffffff'; // Set text color to white
+            } else {
+                document.body.style.backgroundColor = 'white'; // Set background to white
+                document.body.style.color = '#000000'; // Set text color to black
+            }
+
+            return newMode; // Return the new mode
+        });
+    };
+
+
 
     return (
         <>
@@ -53,6 +89,7 @@ function Header() {
             </head>
 
             <body>
+
                 <div className="header">
                     <div className="nav">
                         <a href="#home" className="logo">
@@ -98,6 +135,10 @@ function Header() {
                                     Login
                                 </button>
                             </div>
+
+                            <button onClick={toggleTheme} className="theme-toggle">
+                                {isDarkMode ? <i className='bx bxs-bulb'></i> : <i className='bx bx-bulb'></i>}
+                            </button>
 
                             {/* Menu section with clickable icon */}
                             <p className="menu" title="menulist" onClick={toggleMenu}>

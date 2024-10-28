@@ -19,7 +19,7 @@
   --text-100: #FFFFFF;
   --otherbgcl: rgba(178, 233, 205, 0.315);
   --border: #00000029;
-  --dark-black:black;
+  --dark-black: black;
 
 }
 
@@ -36,52 +36,47 @@
   text-transform: capitalize;
 }
 
-::-webkit-scrollbar {
-  height: 1rem;
-  width: .5rem;
-}
-
-::-webkit-scrollbar-track {
-  background-color:transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--green);
-  border-radius: .5rem;
-}
-
 /*--===========================that homepage main searchbar section starts===============================-->*/
 /*home section styling starts*/
-.home {
-    width: calc(100% - 5.5rem) ;
-    height: calc(100% - 55px);
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* This keeps content centered vertically inside the section */
-  }
-  
-  
-  .home .left{
-    width: 50%;
-    height: 100%;
-    background-color: rgb(54, 212, 226);
-    position:relative;
-  }
-  
-  .homebgimage {
-    width: 80%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 1rem;
+.main {
+  width: calc(100% - 5.5rem);
+  height: calc(100% - 55px);
+  position: absolute;
+  bottom: 0;
+ 
 }
 
-.homebgimage a{
+.home {
+  height: calc(100% - 7vw);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* This keeps content centered vertically inside the section */
+}
+
+
+.home .left {
+  width: 50%;
+  height: 100%;
+  background-color: rgb(54, 212, 226);
+  position: relative;
+}
+
+.homebgimage {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 1rem;
+  margin-left: 4vw;
+}
+
+.homebgimage a {
   position: absolute;
-  border:2px solid var(--active-color);
+  border: 2px solid var(--active-color);
   color: black;
   background-color: var(--shade4);
   border-radius: 9px 9px;
@@ -91,41 +86,41 @@
   text-align: center;
   font-size: .95vw;
   padding: .92vw;
-  padding-left: .6vw;
+  padding-left: .5vw;
   font-family: "Space Grotesk", serif;
   font-weight: bold;
   text-shadow: 1px 1px 1px var(--lavender-grey);
   z-index: 1;
   width: 5vw;
-  transform: translate(2.42vw,10.59vw);
+  transform: translate(2.37vw, 10.59vw);
 }
 
-.homebgimage a:hover{
+.homebgimage a:hover {
   background-color: var(--shade3);
   border: 1px dashed black;
   box-shadow: 0px 2px 3px black;
 }
 
-.homebgimage a:active{
+.homebgimage a:active {
   background-color: #17B169;
 }
 
 .homebgimage img {
-    width: 100%;
-    transition: transform 0.2s ease-out;
-    filter: drop-shadow(3px 3px 1.5px black);
+  width: 100%;
+  transition: transform 0.2s ease-out;
+  filter: drop-shadow(3px 3px 1.5px black);
 }
 
 /*home right side section starts*/
-.home .right{
+.home .right {
   width: 50%;
   height: 100%;
-  background-color:rgb(220, 188, 236);
+  background-color: rgb(220, 188, 236);
   position: relative;
   padding: 2vw 1vw 1vw 1vw;
   display: flex;
   align-items: center;
-  gap:1vw;
+  gap: 1vw;
   flex-direction: column;
 }
 
@@ -146,22 +141,22 @@
 
 /*typing effect starts*/
 .content .container {
-  font-size:1.5vw;
+  font-size: 1.5vw;
   font-family: "Oxanium", sans-serif;
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
   padding: .3vw;
-  color:var(--green);
+  color: var(--green);
   font-weight: bold;
   text-shadow: 1px 1px 1px black;
-  background-color:var(--lavender-grey);
+  background-color: var(--lavender-grey);
   width: 30vw;
   border-radius: 10px;
-  border-style:inset;
+  border-style: inset;
 }
 
-.container .typing{
+.container .typing {
   border-bottom: 1px dashed rgb(13, 72, 78);
   border-radius: 5px;
 }
@@ -185,6 +180,7 @@
     border-color: #000000;
   }
 }
+
 /*-----------------------------------------------------------------*/
 
 /*-----------------------------right search bar section starts------------------------------------*/
@@ -200,13 +196,13 @@
 .right .searchbox input {
   border: 1px solid black;
   border-right: none;
-  border-radius:1.7vw 0 0vw 1.7vw;
+  border-radius: 1.7vw 0 0vw 1.7vw;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
   padding: .8vw;
   height: 6vh;
   cursor: pointer;
-  width:25vw;
+  width: 25vw;
 }
 
 .searchInput:focus {
@@ -217,10 +213,10 @@
 .right .searchbox .icon {
   height: 6vh;
   width: 4vw;
-  border-radius:0 1.7vw 1.7vw 0;
+  border-radius: 0 1.7vw 1.7vw 0;
   border: 1px solid black;
   background-color: var(--shade3);
-  font-size:2.2vw;
+  font-size: 2.2vw;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -228,7 +224,7 @@
   padding: .8vw;
 }
 
-.right .searchbox .icon:hover{
+.right .searchbox .icon:hover {
   background-color: var(--active-color);
 }
 
@@ -244,12 +240,12 @@
 /*info form section starts*/
 
 .info {
-  padding:1.7vw;
+  padding: 1.7vw;
   border-radius: 3vw 0 3vw 0;
   box-shadow: 0 .5vw 4vw rgba(0, 0, 0, 0.2);
   text-align: center;
   overflow: visible;
-  background-color:var(--white);
+  background-color: var(--white);
   border: .1vw solid rgba(151, 148, 156, 0.611);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.184);
   display: flex;
@@ -262,7 +258,7 @@
 
 .info .title {
   font-family: 'Courier New', Courier, monospace;
-  font-weight:bold;
+  font-weight: bold;
   font-size: 1.3vw;
   color: #2b2b2b;
   position: relative;
@@ -393,7 +389,7 @@
   position: absolute;
   top: 19.7px;
   left: 0;
-  font-size:1vw;
+  font-size: 1vw;
   font-weight: 400;
   padding: 0 15px;
   color: #000000;
@@ -416,7 +412,7 @@
 /*the sky floating placeholder section ENDSs */
 /*-------------------------suggestions styling section starts------------------*/
 .info .suggestions {
-  height:2vw;
+  height: 2vw;
   width: 100%;
   font-family: "Space Grotesk", sans-serif;
   position: absolute;
@@ -424,7 +420,7 @@
   /* Ensures suggestions are in front */
 }
 
-.info .suggestions div{
+.info .suggestions div {
   padding: .5vw;
   font-size: 1vw;
   background-color: rgb(0, 0, 0, 0, 0.2);
@@ -433,9 +429,47 @@
   cursor: pointer;
 }
 
-.info .suggestions div:hover{
+.info .suggestions div:hover {
   background-color: rgba(129, 129, 129, 0.438);
 }
 
-
 /*info form section end*/
+
+/*-----that feature showcasing mini boxes------*/
+.count{
+  background-color: red;
+  padding: 1vw 0;
+}
+
+.count .box-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow blocks to wrap to new lines on smaller screens */
+  justify-content: space-around;
+}
+
+.count .box-container .box {
+  width: 19%;
+  background-color: rgba(0, 0, 0, 0.236);
+  border-radius: .5rem;
+  padding: .5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vw;
+}
+
+
+.count .box-container .box i {
+  font-size: 2.4vw;
+  color: var(--green);
+}
+
+.count .box-container .box .content h3 {
+  font-size: 1vw;
+  color: var(--white);
+}
+
+.count .box-container .box .content p {
+  font-size: 1vw;
+  color: var(--light-white);
+}
