@@ -337,6 +337,7 @@ body {
 @media only screen and (max-width: 1200px) {}
 
 /*---header section starts---*/
+
 /*--menulist section starts--*/
 .menulist {
   width: 100%;
@@ -346,11 +347,3 @@ body {
   display: none;
 }
 /*--menulist section ends--*/
-
-/* ------main content section starts------ */
-.content{
-  height:100%;
-  width:100%;
-  background-color: #74cda3;
-}
-/* ------main content section starts------ */

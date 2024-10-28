@@ -30,17 +30,23 @@
   
   .sidenavbar .container .option p {
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     cursor: pointer;
-    color:var(--dark-black);
+    padding: 1px;
   }
   
   .sidenavbar .container .option .icon i {
     color: var(--active-color);
     font-size: 3rem;
-    text-shadow: 1px 1px 1px var(--clr);
     cursor: pointer;
   }
+
+  .sidenavbar .container .option:hover{
+    text-shadow: 1px 1px 1px rgb(15, 15, 15);
+    color: var(--active-color);
+  }
+
+
   /*======================================SIDE NAVBAR SECTION endS=============================*/
   
   

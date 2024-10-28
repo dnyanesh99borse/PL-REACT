@@ -32,13 +32,14 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className='right'>
+            <div className="right">
                 <div className="content">
-                    <h3>LEARN TO LEARN<br /></h3>
+                    <h3>LEARN TO LEARN</h3>
                     <div className="container">
                         <span className="typing"></span>
                     </div>
                 </div>
+
                 <div className="searchbox">
                     <input
                         className="searchInput"
@@ -49,7 +50,6 @@ const Home = () => {
                         <i className="bx bx-search-alt bx-tada"></i>
                     </span>
                 </div>
-
 
                 <section className="info" id="info">
                     <h1 className="title">Select Your University/College</h1>
@@ -94,83 +94,3 @@ const Home = () => {
 
 export default Home;
 
-{/* <div className="row">
-                <div className="content">
-
-                    <div className="container">
-                        <span className="typing"></span>
-                    </div>
-                    <section>
-                        <a
-                            href="#contact"
-                            className="btn"
-                            style={{ textDecoration: 'none' }}
-                            title="Reach out to us—we're always here for you."
-                        >
-                            Contact us
-                        </a>
-                    </section>
-                </div>
-
-                <div className="homebgimage">
-                    <img
-                        src="assets/images/undraw_reading_time_re_phf7.svg"
-                        alt="Reading illustration"
-                    />
-                </div>
-
-               
-                <section className="inforight">
-                    <h3>LEARN TO LEARN<br /></h3>
-                   
-                    <div className="searchbox">
-                        <input
-                            className="searchInput"
-                            type="text"
-                            placeholder="search Academics, passion, courses, tech"
-                        />
-                        <span className="icon">
-                            <i className="bx bx-search-alt bx-tada"></i>
-                        </span>
-                    </div>
-
-                  
-                    <section className="info" id="info">
-                        <h1 className="title">Select Your University/College</h1>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                id="school"
-                                name="school"
-                                placeholder="Enter University/College"
-                                onInput={() => filterSuggestions('school')}
-                                autoComplete="off"
-                            />
-                            <label className="form-label">University/College</label>
-                            <div className="suggestions" id="school-suggestions"></div>
-                        </div>
-
-                        <h1 className="title two">Select Your Course</h1>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                id="course"
-                                name="course"
-                                placeholder="Enter Course"
-                                onInput={() => filterSuggestions('course')}
-                                autoComplete="off"
-                            />
-                            <label className="form-label">Course</label>
-                            <div className="suggestions" id="course-suggestions"></div>
-                        </div>
-
-                        <div className="enter">
-                            <button onClick={checkAndRedirect}>
-                                <i className="bx bx-right-arrow-alt"></i>
-                                <span>Enter</span>
-                            </button>
-                        </div>
-                    </section>
-                </section>
-             
-            </div> */}
