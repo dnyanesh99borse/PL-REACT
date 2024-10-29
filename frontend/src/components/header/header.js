@@ -142,7 +142,7 @@ function Header() {
 
                             {/* Menu section with clickable icon */}
                             <p className="menu" title="menulist" onClick={toggleMenu}>
-                                Menu <i className={`bx ${menuOpen ? 'bx-chevron-up' : 'bx-chevron-down'}`}></i>
+                               <i className={`bx ${menuOpen ? 'bx bxs-objects-vertical-bottom' : 'bx bxs-objects-vertical-top'}`}></i>
                             </p>
                         </nav>
                     </div>

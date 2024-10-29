@@ -232,11 +232,11 @@ html {
   }
   .header .nav .logo {
     font-size: 7vw;
-    filter: drop-shadow(1px 4px 1px var(--clr));
+    filter: drop-shadow(3px 3px 1px var(--clr));
   }
 
   .header .navbar {
-    gap: 3.5vw;
+    gap: 2vw;
   }
 
   .navbar a {
@@ -278,8 +278,7 @@ html {
   }
 
   .search-container i {
-    background: none;
-    border: none;
+   display: none;
   }
 
   .header .navbar p {
@@ -336,6 +335,16 @@ html {
     color: var(--active-color);
     text-shadow: 1px 1px 1px var(--clr);
   }
+
+  .theme-toggle {
+    font-size: 5vw;
+  }
+
+  .header .nav .navbar i {
+    color: #000;
+    scale: 1.1;
+    margin: 0 0.2vw;
+  }
 /*--menulist section ends--*/
 }
 
@@ -350,9 +359,11 @@ html {
 /*--menulist section starts--*/
 .menulist {
   width: 100%;
-  height: calc(100% - 45px);
+  height: calc(100% - 55px);
+  bottom: 0;
   position:fixed;
   background-color: whitesmoke;
   display: none;
+  z-index: 1000;
 }
 /*--menulist section ends--*/
