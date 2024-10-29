@@ -84,22 +84,22 @@ body {
 .homebgimage a {
   position: absolute;
   border: 2px solid var(--active-color);
-  color: black;
-  background-color: var(--shade4);
+  color: rgba(0, 0, 0, 0.77);
+  background-color: var(--shade3);
   border-radius: 9px 9px;
   -webkit-box-shadow: 2px 2px 14px -3px #070707;
   -moz-box-shadow: 2px 2px 14px -3px #111111;
   box-shadow: 1px 1px 9px -3px #151515;
   text-align: center;
   font-size: .95vw;
-  padding: .92vw;
-  padding-left: .5vw;
-  font-family: "Space Grotesk", serif;
+  padding: 1.3vw;
+  padding-left: .75vw;
+  font-family: cursive;
   font-weight: bold;
   text-shadow: 1px 1px 1px var(--lavender-grey);
   z-index: 1;
-  width: 5vw;
-  transform: translate(2.37vw, 10.59vw);
+  width: 5.5vw;
+  transform: translate(2.49vw, 10.75vw);
 }
 
 .homebgimage a:hover {
