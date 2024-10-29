@@ -52,11 +52,10 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: rgb(158, 158, 214);
+  
 }
 
 .home {
-  background-color: yellow;
   height: calc(100% - 7vw);
   width: 100%;
   display: flex;
@@ -70,7 +69,7 @@ body {
   width: 50%;
   height: 100%;
   position: relative;
-  background-color: palevioletred;
+  background-color: rgba(194, 220, 186, 0.418);
 }
 
 .homebgimage {
@@ -121,6 +120,7 @@ body {
 
 /*home right side section starts*/
 .home .right {
+  background-color: rgb(153, 221, 233);
   width: 50%;
   height: 100%;
   position: relative;
@@ -144,6 +144,10 @@ body {
   font-weight: 600;
   font-style: normal;
   text-shadow: 4px 5px 4px #000000;
+}
+
+.right .content h3:hover{
+  color: #00ff6ad2;
 }
 
 /*typing effect starts*/
@@ -197,6 +201,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 8vh;
 }
 
 .right .searchbox input {
@@ -262,8 +267,7 @@ body {
 
 
 .info .title {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.3vw;
   color: #2b2b2b;
   position: relative;
@@ -417,12 +421,13 @@ body {
 /*the sky floating placeholder section ENDSs */
 /*-------------------------suggestions styling section starts------------------*/
 .info .suggestions {
-  height: 2vw;
   width: 100%;
   font-family: "Space Grotesk", sans-serif;
   position: absolute;
   z-index: 20;
   /* Ensures suggestions are in front */
+  height: 16vw;
+  overflow: scroll;
 }
 
 .info .suggestions div {
@@ -445,7 +450,7 @@ body {
   width: 100%;
   position:absolute;
   padding: 1vw 0;
-  background-color: red;
+  background-color: rgba(201, 176, 220, 0.651);
 }
 
 .count .box-container {
@@ -471,6 +476,10 @@ body {
   color: var(--green);
 }
 
+.count .box-container .box i:hover{
+  color: var(--shade4);
+}
+
 .count .box-container .box .content h3 {
   font-size: 1vw;
   color: var(--white);
@@ -482,9 +491,193 @@ body {
 }
 
 @media (max-width: 600px) {
+
+/*home section styling starts*/
+.main {
+  width: 100%;
+  padding-top:0;
+  height: calc(100% - 55px);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(158, 158, 214);
+}
+
+.home {
+  height: unset;
+  flex-direction:column-reverse;
+  background-color: rgb(255, 255, 0);
+}
+
+
+.home .left {
+  width: 100%;
+  height:max-content;
+}
+
+.home .right {
+  background-color: rgb(146, 183, 205);
+  width: 100%;
+  height:max-content;
+  gap: 7vw;
+  padding: 4vw 1vw 1vw 1vw;
+}
+
+
+
+.right .content {
+  text-align: center;
+}
+
+.right .content h3 {
+  font-size: 13vw;
+  text-shadow: 3px 2px 1px #000000; 
+}
+
+/*typing effect starts*/
+.content .container {
+  font-size: 5.2vw;
+  padding: 1vw;
+  width: 75vw;
+}
+
+.container .typing {
+  border-bottom: 1px dashed rgba(13, 72, 78, 0.756);
+}
+
+/*-----------------------------------------------------------------*/
+
+/*-----------------------------right search bar section starts------------------------------------*/
+
+.right .searchbox input {
+  width: 76vw;
+  border-radius: 20vw 0 0vw 20vw;
+  padding: 5vw;
+  border: 2px solid black;
+  border-right:none;
+  height: 6vh;
+}
+
+.right .searchbox .icon {
+  border-radius: 0  20vw 20vw 0;
+  padding: 5vw;
+  font-size:6vw;
+  border: 2px solid black;
+} 
+
+/*--===========================that homepage main searchbar section ends===============================-->*/
+
+/*info form section starts*/
+
+.info {
+  margin-bottom: 15px;
+  position: relative;
+  width: 90%;
+  background-color:var(--white);
+  border-radius: 8vw 0 8vw 0;
+  border: 1px inset var(--light-white);
+  padding: 5vw;
+}
+
+.info .title {
+  font-size:5.1vw;
+  color: #000000e8;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+
+
+/*--------------the sky floating placeholder section starts-------------- */
+.form-group {
+  position: relative;
+  margin: 12px 0;
+}
+
+.form-group input {
+  padding: 8px 10px;
+  background-color: transparent;
+  transition: 0.15s all ease;
+}
+
+
+/*----this afffects the input fields of the form to that green border and all--------*/
+.form-group input[type="text"] {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 80vw;
+  z-index: 0;
+}
+
+.form-group input[type="text"]:focus {
+  border-color: var(--border);
+  box-shadow: -1px 1px 1px var(--bg-lavender);
+}
+
+.form-group input::placeholder {
+  color: transparent;
+}
+
+.form-group .form-label {
+  font-size: 4.2vw;
+}
+
+.form-group input:focus+.form-label,
+.form-group input:not(:placeholder-shown)+.form-label {
+  transform: translate(15px, -24.5px);
+  font-size: 4vw;
+}
+
+/*the sky floating placeholder section ENDSs */
+/*-------------------------suggestions styling section starts------------------*/
+.info .suggestions {
+  height: 55vw;
+  overflow:scroll;
+  z-index: 10;
+  border-radius:0 0 2vw 2vw ;
+}
+
+.info .suggestions div {
+  padding: .5vw;
+  font-size: 5vw;
+}
+
+.info .suggestions div:hover {
+  background-color: rgba(176, 168, 168, 0.681);
+}
+
+
+.enter button {
+  width: 30vw;
+  padding: .8vw;
+  font-size: 5vw;
+  z-index: 0;
+}
+/*info form section end*/
+
+/*----left section starts-------*/
+.homebgimage{
+  position: relative;
+}
+
+.homebgimage img {
+  width: 115vw;
+  padding-right: 2vw;
+}
+
+.homebgimage a {
+  font-size: 2.7vw;
+  padding: 2.8vw;
+  padding-left: 1.9vw;
+  z-index: 1;
+  width: 15vw;
+  transform: translate(6vw, 31vw);
+  position: absolute;
+  border-radius: 1.5vw;
+}
+
+/* -------that smal boxes srction starts-------*/
   .count {
-    padding: 4vw 0;
-    text-align: center;
+    padding: 3vw 0;
   }
 
   .count .box-container {
@@ -495,18 +688,19 @@ body {
   .count .box-container .box {
     width: 80%;
     margin-bottom: 3vw;
-    background: linear-gradient(145deg, rgba(0, 128, 0, 0.85), rgba(0, 255, 0, 0.7));
+    background: linear-gradient(145deg, rgba(10, 189, 10, 0.563), rgba(0, 255, 0, 0.327));
     border-radius: 1rem;
-    padding: 5vw;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 2vw;
+    justify-content: center;
+    gap: 3vw;
     transition: transform 0.3s ease;
+    padding: 2vw;
   }
 
   .count .box-container .box:hover {
     transform: scale(1.05);
+    border: 1px inset var(--shade4);
   }
 
   .count .box-container .box i {
@@ -514,15 +708,19 @@ body {
     color: var(--white);
   }
 
+  .count .box-container .box i:hover{
+    color: var(--shade4);
+  }
+
   .count .box-container .box .content h3 {
-    font-size: 4vw;
+    font-size: 3vw;
     color: var(--white);
     margin: 1vw 0;
   }
 
   .count .box-container .box .content p {
     font-size: 3.5vw;
-    color: var(--light-white);
+    color: var(--black);
     opacity: 0.9;
   }
 }
