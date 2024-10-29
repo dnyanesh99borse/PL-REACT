@@ -69,7 +69,6 @@ body {
   width: 50%;
   height: 100%;
   position: relative;
-  background-color: rgba(194, 220, 186, 0.418);
 }
 
 .homebgimage {
@@ -120,7 +119,6 @@ body {
 
 /*home right side section starts*/
 .home .right {
-  background-color: rgb(153, 221, 233);
   width: 50%;
   height: 100%;
   position: relative;
@@ -450,7 +448,6 @@ body {
   width: 100%;
   position:absolute;
   padding: 1vw 0;
-  background-color: rgba(201, 176, 220, 0.651);
 }
 
 .count .box-container {
@@ -505,6 +502,7 @@ body {
 
 .home {
   height: unset;
+  width: 100%;
   flex-direction:column-reverse;
   background-color: rgb(255, 255, 0);
 }
