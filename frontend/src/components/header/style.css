@@ -229,6 +229,7 @@ html {
     /*---header section starts---*/
   body{
     padding-left: 0;
+    background-color: violet;
   }
   .header .nav .logo {
     font-size: 7vw;

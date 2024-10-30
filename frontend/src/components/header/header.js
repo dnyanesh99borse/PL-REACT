@@ -127,6 +127,16 @@ function Header() {
                                 <i className="bx bxs-contact"></i>Contact
                             </a>
 
+
+                            <button onClick={toggleTheme} className="theme-toggle">
+                                {isDarkMode ? <i className='bx bxs-bulb'></i> : <i className='bx bx-bulb'></i>}
+                            </button>
+
+                            {/* Menu section with clickable icon */}
+                            <p className="menu" title="menulist" onClick={toggleMenu}>
+                                <i className={`bx ${menuOpen ? 'bx bxs-objects-vertical-bottom' : 'bx bxs-objects-vertical-top'}`}></i>
+                            </p>
+
                             <div className="signinbtn">
                                 <button className="signup" title="signup">
                                     Signup
@@ -135,15 +145,6 @@ function Header() {
                                     Login
                                 </button>
                             </div>
-
-                            <button onClick={toggleTheme} className="theme-toggle">
-                                {isDarkMode ? <i className='bx bxs-bulb'></i> : <i className='bx bx-bulb'></i>}
-                            </button>
-
-                            {/* Menu section with clickable icon */}
-                            <p className="menu" title="menulist" onClick={toggleMenu}>
-                               <i className={`bx ${menuOpen ? 'bx bxs-objects-vertical-bottom' : 'bx bxs-objects-vertical-top'}`}></i>
-                            </p>
                         </nav>
                     </div>
                 </div>
@@ -151,6 +152,11 @@ function Header() {
                 {/* Conditionally rendered menulist based on state */}
                 <div className="menulist" style={{ display: menuOpen && window.innerWidth <= 600 ? 'block' : 'none' }}>
                     <ul>
+                        <li>
+                            <a href="#profile" title="profile">
+                                profile<i className="bx bx-user-circle"></i>
+                            </a>
+                        </li>
                         <li>
                             <a href="#home" title="home">
                                 Home<i className="bx bx-home-smile"></i>

@@ -1,240 +1,332 @@
 /*card slider section starts*/
-:root{
-    --green: #00E77F;
-    --white: #fff;
-    --light-white: #aaa;
-    --black: #3d3d3d;
-    --light-bg: #4b4b4b;
-    --clr: #222327;
-    --bg-lavender: #E6E6FA;
-    --active-color: #29fd53;
-    --shade3: #ACE1AF;
-    --lavender-grey: #B6B5D8;
-    --shade4: #17B169;
-    --primary-300: #ffceff;
-    --text-100: #FFFFFF;
-    --otherbgcl: rgba(178, 233, 205, 0.315);
-    --border: #00000029;
-    --dark-black: black;
+:root {
+  --green: #00E77F;
+  --white: #fff;
+  --light-white: #aaa;
+  --black: #3d3d3d;
+  --light-bg: #4b4b4b;
+  --clr: #222327;
+  --bg-lavender: #E6E6FA;
+  --active-color: #29fd53;
+  --shade3: #ACE1AF;
+  --lavender-grey: #B6B5D8;
+  --shade4: #17B169;
+  --primary-300: #ffceff;
+  --text-100: #FFFFFF;
+  --otherbgcl: rgba(178, 233, 205, 0.315);
+  --border: #00000029;
+  --dark-black: black;
   --otherbgcl: rgba(178, 233, 205, 0.315);
 }
 
 .keys {
-    box-shadow: .5px 1px 2px 2px var(--border);
-    width: 90%;
-    background-color:var(--otherbgcl);
-    padding: 1vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1vw;
-    margin: 2vw;
-    border-radius: .6vw;
+  box-shadow: .5px 1px 2px 2px var(--border);
+  width: 90%;
+  background-color: var(--otherbgcl);
+  padding: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1vw;
+  margin: 2vw;
+  border-radius: .6vw;
+}
+
+.slider {
+  width: 90%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .1vw;
+}
+
+.title {
+  width: 100%;
+  padding: .5vw 1.5vw;
+}
+
+
+.keys h1 {
+  color: var(--clr);
+  font-size: 1.4vw;
+  font-weight: 700;
+  text-transform: capitalize;
+  position: relative;
+
+  span {
+    color: var(--green);
+    text-shadow: 1px 4px .8vw 5px black;
+  }
+}
+
+.keys h1::before {
+  content: "";
+  position: absolute;
+  top: 83%;
+  left: -1.2vw;
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  background: var(--active-color);
+  transition: transform 0.5s ease;
+}
+
+.keys h1::after {
+  content: "";
+  position: absolute;
+  top: 105%;
+  left: -.8vw;
+  width: 35%;
+  height: .1vw;
+  background: var(--active-color);
+  transition: transform 0.5s ease;
+}
+
+
+.slider i {
+  top: 50%;
+  height: 3.3vw;
+  width: 3.3vw;
+  cursor: pointer;
+  font-size: 1.1vw;
+  position: absolute;
+  text-align: center;
+  line-height: 3.3vw;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 .1vw .3vw rgba(0, 0, 0, 0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+}
+
+.slider i:active {
+  transform: translateY(-50%) scale(0.85);
+}
+
+.slider i:first-child {
+  left: -1.5vw;
+}
+
+.slider i:last-child {
+  right: -1.4vw;
+}
+
+.slider .carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 12px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1.2vw;
+  border-radius: .3vw;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel.no-transition {
+  scroll-behavior: auto;
+}
+
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel :where(.card, .img) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel .card {
+  scroll-snap-align: start;
+  height: 23vw;
+  list-style: none;
+  background: #fff;
+  cursor: pointer;
+  padding: 2vw;
+  flex-direction: column;
+  border-radius: 3.5vw 0 3.5vw 0;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel .card:hover {
+  background-color: #b3eeb8;
+  box-shadow: 0 .5vw 1vw rgba(0, 0, 0, 0.2);
+}
+
+.carousel .card .img {
+  background: hsl(108, 100%, 53%);
+  width: 10vw;
+  height: 10vw;
+  border: .3vw solid var(--active-color);
+  position: relative;
+  border-radius: 50%;
+  margin-bottom: 1.4vw;
+}
+
+.card .img img {
+  position: absolute;
+  border: .3vw solid var(--bg-lavender);
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.carousel .card h2 {
+  font-size: 1.4vw;
+  font-weight: 500;
+}
+
+.carousel .card span {
+  color: #6A6D78;
+  font-size: .9vw;
+}
+
+
+.explore {
+  width: 11vw;
+  height: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+}
+
+.explore button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5vw 1vw;
+  font-size: 1.2vw;
+  color: #000000;
+  background: linear-gradient(45deg, #ffffff, #ffffff);
+  border-radius: 1.9vw;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 .2vw 3vw rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--lavender-grey);
+  font-weight: 600;
+}
+
+.explore button:hover {
+  background: linear-gradient(45deg, #2af27d, #55ff00);
+  box-shadow: 0 .2vw .35vw rgba(0, 0, 0, 0.2);
+}
+
+.explore button:active {
+  background: linear-gradient(50deg, #f8f8f8, #a5a5a5);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/*------responsiveness for the mobile screens----------------*/
+@media (max-width: 600px) {
+  .keys {
+    width: 95%;
+    gap: 2vw;
   }
 
   .slider {
-    width: 90%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: .1vw;
+    width: 95%;
+    padding: 1.5vw;
+   
   }
-  
-  .title{
-    width: 100%;
-    padding: .5vw 1.5vw;
-  }
-
 
   .keys h1 {
-    color: var(--clr);
-    font-size:1.4vw;
-    font-weight: 700;
-    text-transform: capitalize;
-    position: relative;
+    font-size: 4.5vw;
+    padding-left: 2vw;
     span {
-      color: var(--green);
-      text-shadow: 1px 4px .8vw 5px black;
+      text-shadow: .1px .1px .3px black;
     }
   }
-  
+
   .keys h1::before {
-    content: "";
-    position: absolute;
-    top: 83%;
-    left: -1.2vw;
-    width: 1vw;
-    height: 1vw;
-    border-radius: 50%;
-    background: var(--active-color);
-    transition: transform 0.5s ease;
+    width: 2.5vw;
+    height: 2.5vw;
   }
-  
+
   .keys h1::after {
-    content: "";
-    position: absolute;
-    top: 105%;
-    left: -.8vw;
-    width: 35%;
-    height: .1vw;
-    background: var(--active-color);
-    transition: transform 0.5s ease;
-  }
-  
-  
-  .slider i {
-    top: 50%;
-    height: 3.3vw;
-    width: 3.3vw;
-    cursor: pointer;
-    font-size: 1.1vw;
-    position: absolute;
-    text-align: center;
-    line-height: 3.3vw;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 .1vw .3vw rgba(0, 0, 0, 0.23);
-    transform: translateY(-50%);
-    transition: transform 0.1s linear;
-  }
-  
-  .slider i:active {
-    transform: translateY(-50%) scale(0.85);
-  }
-  
-  .slider i:first-child {
-    left: -1.5vw;
-  }
-  
-  .slider i:last-child {
-    right: -1.4vw;
-  }
-  
-  .slider .carousel {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% / 3) - 12px);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 1.2vw;
-    border-radius: .3vw;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-  }
-  
-  .carousel::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .carousel.no-transition {
-    scroll-behavior: auto;
-  }
-  
-  .carousel.dragging {
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-  }
-  
-  .carousel.dragging .card {
-    cursor: grab;
-    user-select: none;
-  }
-  
-  .carousel :where(.card, .img) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .carousel .card {
-    scroll-snap-align: start;
-    height: 23vw;
-    list-style: none;
-    background: #fff;
-    cursor: pointer;
-    padding:2vw;
-    flex-direction: column;
-    border-radius: 3.5vw 0 3.5vw 0;
-    border: 2px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .carousel .card:hover {
-    background-color: #b3eeb8;
-    box-shadow: 0 .5vw 1vw rgba(0, 0, 0, 0.2);
-  }
-  
-  .carousel .card .img {
-    background: hsl(108, 100%, 53%);
-    width: 10vw;
-    height: 10vw;
-    border: .3vw solid var(--active-color);
-    position: relative;
-    border-radius: 50%;
-    margin-bottom:1.4vw;
-  }
-  
-  .card .img img {
-    position: absolute;
-    border: .3vw solid var(--bg-lavender);
-    height: 100%;
+    height: .3.5vw;
+    top: 100%;
     width: 100%;
-    border-radius: 50%;
   }
-  
-  .carousel .card h2 {
-    font-size: 1.4vw;
-    font-weight: 500;
+
+
+  .slider i {
+    height: 10vw;
+    width:10vw;
+    font-size: 4vw;
+    padding-top:3.5vw ;
   }
-  
-  .carousel .card span {
-    color: #6A6D78;
-    font-size: .9vw;
-  }
-  
-  
-  .explore {
-    width: 11vw;
-    height: 4vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: yellow;
-  }
-  
-  .explore button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding:.5vw 1vw;
-    font-size: 1.2vw;
-    color: #000000;
-    background: linear-gradient(45deg, #ffffff, #ffffff);
-    border-radius : 1.9vw;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 .2vw 3vw rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--lavender-grey);
-    font-weight: 600;
-  }
-  
-  .explore button:hover {
-    background: linear-gradient(45deg, #2af27d, #55ff00);
-    box-shadow: 0 .2vw .35vw rgba(0, 0, 0, 0.2);
-  }
-  
-  .explore button:active {
-    background: linear-gradient(50deg, #f8f8f8, #a5a5a5);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  
-  
-  
 
   
+
+  .slider i:first-child {
+    z-index: 1;
+  }
+
+
+  .slider .carousel {
+    gap: 45vw;
+  }
+
   
-  /*card slider secrion ends*/
+
+  .carousel .card {
+    width: 65vw;
+    height: 65vw;
+    border: 1.5px solid #ccc;
+  }
+
+  .carousel .card .img {
+    width: 40vw;
+    height: 40vw;
+    border: .6vw solid var(--active-color);
+  }
+
+  .card .img img {
+    border: .6vw solid var(--bg-lavender);
+  }
+
+  .carousel .card h2 {
+    font-size: 4.4vw;
+  }
+
+  .carousel .card span {
+    font-size: 3vw;
+  }
+
+
+  .explore {
+    width: 40vw;
+    height: 10vw;
+  }
+
+  .explore button {
+    padding: .6vw 3vw;
+    font-size: 4vw;
+    border-radius: 6vw;
+
+  }
+
+}
+
+
+
+
+
+/*card slider secrion ends*/

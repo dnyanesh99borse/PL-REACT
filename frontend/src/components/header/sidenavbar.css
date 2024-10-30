@@ -50,12 +50,16 @@
 
 
   @media (max-width: 600px) {
-  .sidenavbar {
-    bottom: 0; /* Move to bottom */
-    top: auto; /* Disable top */
-    height: 50px; /* Adjust height */
-    width: 100vw; /* Full width */
-    display: flex; /* Override layout */
+    .sidenavbar{
+      display: none;
+    }
+  }
+  /* .sidenavbar {
+    bottom: 0; /* Move to bottom 
+    top: auto; /* Disable top
+    height: 50px; /* Adjust height 
+    width: 100vw; /* Full width 
+    display: flex; /* Override layout 
     justify-content: center;
     background-color: var(--shade3);
     -webkit-box-shadow: 0 -3px 15.5px -3.5px #d8d6d6;
@@ -65,21 +69,21 @@
   }
 
   .sidenavbar .container {
-    display: flex; /* Switch to flex layout */
+    display: flex; /* Switch to flex layout 
     justify-content: space-around;
     align-items: center;
-    margin-top: 0; /* Remove top margin */
+    margin-top: 0; /* Remove top margin 
     height: 100%;
     width: 100vw;
   }
 
   .sidenavbar .container .option {
-    border-left: none; /* Remove border for compact layout */
-    border-radius: 0; /* Remove border radius */
+    border-left: none; /* Remove border for compact layout 
+    border-radius: 0; /* Remove border radius 
   }
 
   .sidenavbar .container .option p {
-    font-size: 1.9rem; /* Adjust font size */
+    font-size: 1.9rem; /* Adjust font size 
     padding: 0 1.5rem;
     font-weight: 600;
     display: block;
@@ -88,7 +92,7 @@
   }
 
   .sidenavbar .container .option .icon i {
-    font-size: 4rem; /* Adjust icon size */
+    font-size: 4rem; /* Adjust icon size 
     background-color:var(--white);
     -webkit-box-shadow: 0 -3px 12px -3px #d8d6d6;
     -moz-box-shadow: 0 -3px 12px -3px #d8d6d6;
@@ -103,7 +107,7 @@
     border-top: inset 2px var(--clr);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
-}
+} 
   /*======================================SIDE NAVBAR SECTION endS=============================*/
   
   
