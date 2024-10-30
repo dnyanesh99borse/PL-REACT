@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from './components/header/header';  // Import the Header component
 import SideNavbar from './components/header/sidenavbar';
-import Home from './components/home/home';
+import Home from './components/home/home'; 
+import './App.css'
+
 
 function App() {
   return (

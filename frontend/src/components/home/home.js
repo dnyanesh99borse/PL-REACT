@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './home.css';
+import '../sliderkeys/keys.css';
 
 const Home = () => {
 
@@ -26,7 +27,7 @@ const Home = () => {
     const [course, setCourse] = useState('');
     const [filteredSchools, setFilteredSchools] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
-    const [formSection, setFormSection] = useState(null);
+    const [formSection, setFormSection] = useState(null); {/* i think this is that enter button logic of form filling--- */ }
 
 
     const filterSuggestions = (type, value) => {
@@ -113,6 +114,20 @@ const Home = () => {
             </div>
         </div>
     );
+
+
+    {/*------logic for the cards of sliderkeys sections------------*/ }
+    const cardData = [
+        { imgSrc: require('../assets/notes.svg').default, title: "NOTES", subtitle: "All Subjects" },
+        { imgSrc: require('../assets/assignments.svg').default, title: "TUTORIALS", subtitle: "Calculus, LADE, DM.." },
+        { imgSrc: require('../assets/tutorials.svg').default, title: "ASSIGNMENTS", subtitle: "All Subjects" },
+        { imgSrc: require('../assets/lectures2.svg').default, title: "LECTURES", subtitle: "Lectures (audio, visuals)" },
+        { imgSrc: require('../assets/que paper.svg').default, title: "QUESTION PAPERS", subtitle: "SE, MTT, ET, PYQ's" },
+        { imgSrc: require('../assets/passlog.svg').default, title: "PASSLOG", subtitle: "100% Guaranteed Data to Pass" }
+    ];
+    
+
+
 
 
     /*-----------------------structuring starts here---------------------------- */
@@ -220,15 +235,7 @@ const Home = () => {
                             </button>
                         </div>
                     </section>
-
-                    {/* {formSection && (
-                    <div>
-                        {formSection}
-                    </div>
-                )} */}
                 </div>
-
-
             </section>
 
             {/* ------------------------Counter Section------------ */}
@@ -244,10 +251,41 @@ const Home = () => {
                     ))}
                 </div>
             </section>
-            
+
+
+            {/*---------------------sliderkeys section starts here----------------*/}
+            <section className="keys">
+                <div className="title">
+                    <h1>All The Keys <span>of your Success are here.</span></h1>
+                </div>
+                <div className="slider" id="keys">
+                    <i id="left" className="fa-solid fa-angle-left"></i>
+                    <ul className="carousel">
+                        {cardData.map((card, index) => (
+                            <li className="card" key={index}>
+                                <div className="img">
+                                    <img src={card.imgSrc} alt={card.title} draggable="false" />
+                                </div>
+                                <h2>{card.title}</h2>
+                                <span>{card.subtitle}</span>
+                            </li>
+
+                        ))}
+                    </ul>
+                    <i id="right" className="fa-solid fa-angle-right"></i>
+                </div>
+                <div className="explore">
+                    <button><span>Explore All</span></button>
+                </div>
+            </section>
         </section>
     );
 };
 
 export default Home;
+
+
+
+
+
 

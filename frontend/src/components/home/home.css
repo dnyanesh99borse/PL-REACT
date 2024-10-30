@@ -37,7 +37,6 @@
 }
 
 body {
-  background-color: snow;
   width: 100%;
   height: 100%;
   position: relative;
@@ -47,11 +46,14 @@ body {
 /*--===========================that homepage main searchbar section starts===============================-->*/
 /*home section styling starts*/
 .main {
+  background-color: rgb(251, 8, 8);
   width: calc(100% - 5.5rem);
-  height: calc(100% - 55px);
   position: absolute;
-  bottom: 0;
   right: 0;
+  margin-top: 55px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   
 }
 
@@ -445,8 +447,9 @@ body {
 
 /*-----that feature showcasing mini boxes------*/
 .count{
+  background-color: yellow;
   width: 100%;
-  position:absolute;
+  position:relative;
   padding: 1vw 0;
 }
 
@@ -486,6 +489,8 @@ body {
   font-size: 1vw;
   color: var(--light-white);
 }
+
+
 
 @media (max-width: 600px) {
 
@@ -658,7 +663,6 @@ body {
 }
 
 .homebgimage img {
-  width: 115vw;
   padding-right: 2vw;
 }
 
