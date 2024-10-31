@@ -2,9 +2,15 @@ import React, { useRef, useState, useEffect } from 'react';
 import './home.css';
 import '../sliderkeys/keys.css';
 import '../passkeys/passkey.css';
+import '../whywe/whywe.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYoutube, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 import studymaterial from '../assets/studymaterial.png'
 import schemesImage from '../assets/schemes.jpg';
+
+import learningImage from '../assets/whywe.svg';
 const Home = () => {
 
     /*----------LOGIC FOR SHOWING SUGGESTIONS IN FORM------------*/
@@ -226,7 +232,7 @@ const Home = () => {
     const PassItem = ({ imgSrc, imgId, title, buttonId }) => (
         <div className="pass">
             <div className="img" id={imgId}>
-                <img src={imgSrc} alt=""/>
+                <img src={imgSrc} alt="" />
             </div>
             <button className='tag' id={buttonId}>
                 <p>{title} </p>
@@ -234,7 +240,7 @@ const Home = () => {
         </div>
     );
 
-    
+
     const passItems = [
         { imgSrc: require('../assets/to do.svg').default, imgId: 'todoButton1', title: 'To Do list', buttonId: 'todoButton' },
         { imgSrc: require('../assets/cgpacalci.svg').default, imgId: 'cgpacalci1', title: 'C.G.P.A', subtitle: 'calculator', buttonId: 'cgpacalci' },
@@ -245,11 +251,6 @@ const Home = () => {
         { imgSrc: require('../assets/refer.svg').default, title: 'refer and Earn' },
         { imgSrc: require('../assets/library.svg').default, title: 'Library' },
     ];
-
-
-
-
-
 
 
     /*-----------------------structuring starts here---------------------------- */
@@ -402,7 +403,7 @@ const Home = () => {
 
             {/*---------passkey section starts-----------*/}
             <section className="passkey" id="passkey">
-                <h1 style={{ fontSize: '25px' }}>Passkey: <span>The Keys of the Success.!</span></h1>
+                <h1>Passkey: <span>The Keys of the Success.!</span></h1>
                 <div className="passkey-content">
                     {passItems.map((item, index) => (
                         <PassItem
@@ -419,8 +420,42 @@ const Home = () => {
             </section>
 
 
-        </section>
-        /*-----main section starts------*/
+            {/*!--why we section starts--*/}
+            <section className="why-we-section">
+                <div className="container">
+                    <h2 className="section-title">Why With Passlog..?</h2>
+                    <div className="content">
+                        <div className="description">
+                            <h3>Empower Your Journey</h3>
+                            <p>
+                                Welcome to the premier platform where knowledge, innovation, and passion intersect. Tailored to meet your specific interests, we provide access to world-class resources and an exceptional learning environment. Here, you are not only educated—you master the art of learning.
+                            </p>
+                            <p>
+                                At Passlog, we are committed to empowering your journey, enabling you to explore, excel, and achieve your highest potential. Start your journey with us and make your mark on the world.
+                            </p>
+                            <div className="social">
+                                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon youtube">
+                                    <FontAwesomeIcon icon={faYoutube} />
+                                </a>
+                                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon instagram">
+                                    <FontAwesomeIcon icon={faInstagram} />
+                                </a>
+                                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon x">
+                                    <FontAwesomeIcon icon={faXTwitter} />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="image">
+                            <img src={learningImage} alt="Learning Experience" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/*!--why we section ends--*/}
+
+
+        </section >
+        /*-----main section endss------*/
     );
 };
 

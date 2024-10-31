@@ -21,7 +21,6 @@
     width: 19vw;
     height: 19vw;
     background-color: aquamarine;
-    padding: 1vw;
     position: relative;
     display: flex;
     align-items: center;
@@ -42,8 +41,12 @@
 
 
 .pass .tag:hover {
-    /* border: .1vw solid #00ff00;
-    box-shadow: 0.9px 0.9px 3px#00ff00; */
+    background-color: var(--shade3);
+}
+
+.pass .tag:active{
+    background: linear-gradient(45deg, #2af27d, #55ff00);
+    box-shadow: 0 .2vw .35vw rgba(0, 0, 0, 0.2);
 }
 
 .pass .img {
@@ -122,13 +125,13 @@
     }
 
     .passkey h1 {
-        font-size:5vw;
+        font-size:4.5vw;
         padding: 1vw 3vw 2vw 3vw;
     }
 
     .passkey h1::before {
         top: 60%;
-        left: 0vw;
+        left: -.2vw;
         width: 2.8vw;
         height: 2.8vw;
     }
@@ -173,6 +176,11 @@
 
     .pass .tag:hover {
         background-color: var(--shade3);
+    }
+
+    .pass .tag:active{
+        background: linear-gradient(45deg, #2af27d, #55ff00);
+        box-shadow: 0 .2vw .35vw rgba(0, 0, 0, 0.2);
     }
 
 }
