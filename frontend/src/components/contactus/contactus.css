@@ -1,0 +1,59 @@
+/* ===========================================
+contact Section STARTS HERE
+======================================= */
+  
+  .contact .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .contact .row .image {
+    flex: 1 1 40rem;
+  }
+  
+  .contact .row .image img {
+    width: 100%;
+  }
+  
+  .contact .row form {
+    flex: 1 1 40rem;
+  }
+  
+  .contact .row form .box {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+    border: .3px solid black;
+    background-color: var(--bg-lavender);
+    font-size: 1.8rem;
+    padding: 1.5rem;
+    text-transform: none;
+  }
+  
+  .contact .row form .btn {
+    background-color: var(--bg-lavender);
+    height: 4rem;
+    width: 12rem;
+    border: .3px solid black;
+    border-radius: 1rem;
+    box-shadow: 1px 2px 2px black;
+  }
+  
+  .contact .row form .btn:hover {
+    background-color: var(--light-white);
+    box-shadow: 1px 1px 1px black;
+  }
+  
+  .contact .row form span {
+    font-size: 1.6rem;
+    color: var(--light-bg);
+  }
+  
+  /* ===========================================
+  contact Section ENDS HERE
+  ======================================= */
+  
+  
