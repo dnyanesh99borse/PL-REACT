@@ -1,59 +1,152 @@
 /* ===========================================
 contact Section STARTS HERE
 ======================================= */
-  
-  .contact .row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  
-  .contact .row .image {
-    flex: 1 1 40rem;
-  }
-  
-  .contact .row .image img {
-    width: 100%;
-  }
-  
-  .contact .row form {
-    flex: 1 1 40rem;
-  }
-  
-  .contact .row form .box {
-    width: 100%;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    border-radius: .5rem;
-    border: .3px solid black;
-    background-color: var(--bg-lavender);
-    font-size: 1.8rem;
-    padding: 1.5rem;
-    text-transform: none;
-  }
-  
-  .contact .row form .btn {
-    background-color: var(--bg-lavender);
-    height: 4rem;
-    width: 12rem;
-    border: .3px solid black;
-    border-radius: 1rem;
-    box-shadow: 1px 2px 2px black;
-  }
-  
-  .contact .row form .btn:hover {
-    background-color: var(--light-white);
-    box-shadow: 1px 1px 1px black;
-  }
-  
-  .contact .row form span {
-    font-size: 1.6rem;
-    color: var(--light-bg);
-  }
-  
-  /* ===========================================
+.contact {
+  padding: 1vw;
+}
+
+.contact .row {
+  padding: 2vw 5vw 2vw 5vw;
+}
+
+.contact .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact .container h2 {
+  padding: 0 2vw;
+  background-color: azure;
+  position: relative;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact .container h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  height: .15vw;
+  background-color: var(--active-color);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+
+.contact .container h2:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.contact .row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1vw;
+}
+
+.contact .row .image {
+  flex: 1 1 5vw;
+}
+
+.contact .row .image img {
+  width: 90%;
+  filter: drop-shadow(2px 2px 1px black);
+}
+
+.contact .row form {
+  flex: 1 1 1vw;
+  padding: 0 3vw;
+}
+
+.contact .row form .box {
+  width: 100%;
+  margin-top: .3vw;
+  margin-bottom: 1.2vw;
+  border-radius: .4vw;
+  border: .3px solid black;
+  background-color: var(--bg-lavender);
+  font-size: 1vw;
+  padding: 1vw;
+  text-transform: none;
+}
+
+.contact .row form .btn {
+  background-color: var(--bg-lavender);
+  height: 2.5vw;
+  width: 8vw;
+  border: .3px solid black;
+  border-radius: .5vw;
+  box-shadow: 1px 2px 2px black;
+}
+
+.contact .row form .btn:hover {
+  background-color: var(--shade3);
+  box-shadow: 1px 1px 1px black;
+}
+
+.contact .row form span {
+  font-size: 1.5rem;
+  color: var(--light-bg);
+}
+
+/* ===========================================
   contact Section ENDS HERE
   ======================================= */
-  
-  
+
+  @media (max-width:600px) {
+    .contact {
+      padding: 2vw;
+    }
+
+    .contact .container h2 {
+      padding: 0vw 8vw;
+      font-size:6vw;
+      letter-spacing: .3vw;
+    }
+    
+    .contact .container h2::after {
+      bottom: 3px;
+      height: .17vw;
+    }
+    
+    
+   
+    .contact .row {
+      gap: 0vw;
+      padding: 1vw 3vw;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+    
+    .contact .row .image img {
+      width: 100%;
+      filter: drop-shadow(1px 1px 1px black);
+    }
+    
+    .contact .row form .box {
+      font-size: 4.5vw;
+      margin-top: .5vw;
+      margin-bottom: 1.5vw;
+      border-radius: 1.6vw;
+      padding: 1.5vw;
+    }
+    
+    .contact .row form .btn {
+      height: 11vw;
+      width: 50vw;
+      border-radius: 2vw;
+      margin-left: 15vw;
+      font-size: 4.3vw;
+    }
+    
+    .contact .row form span {
+      font-size: 1.8rem;
+     
+    }
+    
+  }

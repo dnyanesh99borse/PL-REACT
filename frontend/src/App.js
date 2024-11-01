@@ -2,7 +2,13 @@ import React from 'react';
 import Header from './components/header/header';  // Import the Header component
 import SideNavbar from './components/header/sidenavbar';
 import Home from './components/home/home'; 
+import Footer from './components/footer/footer';
 import './App.css'
+import Keys from './components/sliderkeys/keys';
+import Passkey from './components/passkeys/passkey';
+import Whywe from './components/whywe/whywe';
+import Contact from './components/contactus/contact';
+
 
 
 function App() {
@@ -11,7 +17,12 @@ function App() {
       <Header />
       <SideNavbar/>
       <Home/>
-      <div>lorem</div>  {/* Render the Header component */}
+      <Keys/>
+      <Passkey/>
+      <Whywe/>
+      <Contact/>
+      <Footer/>
+
     </div>
   );
 }

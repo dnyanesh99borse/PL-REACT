@@ -1,0 +1,10 @@
+.App {
+    background-color: aqua;
+    width: calc(100% - 5.5rem);
+    /* Adjust the width */
+    margin-left: auto;
+    /* Push the element to the right */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
