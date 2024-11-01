@@ -88,98 +88,98 @@ function Header() {
                 <link rel="stylesheet" href="/stylesheets/styles.css" />
             </head>
 
-            <body>
 
-                <div className="header">
-                    <div className="nav">
-                        <a href="#home" className="logo">
-                            PASSLOG
-                        </a>
 
-                        {/* Search bar section */}
-                        <div
-                            className="search-container"
-                            title="Discover a comprehensive range of resources, from NEET, JEE, UPSC, MPSC,
+            <div className="header">
+                <div className="nav">
+                    <a href="#home" className="logo">
+                        PASSLOG
+                    </a>
+
+                    {/* Search bar section */}
+                    <div
+                        className="search-container"
+                        title="Discover a comprehensive range of resources, from NEET, JEE, UPSC, MPSC,
               and academic courses to arts, dance, music, magazines, products, news,
               and library materials. Unlock your potential and dive into a world where
               your passion meets excellence with Passlog."
-                        >
-                            <input
-                                type="text"
-                                className="search-box"
-                                id="search"
-                                placeholder="Search Resources here.!"
-                            />
-                            <i className="bx bx-search-alt-2"></i>
-                        </div>
-
-                        <nav className="navbar">
-                            <a href="#home" title="home">
-                                <i className="bx bx-home-smile"></i>Home
-                            </a>
-                            <a href="#about" title="About passlog">
-                                <i className="bx bxs-down-arrow"></i>About
-                            </a>
-                            <a href="#keys" title="Keys">
-                                <i className="bx bx-key bx-rotate-90"></i>Keys
-                            </a>
-                            <a href="#contact" title="Contact us">
-                                <i className="bx bxs-contact"></i>Contact
-                            </a>
-
-
-                            <button onClick={toggleTheme} className="theme-toggle">
-                                {isDarkMode ? <i className='bx bxs-bulb'></i> : <i className='bx bx-bulb'></i>}
-                            </button>
-
-                            {/* Menu section with clickable icon */}
-                            <p className="menu" title="menulist" onClick={toggleMenu}>
-                                <i className={`bx ${menuOpen ? 'bx bxs-objects-vertical-bottom' : 'bx bxs-objects-vertical-top'}`}></i>
-                            </p>
-
-                            <div className="signinbtn">
-                                <button className="signup" title="signup">
-                                    Signup
-                                </button>
-                                <button className="login" title="Login">
-                                    Login
-                                </button>
-                            </div>
-                        </nav>
+                    >
+                        <input
+                            type="text"
+                            className="search-box"
+                            id="search"
+                            placeholder="Search Resources here.!"
+                        />
+                        <i className="bx bx-search-alt-2"></i>
                     </div>
-                </div>
 
-                {/* Conditionally rendered menulist based on state */}
-                <div className="menulist" style={{ display: menuOpen && window.innerWidth <= 600 ? 'block' : 'none' }}>
-                    <ul>
-                        <li>
-                            <a href="#profile" title="profile">
-                                profile<i className="bx bx-user-circle"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#home" title="home">
-                                Home<i className="bx bx-home-smile"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#about" title="About passlog">
-                                About<i className="bx bxs-down-arrow"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#keys" title="Keys">
-                                Keys<i className="bx bxs-key"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#contact" title="Contact us">
-                                Contact<i className="bx bxs-contact"></i>
-                            </a>
-                        </li>
-                    </ul>
+                    <nav className="navbar">
+                        <a href="#home" title="home">
+                            <i className="bx bx-home-smile"></i>Home
+                        </a>
+                        <a href="#about" title="About passlog">
+                            <i className="bx bxs-down-arrow"></i>About
+                        </a>
+                        <a href="#keys" title="Keys">
+                            <i className="bx bx-key bx-rotate-90"></i>Keys
+                        </a>
+                        <a href="#contact" title="Contact us">
+                            <i className="bx bxs-contact"></i>Contact
+                        </a>
+
+
+                        <button onClick={toggleTheme} className="theme-toggle">
+                            {isDarkMode ? <i className='bx bxs-bulb'></i> : <i className='bx bx-bulb'></i>}
+                        </button>
+
+                        {/* Menu section with clickable icon */}
+                        <p className="menu" title="menulist" onClick={toggleMenu}>
+                            <i className={`bx ${menuOpen ? 'bx bxs-objects-vertical-bottom' : 'bx bxs-objects-vertical-top'}`}></i>
+                        </p>
+
+                        <div className="signinbtn">
+                            <button className="signup" title="signup">
+                                Signup
+                            </button>
+                            <button className="login" title="Login">
+                                Login
+                            </button>
+                        </div>
+                    </nav>
                 </div>
-            </body>
+            </div>
+
+            {/* Conditionally rendered menulist based on state */}
+            <div className="menulist" style={{ display: menuOpen && window.innerWidth <= 600 ? 'block' : 'none' }}>
+                <ul>
+                    <li>
+                        <a href="#profile" title="profile">
+                            profile<i className="bx bx-user-circle"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#home" title="home">
+                            Home<i className="bx bx-home-smile"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" title="About passlog">
+                            About<i className="bx bxs-down-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#keys" title="Keys">
+                            Keys<i className="bx bxs-key"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" title="Contact us">
+                            Contact<i className="bx bxs-contact"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
         </>
     );
 }

@@ -1,14 +1,22 @@
 import React from 'react';
+import '../footer/footer.css';
+
+import backgroundImage from '../assets/footerw3.svg';
+
 
 const Footer = () =>{
     return(
         <div className="footer">
-            <div className="footer__container">
-                <div className="footer__logo">
-                    <img src="logo.png" alt="Logo"/>
-                </div>
+            <div className="footercontainer">
+                <div className="left">
 
-                <div><h1>THIS IS THE FOOTER</h1></div>
+                </div>
+                <div className="center">
+
+                </div>
+                <div className="right">
+
+                </div>
             </div>
         </div>
     );

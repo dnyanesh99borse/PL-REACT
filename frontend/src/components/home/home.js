@@ -1,13 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import './home.css';
-import '../sliderkeys/keys.css';
-import '../passkeys/passkey.css';
-
-
-
-
-
-
 
 
 const Home = () => {
@@ -101,10 +93,9 @@ const Home = () => {
 
         return () => clearInterval(typingInterval);
     }, [text, isDeleting, typingSpeed, wordIndex, words]);
-    /*----------------------------------------------------------------------- */
+  
 
-    // ---------------------that features displaying squares section starts--------------------
-    // Data for each counter box
+
     const counterData = [
         { icon: "fas fa-server", number: "150+", label: "Resources" },
         { icon: "fas fa-user-graduate", number: "1300+", label: "Students" },

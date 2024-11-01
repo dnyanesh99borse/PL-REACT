@@ -223,6 +223,17 @@ html {
   border: 1px solid var(--green);
 }
 
+/*--menulist section starts--*/
+.menulist {
+  width: 100vw;
+  height: calc(100% - 55px);
+  bottom: 0;
+  position:fixed;
+  background-color: whitesmoke;
+  display: none;
+  z-index: 1000;
+}
+/*--menulist section ends--*/
 /*---header section ends---*/
 
 @media (max-width: 600px){
@@ -357,14 +368,4 @@ html {
 
 /*---header section starts---*/
 
-/*--menulist section starts--*/
-.menulist {
-  width: 100%;
-  height: calc(100% - 55px);
-  bottom: 0;
-  position:fixed;
-  background-color: whitesmoke;
-  display: none;
-  z-index: 1000;
-}
-/*--menulist section ends--*/
+
