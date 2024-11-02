@@ -120,7 +120,7 @@
   padding: 2vw 1vw 1vw 1vw;
   display: flex;
   align-items: center;
-  gap: 1vw;
+  gap: .8vw;
   flex-direction: column;
 }
 
@@ -277,9 +277,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10vw;
-  padding: .5vw;
-  font-size: 1.3vw;
+  margin-top: 1vw;
+  width: 9vw;
+  padding: .4vw;
+  font-size: 1.1vw;
   font-weight: 700;
   color: #ffffff;
   background: linear-gradient(45deg, #00f915, #0f7818);
@@ -351,7 +352,7 @@
 /*--------------the sky floating placeholder section starts-------------- */
 .form-group {
   position: relative;
-  margin: 12px 0;
+  margin: 5px 0;
 }
 
 .form-group input {
@@ -365,7 +366,6 @@
 .form-group input[type="text"] {
   font-family: Arial, Helvetica, sans-serif;
   width: 25vw;
-  height:9vw;
   padding: 10px;
   border: 2px solid #5eff00;
   border-radius: 8px;
@@ -602,6 +602,7 @@
   font-family: Arial, Helvetica, sans-serif;
   width: 80vw;
   z-index: 0;
+  font-size:4vw;
 }
 
 .form-group input[type="text"]:focus {
