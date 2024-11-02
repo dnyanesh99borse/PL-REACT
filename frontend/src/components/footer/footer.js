@@ -8,7 +8,7 @@ import logo from '../assets/brand.png';
 
 const Footer = () => {
     return (
-        <div className="main">
+        <div className="mainfooter">
             <div className="footer">
                 <img src={backgroundImage} alt='image' />
                 <div className="footercontainer">
