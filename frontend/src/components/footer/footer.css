@@ -4,7 +4,7 @@
 }
 
 .footer-container {
-    background-color: #1a1a1a;
+    background:url('../assets/back5.jpg');
     color: #ffffff;
     padding: 5.92vw 25vw;
     display: flex;
@@ -58,19 +58,19 @@
     margin-top: 20px;
   }
   
-
 .footer {
     width: 100%;
     height: 100vh;
-   border: 2px solid black;
+   border: 2px solid rgb(0, 0, 0);
     position: relative;
     box-shadow: 0px 0px 10px rgba(139, 139, 139, 0.674);
 }
 
-.footer img{
+.footer .mainimage{
     width: 100%;
     height: 100%;
-    transform: rotate(180deg);
+    position: absolute;
+  margin-top: 14vw;
 }
 
 .footercontainer {
@@ -95,49 +95,58 @@
     width: 60vw;
     margin-left: -9vw;
     transform: rotate(0deg);
-    filter: drop-shadow(1px 1px 0px rgb(94, 255, 0));
+     filter: drop-shadow(1px 1px 0px rgb(94, 255, 0));
 }
 
 .left .arrow{
     width: 19vw;
     height: 30vw;
     margin-left: -12vw;
+    margin-top: 10vw;
     transform: rotate(-40deg);
 }
 
 .footercontainer .right{
      border: 2px solid rgb(249, 33, 238); 
-    width:30%;
+    width:40%;
     height: 100%;
 }
 
-.right .box1 {
+.right .box1{
+  height: 40%;
+  width: 100%;
+}
+
+.right .box2 {
     width: 80%;
+    margin-left: 4vw;
+    margin-top: -5vw;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: aliceblue;
-    border-radius: 30vw;
+    border-radius:50%;
     padding: 1vw;
-    margin-top: 6vw;
-    transform: rotate(-16deg);
+    transform: rotate(-12deg);
     border: 1px inset rgb(104, 103, 104);
     transition: transform 0.5s ease, border 0.4s ease, box-shadow 0.5s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
-.right .box1 img {
+
+
+.right .box2 img {
     width: 100%;
     transform: rotate(0deg);
     transition: transform 0.5s ease; /* Smooth image rotation */
 }
 
-.right .box1:hover {
+.right .box2:hover {
     transform: rotate(20deg) scale(1.05); /* Slight scaling for depth effect */
     border: 4px solid green;
     box-shadow: 0 8px 25px rgba(0, 128, 0, 0.3); /* Brighter shadow for hover */
 }
 
-.right .box1:hover img {
+.right .box2:hover img {
     transform: rotate(-20deg); /* Opposite rotation on hover */
 }
