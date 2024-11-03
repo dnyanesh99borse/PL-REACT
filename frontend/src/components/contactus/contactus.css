@@ -75,8 +75,8 @@ contact Section STARTS HERE
 
 .contact .row form .btn {
   background-color: var(--bg-lavender);
-  height: 2.5vw;
-  width: 8vw;
+  height: 35px;
+  width: 120px;
   border: .3px solid black;
   border-radius: .5vw;
   box-shadow: 1px 2px 2px black;
@@ -96,7 +96,9 @@ contact Section STARTS HERE
   contact Section ENDS HERE
   ======================================= */
 
+
   @media (max-width:600px) {
+  
     .contact {
       padding: 2vw;
     }
@@ -150,3 +152,12 @@ contact Section STARTS HERE
     }
     
   }
+
+
+ @media(max-width: 700px) {
+  .contact .row form .btn {
+    height: 4vw;
+    width:16vw;
+  }
+
+ }
