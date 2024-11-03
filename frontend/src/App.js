@@ -8,7 +8,7 @@ import Keys from './components/sliderkeys/keys';
 import Passkey from './components/passkeys/passkey';
 import Whywe from './components/whywe/whywe';
 import Contact from './components/contactus/contact';
-
+import FAQ from './components/faqs/faq';
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
       <Keys/>
       <Passkey/>
       <Whywe/>
+      <FAQ/>
       <Contact/>
       <Footer/>
 
