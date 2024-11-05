@@ -156,8 +156,7 @@ contact Section STARTS HERE
 
  @media(max-width: 700px) {
   .contact .row form .btn {
-    height: 4vw;
-    width:16vw;
+    height: 6vw;
   }
 
  }
