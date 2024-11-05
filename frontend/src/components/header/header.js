@@ -59,6 +59,17 @@ function Header() {
 
 
 
+    // const navigate = useNavigate();
+
+    // const handleSignupClick = () => {
+    //   navigate('/loginsignup');
+    // };
+  
+    // const handleLoginClick = () => {
+    //   navigate('/loginsignup');
+    // };
+
+
     return (
         <>
             <head>
@@ -137,14 +148,14 @@ function Header() {
                             <i className={`bx ${menuOpen ? 'bx bxs-objects-vertical-bottom' : 'bx bxs-objects-vertical-top'}`}></i>
                         </p>
 
-                        <div className="signinbtn">
-                            <button className="signup" title="signup">
-                                Signup
-                            </button>
-                            <button className="login" title="Login">
-                                Login
-                            </button>
-                        </div>
+     <div className="signinbtn">
+        <button className="signup" title="Signup">
+          Signup
+        </button>
+        <button className="login" title="Login">
+          Login
+        </button>
+      </div>
                     </nav>
                 </div>
             </div>
