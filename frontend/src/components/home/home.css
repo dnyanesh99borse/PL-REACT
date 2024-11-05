@@ -41,13 +41,12 @@
 /*--===========================that homepage main searchbar section starts===============================-->*/
 /*home section styling starts*/
 .main {
-  background-color: rgb(251, 8, 8);
- width: 100%;
+  width: 100%;
   margin-top: 55px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  
+
 }
 
 .home {
@@ -139,7 +138,7 @@
   text-shadow: 4px 5px 4px #000000;
 }
 
-.right .content h3:hover{
+.right .content h3:hover {
   color: #00ff6ad2;
 }
 
@@ -394,7 +393,7 @@
   left: 0;
   font-size: 1vw;
   font-weight: 400;
-  padding:0 15px;
+  padding: 0 15px;
   color: #000000;
   pointer-events: none;
   transition: 0.15s all ease;
@@ -406,6 +405,7 @@
   transform: translate(15px, -27px);
   z-index: 6;
   background: var(--text-100);
+  border-radius: 5px;
   font-size: 1vw;
   color: var(--light-bg);
   position: absolute;
@@ -440,16 +440,16 @@
 /*info form section end*/
 
 /*-----that feature showcasing mini boxes------*/
-.count{
-  background-color: yellow;
+.count {
   width: 100%;
-  position:relative;
+  position: relative;
   padding: 1vw 0;
 }
 
 .count .box-container {
   display: flex;
-  flex-wrap: wrap; /* Allow blocks to wrap to new lines on smaller screens */
+  flex-wrap: wrap;
+  /* Allow blocks to wrap to new lines on smaller screens */
   justify-content: space-around;
 }
 
@@ -470,7 +470,7 @@
   color: var(--green);
 }
 
-.count .box-container .box i:hover{
+.count .box-container .box i:hover {
   color: var(--shade4);
 }
 
@@ -488,197 +488,199 @@
 
 @media (max-width: 600px) {
 
-/*home section styling starts*/
-.main {
-  width: 100%;
-  padding-top:0;
-  height: calc(100% - 55px);
-  bottom: 0;
-  right: 0;
-  background-color: rgb(158, 158, 214);
-}
+  /*home section styling starts*/
+  .main {
+    width: 100%;
+    padding-top: 0;
+    height: calc(100% - 55px);
+    bottom: 0;
+    right: 0;
+    background-color: rgb(158, 158, 214);
+  }
 
-.home {
-  height: unset;
-  width: 100%;
-  flex-direction:column-reverse;
-  background-color: rgb(255, 255, 0);
-}
-
-
-.home .left {
-  width: 100%;
-  height:max-content;
-}
-
-.home .right {
-  background-color: rgb(146, 183, 205);
-  width: 100%;
-  height:max-content;
-  gap: 7vw;
-  padding: 4vw 1vw 1vw 1vw;
-}
+  .home {
+    height: unset;
+    width: 100%;
+    flex-direction: column-reverse;
+    background-color: rgb(255, 255, 0);
+  }
 
 
+  .home .left {
+    width: 100%;
+    height: max-content;
+  }
 
-.right .content {
-  text-align: center;
-}
-
-.right .content h3 {
-  font-size: 13vw;
-  text-shadow: 3px 2px 1px #000000; 
-}
-
-/*typing effect starts*/
-.content .container {
-  font-size: 5.2vw;
-  padding: 1vw;
-  width: 75vw;
-}
-
-.container .typing {
-  border-bottom: 1px dashed rgba(13, 72, 78, 0.756);
-}
-
-/*-----------------------------------------------------------------*/
-
-/*-----------------------------right search bar section starts------------------------------------*/
-
-.right .searchbox input {
-  width: 76vw;
-  border-radius: 20vw 0 0vw 20vw;
-  padding: 5vw;
-  border: 2px solid black;
-  border-right:none;
-  height: 6vh;
-}
-
-.right .searchbox .icon {
-  border-radius: 0  20vw 20vw 0;
-  padding: 5vw;
-  font-size:6vw;
-  border: 2px solid black;
-} 
-
-/*--===========================that homepage main searchbar section ends===============================-->*/
-
-/*info form section starts*/
-
-.info {
-  margin-bottom: 15px;
-  position: relative;
-  width: 90%;
-  background-color:var(--white);
-  border-radius: 8vw 0 8vw 0;
-  border: 1px inset var(--light-white);
-  padding: 5vw;
-}
-
-.info .title {
-  font-size:5.1vw;
-  color: #000000e8;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
+  .home .right {
+    background-color: rgb(146, 183, 205);
+    width: 100%;
+    height: max-content;
+    gap: 7vw;
+    padding: 4vw 1vw 1vw 1vw;
+  }
 
 
 
-/*--------------the sky floating placeholder section starts-------------- */
-.form-group {
-  position: relative;
-  margin: 12px 0;
-}
+  .right .content {
+    text-align: center;
+  }
 
-.form-group input {
-  padding: 8px 10px;
-  background-color: transparent;
-  transition: 0.15s all ease;
-}
+  .right .content h3 {
+    font-size: 13vw;
+    text-shadow: 3px 2px 1px #000000;
+  }
+
+  /*typing effect starts*/
+  .content .container {
+    font-size: 5.2vw;
+    padding: 1vw;
+    width: 75vw;
+  }
+
+  .container .typing {
+    border-bottom: 1px dashed rgba(13, 72, 78, 0.756);
+  }
+
+  /*-----------------------------------------------------------------*/
+
+  /*-----------------------------right search bar section starts------------------------------------*/
+
+  .right .searchbox input {
+    width: 76vw;
+    border-radius: 20vw 0 0vw 20vw;
+    padding: 5vw;
+    border: 2px solid black;
+    border-right: none;
+    height: 6vh;
+  }
+
+  .right .searchbox .icon {
+    border-radius: 0 20vw 20vw 0;
+    padding: 5vw;
+    font-size: 6vw;
+    border: 2px solid black;
+  }
+
+  /*--===========================that homepage main searchbar section ends===============================-->*/
+
+  /*info form section starts*/
+
+  .info {
+    margin-bottom: 15px;
+    position: relative;
+    width: 90%;
+    background-color: var(--white);
+    border-radius: 8vw 0 8vw 0;
+    border: 1px inset var(--light-white);
+    padding: 5vw;
+  }
+
+  .info .title {
+    font-size: 5.1vw;
+    color: #000000e8;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
 
 
-/*----this afffects the input fields of the form to that green border and all--------*/
-.form-group input[type="text"] {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 80vw;
-  z-index: 0;
-  font-size:4vw;
-}
 
-.form-group input[type="text"]:focus {
-  border-color: var(--border);
-  box-shadow: -1px 1px 1px var(--bg-lavender);
-}
+  /*--------------the sky floating placeholder section starts-------------- */
+  .form-group {
+    position: relative;
+    margin: 12px 0;
+  }
 
-.form-group input::placeholder {
-  color: transparent;
-}
-
-.form-group .form-label {
-  font-size: 4vw;
-  
-}
-
-.form-group input:focus+.form-label,
-.form-group input:not(:placeholder-shown)+.form-label {
-  transform: translate(15px, -24.5px);
-  font-size: 4vw;
-}
-
-/*the sky floating placeholder section ENDSs */
-/*-------------------------suggestions styling section starts------------------*/
-.info .suggestions {
-  height: 55vw;
-  overflow:scroll;
-  z-index: 10;
-  border-radius:0 0 2vw 2vw ;
-}
-
-.info .suggestions div {
-  padding: .5vw;
-  font-size: 5vw;
-}
-
-.info .suggestions div:hover {
-  background-color: rgba(176, 168, 168, 0.681);
-}
+  .form-group input {
+    padding: 8px 10px;
+    background-color: transparent;
+    transition: 0.15s all ease;
+  }
 
 
-.enter button {
-  width: 30vw;
-  padding: .8vw;
-  font-size: 5vw;
-  z-index: 0;
-}
-/*info form section end*/
+  /*----this afffects the input fields of the form to that green border and all--------*/
+  .form-group input[type="text"] {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 80vw;
+    z-index: 0;
+    font-size: 4vw;
+  }
 
-/*----left section starts-------*/
-.homebgimage{
-  position: relative;
-}
+  .form-group input[type="text"]:focus {
+    border-color: var(--border);
+    box-shadow: -1px 1px 1px var(--bg-lavender);
+  }
 
-.homebgimage img {
-  padding-right: 2vw;
-}
+  .form-group input::placeholder {
+    color: transparent;
+  }
 
-.homebgimage a {
-  font-size: 2.7vw;
-  padding: 2.8vw;
-  padding-left: 1.9vw;
-  z-index: 1;
-  width: 15vw;
-  transform: translate(6vw, 31vw);
-  position: absolute;
-  border-radius: 1.5vw;
-}
+  .form-group .form-label {
+    font-size: 4vw;
 
-/* -------that smal boxes srction starts-------*/
+  }
+
+  .form-group input:focus+.form-label,
+  .form-group input:not(:placeholder-shown)+.form-label {
+    transform: translate(15px, -24.5px);
+    font-size: 4vw;
+  }
+
+  /*the sky floating placeholder section ENDSs */
+  /*-------------------------suggestions styling section starts------------------*/
+  .info .suggestions {
+    height: 55vw;
+    overflow: scroll;
+    z-index: 10;
+    border-radius: 0 0 2vw 2vw;
+  }
+
+  .info .suggestions div {
+    padding: .5vw;
+    font-size: 5vw;
+  }
+
+  .info .suggestions div:hover {
+    background-color: rgba(176, 168, 168, 0.681);
+  }
+
+
+  .enter button {
+    width: 30vw;
+    padding: .8vw;
+    font-size: 5vw;
+    z-index: 0;
+  }
+
+  /*info form section end*/
+
+  /*----left section starts-------*/
+  .homebgimage {
+    position: relative;
+  }
+
+  .homebgimage img {
+    padding-right: 2vw;
+  }
+
+  .homebgimage a {
+    font-size: 2.7vw;
+    padding: 2.8vw;
+    padding-left: 1.9vw;
+    z-index: 1;
+    width: 15vw;
+    transform: translate(6vw, 31vw);
+    position: absolute;
+    border-radius: 1.5vw;
+  }
+
+  /* -------that smal boxes srction starts-------*/
   .count {
     padding: 3vw 0;
   }
 
   .count .box-container {
-    flex-direction: column; /* Stack boxes vertically */
+    flex-direction: column;
+    /* Stack boxes vertically */
     align-items: center;
   }
 
@@ -705,7 +707,7 @@
     color: var(--white);
   }
 
-  .count .box-container .box i:hover{
+  .count .box-container .box i:hover {
     color: var(--shade4);
   }
 
@@ -723,8 +725,8 @@
 }
 
 
-@media (max-width: 960px){
-  .homebgimage a{
+@media (max-width: 960px) {
+  .homebgimage a {
     display: none;
   }
 }

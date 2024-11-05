@@ -14,13 +14,11 @@
     flex-wrap: wrap;
     row-gap: 2vw;
     padding: 2vw;
-    background-color: yellow;
 }
 
 .pass {
     width: 19vw;
     height: 19vw;
-    background-color: aquamarine;
     position: relative;
     display: flex;
     align-items: center;
