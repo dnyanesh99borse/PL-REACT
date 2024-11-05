@@ -9,6 +9,7 @@ import Passkey from './components/passkeys/passkey';
 import Whywe from './components/whywe/whywe';
 import Contact from './components/contactus/contact';
 import FAQ from './components/faqs/faq';
+import Review from './components/reviews/review';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Home/>
       <Keys/>
       <Passkey/>
+      <Review/>
       <Whywe/>
       <FAQ/>
       <Contact/>
