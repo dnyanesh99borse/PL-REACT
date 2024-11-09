@@ -24,7 +24,7 @@ const SideNavbar = () => {
                     <p className="text">order</p>
                 </div>
 
-                <div className="option" id="mybag" onClick={() => navigateToPage('mybag.ejs')}>
+                <div className="option" id="mybag" onClick={() => navigateToPage('../')}>
                     <span className="icon">
                         <i className="bx bxs-backpack"></i>
                     </span>
