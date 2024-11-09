@@ -3,16 +3,18 @@ import React from "react";
 import { Route, Routes } from 'react-router-dom';
 
 import './Display.css';
-import LoginSignup from "./components/loginsignup/loginsignup";
+// import LoginSignup from "./components/loginsignup/loginsignup";
+
 import Display from "./Display";
+import Login from "./components/loginsignup/login";
 
 function App() {
     return (
         <div className="App">
             <Routes>
                 <Route path="/" element={<Display />} />
-                <Route path="/login" element={<LoginSignup />} />
-                <Route path="/signup" element={<LoginSignup />} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/signup" element={<Login/>} />
             </Routes>
         </div>
     );
