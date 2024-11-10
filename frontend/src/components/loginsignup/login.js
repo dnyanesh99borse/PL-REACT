@@ -7,6 +7,8 @@ import logo from '../assets/brand.png';
 import facebook from '../assets/facebookicon.svg';
 import google from '../assets/googleicon.svg';
 
+
+
 const Login = () => {
     return (
         <div className="login-container">
@@ -33,14 +35,17 @@ const Login = () => {
                 </div>
             </div>
             <div className="right">
+
                 <div className="form-box">
+                    <div className="close">
+                        <i class='bx bx-x'></i>
+                    </div>
                     <h2 className="login-title">Log in</h2>
                     <form className="login-form">
                         <input
                             type="text"
                             placeholder="Email or username"
                             className="login-input"
-
                         />
                         <div className="password-container">
                             <input
