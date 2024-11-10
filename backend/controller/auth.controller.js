@@ -1,21 +1,21 @@
 const bcryptjs = require("bcryptjs");
 const crypto = require("crypto");
 
-const { generateTokenAndSetCookie } = require("../utils/generateTokenAndSetCookie.js");
+const generateTokenAndSetCookie = require("../utils/generateTokenAndSetCookie.js");
 const {
 	sendPasswordResetEmail,
 	sendResetSuccessEmail,
 	sendVerificationEmail,
 	sendWelcomeEmail,
 } = require("../mailtrap/emails.js");
-const { User } = require("../models/user.model.js");
+const User = require("../models/user.model.js");
 
 
 
-const main = async (req,res) => {
+const main = async (req, res) => {
 	try {
 		res.send("Hello World!");
-	}catch(error){
+	} catch (error) {
 		console.log("Error in main ", error);
 	}
 };
@@ -23,17 +23,18 @@ const main = async (req,res) => {
 
 
 // <============ Sign Up =============>
-	const signup = async (req, res) => {
-		const { email, password, name } = req.body;
-		
-		try {
-			if (!email || !password || !name) {
-				throw new Error("All fields are required");
-			}
+const signup = async (req, res) => {
+	console.log("request body", req.body);
+	const { email, password, name } = req.body;
+
+	try {
+		if (!email || !password || !name) {
+			throw new Error("All fields are required");
+		}
 
 		const userAlreadyExists = await User.findOne({ email });
 		console.log("userAlreadyExists", userAlreadyExists);
-		
+
 		if (userAlreadyExists) {
 			return res.status(400).json({ success: false, message: "User already exists" });
 		}
@@ -48,7 +49,7 @@ const main = async (req,res) => {
 			verificationToken,
 			verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
 		});
-		
+
 		await user.save();
 
 		// jwt
@@ -234,11 +235,11 @@ const checkAuth = async (req, res) => {
 
 module.exports = {
 	main,
-    login,
-    logout,
-    signup,
-    verifyEmail,
-    forgotPassword,
-    resetPassword,
-    checkAuth,
+	login,
+	logout,
+	signup,
+	verifyEmail,
+	forgotPassword,
+	resetPassword,
+	checkAuth,
 };

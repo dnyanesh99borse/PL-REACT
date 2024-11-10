@@ -4,7 +4,7 @@ const connectDB = require('./db/connectDB.js');
 const dotenv = require('dotenv');
 const authRouter = require('./routes/auth.routes.js');
 const user = require('./models/user.model.js')
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 dotenv.config();
 
