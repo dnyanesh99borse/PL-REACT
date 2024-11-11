@@ -1,0 +1,244 @@
+.signup-container {
+    width: 100%;
+    height: 100vh;
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+}
+
+.signup-container .left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1vw;
+    gap: 1vw;
+} 
+
+.signup-container .right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.form-box {
+    position: relative;
+    background: #e0efde7b;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    padding: 1.5vw 5vw;
+}
+
+.form-box .close {
+    margin-right: -4vw;
+    text-align: right;
+}
+
+.form-box .signupbutton{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-size: .9vw;
+    font-weight:bold;
+    gap: .7vw;
+    padding: 1px;
+    margin: 1.2vw;
+    text-transform: lowercase;
+    box-sizing: border-box;
+}
+
+.form-box .signupbutton::first-letter{
+    text-transform: uppercase;
+}
+.form-box .signupbutton button{
+    box-sizing: border-box;
+    padding: 0 .5vw;
+    background: transparent;
+    color:rgb(3, 77, 3);
+    border-radius: 1vw;
+    border: 1px solid green;
+}
+
+.form-box .signupbutton button:hover{
+    border: 1px inset rgb(0, 221, 0);
+    color: rgb(22, 22, 22);
+    background-color: #66666629;
+}
+
+
+.form-box .signupbutton button:active{
+    background-color:#66666651 ;
+}
+
+.close i {
+    font-size: 1.8vw;
+    font-weight: 500;
+    padding: .2vw;
+    color: #626060;
+}
+
+.close i:hover{
+    border: 1px solid rgb(10, 169, 10);
+    color: black;
+}
+
+.close i:active{
+    color: #028e53;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 1.6vw;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    gap:.5vw;
+}
+
+.input-container,
+.password-container {
+    position: relative;
+}
+
+.signup-input {
+    width: 100%;
+    padding: 10px 30px 10px 10px;
+    border: 2px solid #3b3b3b29;
+    border-radius: 10px;
+    font-size: 1vw;
+    transition: border-color 0.3s ease;
+}
+
+
+.login-input:focus {
+    border-color: #00ff6e;
+    outline: none;
+}
+
+.login-input:focus+.input-icon {
+    color: #04e76e;
+}
+
+.forgot-button {
+    background: none;
+    border: none;
+    color: #0066cc;
+    font-size: .9vw;
+    cursor: pointer;
+    text-align: right;
+    padding: 0 10px;
+}
+
+.signup-button {
+    padding: 1vw;
+    background-color: #10c479;
+    border: 1px solid rgba(63, 63, 63, 0.611);
+    border-radius: 2vw;
+    color: white;
+    font-size: 1.2vw;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 2px 4px rgb(49, 48, 48);
+}
+
+.login-button:hover {
+    background-color: #028e53;
+    box-shadow: 0px 2px 4px rgb(49, 48, 48);
+}
+
+.login-button:active {
+    box-shadow: 0px 0px 0px rgb(49, 48, 48);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #aaa;
+    margin: 20px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #aaa;
+    margin: 0 10px;
+}
+
+.separator span {
+    font-size: 1vw;
+    font-weight: 500;
+    color: #aaa;
+}
+
+.social-login {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    padding: 10px 20px;
+    border-radius: 5vw;
+    font-size: .9vw;
+    font-weight: 500;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.social-button img {
+    width: 2vw;
+}
+
+.facebook-button {
+
+    color: rgba(65, 63, 63, 0.848);
+}
+
+.facebook-button img {
+    scale: 1.3;
+}
+
+.google-button {
+    color: rgba(65, 63, 63, 0.848);
+}
+
+.social-button:hover {
+    opacity: 0.9;
+}
+
+.facebook-button:hover {
+    border: 1px solid rgb(62, 157, 230);
+}
+
+.google-button:hover {
+    border: 1px solid orange;
+}
+
+.terms-text {
+    font-size: .8vw;
+    text-align: center;
+    color: #666;
+    padding: 2vw 0;
+}
+
+.terms-text a {
+    color: #0066cc;
+    text-decoration: none;
+}
