@@ -16,9 +16,9 @@
     padding: .2vw;
 }
 
- .left-box img[rel="logo"] {
+ /* .left-box img[rel="logo"] {
     filter: drop-shadow(2px 2px 1px rgb(0, 0, 0));
-}
+} */
 
  .left-box h1 {
     font-size: 1.5vw;
@@ -29,7 +29,7 @@
  .left-box ol {
     list-style-position: inside;
     line-height-step: 2;
-    margin-left-box: 3.5vw;
+    margin-left: 3.5vw;
 }
 
 .left-box ol li {
