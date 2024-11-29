@@ -168,7 +168,7 @@
 }
 
 .footer-section p:hover{
-  text-decoration:underline wavy rgb(0, 255, 0);
+  color: #ededed;
 }
 
 .social-icons {

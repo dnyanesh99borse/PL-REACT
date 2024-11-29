@@ -36,8 +36,8 @@ const Signup = () => {
                     <div className="close">
                         <i class='bx bx-x'onClick={handleHomeRedirect}></i>
                     </div>
-                    <h2 className="login-title">Sign up</h2>
-                    <div className="signupbutton">
+                    <h2 className="signup-title">Sign up</h2>
+                    <div className="loginbutton">
                         <p>Already have an account ?</p>
                         <button onClick={handleLoginRedirect}>login</button>
                     </div>
