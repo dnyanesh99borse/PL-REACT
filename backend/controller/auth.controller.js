@@ -112,6 +112,7 @@ const verifyEmail = async (req, res) => {
 // <============ Login =============>
 const login = async (req, res) => {
 	const { email, password } = req.body;
+	console.log("email, password", email, password);
 	try {
 		const user = await User.findOne({ email });
 		if (!user) {
