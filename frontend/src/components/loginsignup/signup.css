@@ -325,7 +325,8 @@
         box-sizing: border-box;
 
         
-        font-size:5vw;
+        font-size:4vw;
+        color: #4e4e4e;
         font-weight:bold;
         gap: 2vw;
         padding: 3px;

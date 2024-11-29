@@ -319,7 +319,8 @@
         box-sizing: border-box;
 
 
-        font-size:5vw;
+        font-size:4vw;
+        color: #4e4e4e;
         font-weight:bold;
         gap: 2vw;
         padding: 3px;
@@ -402,10 +403,13 @@
         background: none;
         border: none;
         color: #0066cc;
-        font-size: .9vw;
+        
         cursor: pointer;
         text-align: right;
+
+
         padding: 0 10px;
+        font-size:12vw;
     }
     
     .login-button {
@@ -488,7 +492,7 @@
     .social-button img {
         width: 6vw;
 
-        
+
     }
     
     .facebook-button {
