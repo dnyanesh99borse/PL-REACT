@@ -10,6 +10,14 @@ dotenv.config();
 
 app.use(express.json());
 
+const cors = require('cors');
+
+// Allow requests from the frontend
+app.use(cors({
+    origin: 'http://localhost:3000', // React frontend URL
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+}));
 
 
 

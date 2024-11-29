@@ -25,14 +25,17 @@ const main = async (req, res) => {
 // <============ Sign Up =============>
 const signup = async (req, res) => {
 	console.log("request body", req.body);
-	const { email, password, name } = req.body;
+	const { username, email, password, confirmPassword } = req.body;
 
 	try {
-		if (!email || !password || !name) {
+		if ( !username || !email || !password || !confirmPassword) {
 			throw new Error("All fields are required");
 		}
+		if (password !== confirmPassword) {
+			throw new Error("Passwords do not match");
+		}
 
-		const userAlreadyExists = await User.findOne({ email });
+		const userAlreadyExists = await User.findOne({ email, username });
 		console.log("userAlreadyExists", userAlreadyExists);
 
 		if (userAlreadyExists) {
@@ -45,7 +48,7 @@ const signup = async (req, res) => {
 		const user = new User({
 			email,
 			password: hashedPassword,
-			name,
+			username,
 			verificationToken,
 			verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
 		});
