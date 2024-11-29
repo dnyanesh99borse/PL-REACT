@@ -17,7 +17,6 @@ function Display() {
     return (
   
       <div className="Display">
-        {/* <Screen/> */}
         <Header />
         <SideNavbar />
         <Home />
