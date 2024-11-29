@@ -1,14 +1,23 @@
 // Login.js
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./login.css";
 import Common from "./common";
-import { useNavigate } from 'react-router-dom';
 import facebook from '../assets/facebookicon.svg';
 import google from '../assets/googleicon.svg';
 
 const Login = () => {
 
     const navigate = useNavigate();
+
+    const handleSignupRedirect = () => {
+        navigate('/signup');
+    };
+
+    const handleHomeRedirect = () => {
+        navigate('/home');
+    }
 
 
     return (
@@ -20,12 +29,12 @@ const Login = () => {
 
                 <div className="form-box">
                     <div className="close">
-                        <i class='bx bx-x'></i>
+                        <i class='bx bx-x'onClick={handleHomeRedirect}></i>
                     </div>
                     <h2 className="login-title">Log in</h2>
                     <div className="signupbutton">
                         <p>don't have account ?</p>
-                        <button>signup</button>
+                        <button onClick={handleSignupRedirect}>signup</button>
                     </div>
 
                     <div className="social-login">
