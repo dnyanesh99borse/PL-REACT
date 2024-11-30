@@ -1,9 +1,14 @@
 // signup.js
+
+import React, {useState} from "react";
+
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 
 import "./signup.css";
 import Common from "./common";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import facebook from '../assets/facebookicon.svg';
 import google from '../assets/googleicon.svg';
 
@@ -16,6 +21,34 @@ import google from '../assets/googleicon.svg';
 const Signup = () => {
 
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+
+    const [message, setMessage] = useState('');
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/signup', formData);
+            setMessage(response.data.message); // Success message
+        } catch (error) {
+            setMessage(error.response?.data?.message || 'Error occurred');
+        }
+    };
+
+    const navigate = useNavigate();
 
     const handleLoginRedirect = () => {
         navigate('/login'); // Navigate to the login page
@@ -24,6 +57,7 @@ const Signup = () => {
     const handleHomeRedirect = () => {
         navigate('/home');
     }
+
 
     return (
         <div className="signup-container">
@@ -39,7 +73,11 @@ const Signup = () => {
                     <h2 className="signup-title">Sign up</h2>
                     <div className="loginbutton">
                         <p>Already have an account ?</p>
+
+                        <button onClick={() => navigate('/login')}>Login</button>
+
                         <button onClick={handleLoginRedirect}>login</button>
+
                     </div>
 
 
@@ -53,31 +91,42 @@ const Signup = () => {
                         <span>OR</span>
                     </div>
 
-                    <form className="signup-form">
+                    <form className="signup-form" onSubmit={handleSignup}>
                         <input
                             type="text"
-                            placeholder="username"
+                            name="username"
+                            placeholder="Username"
                             className="signup-input"
+                            value={formData.username}
+                            onChange={handleInputChange}
                         />
                         <input
-                            type="text"
+                            type="email"
+                            name="email"
                             placeholder="Email"
                             className="signup-input"
+                            value={formData.email}
+                            onChange={handleInputChange}
                         />
-
                         <input
                             type="password"
+                            name="password"
                             placeholder="Password"
                             className="signup-input"
+                            value={formData.password}
+                            onChange={handleInputChange}
                         />
                         <input
                             type="password"
+                            name="confirmPassword"
                             placeholder="Confirm Password"
                             className="signup-input"
+                            value={formData.confirmPassword}
+                            onChange={handleInputChange}
                         />
-
-                        <button className="signup-button">Sign up</button>
+                        <button type="submit" className="signup-button">Sign up</button>
                     </form>
+                    {message && <p className="message">{message}</p>}
 
                     <p className="terms-text">
                         By signing in to Passlog, you agree to our{" "}

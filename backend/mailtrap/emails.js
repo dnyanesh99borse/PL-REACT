@@ -8,7 +8,8 @@ const {
 const { mailtrapClient, sender } = require("./mailtrap.config.js");
 
 const sendVerificationEmail = async (email, verificationToken) => {
-	const recipient = [{ email }];
+	const recipient = [ { email } ];
+	console.log("recipient", email);
 
 	try {
 		const response = await mailtrapClient.send({
