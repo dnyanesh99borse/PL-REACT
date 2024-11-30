@@ -16,7 +16,7 @@ const Login = () => {
     };
 
     const handleHomeRedirect = () => {
-        navigate('/home');
+        navigate('/');
     }
 
 

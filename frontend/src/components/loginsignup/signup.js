@@ -8,11 +8,6 @@ import facebook from '../assets/facebookicon.svg';
 import google from '../assets/googleicon.svg';
 
 
-
-//-----MAKE THIS PAGE LEFT SECTION  WITH THE RIGHT SECTION AS A COMMON BACKGROUND AND MAKE TWO COMPONENTS AS SIGNUP AND LOGIN AND JUST ONCLIK THE BUTTON NAVIGATE THE 
-//---TO THE RIGHT COMPONENT OF THIS SECTION TO THAT LOGIN AND SIGNUP SECTION''
-//----AND ALSO MANAGE THE ONCLICK OF THE SIGNUP AND LOGIN OF THE BUTTON OF THE HEADER....
-//--THERE ALSO ONLY THAT PARTICULAR SECTION SHOULD CHANGE AND NOT THE WHOLE PAGE.8IZXaSDFK/  
 const Signup = () => {
 
     const navigate = useNavigate();
@@ -22,7 +17,7 @@ const Signup = () => {
     };
 
     const handleHomeRedirect = () => {
-        navigate('/home');
+        navigate('/');
     }
 
     return (
