@@ -1,5 +1,10 @@
 // signup.js
+
 import React, {useState} from "react";
+
+import React from "react";
+import { useNavigate } from 'react-router-dom';
+
 import "./signup.css";
 import Common from "./common";
 import axios from "axios";
@@ -14,6 +19,7 @@ import google from '../assets/googleicon.svg';
 //----AND ALSO MANAGE THE ONCLICK OF THE SIGNUP AND LOGIN OF THE BUTTON OF THE HEADER....
 //--THERE ALSO ONLY THAT PARTICULAR SECTION SHOULD CHANGE AND NOT THE WHOLE PAGE.8IZXaSDFK/  
 const Signup = () => {
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
@@ -42,6 +48,17 @@ const Signup = () => {
         }
     };
 
+    const navigate = useNavigate();
+
+    const handleLoginRedirect = () => {
+        navigate('/login'); // Navigate to the login page
+    };
+
+    const handleHomeRedirect = () => {
+        navigate('/home');
+    }
+
+
     return (
         <div className="signup-container">
             <div className="left">
@@ -51,12 +68,16 @@ const Signup = () => {
 
                 <div className="form-box">
                     <div className="close">
-                        <i class='bx bx-x'></i>
+                        <i class='bx bx-x'onClick={handleHomeRedirect}></i>
                     </div>
-                    <h2 className="login-title">Sign up</h2>
-                    <div className="signupbutton">
+                    <h2 className="signup-title">Sign up</h2>
+                    <div className="loginbutton">
                         <p>Already have an account ?</p>
+
                         <button onClick={() => navigate('/login')}>Login</button>
+
+                        <button onClick={handleLoginRedirect}>login</button>
+
                     </div>
 
 

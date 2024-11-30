@@ -495,14 +495,12 @@
     height: calc(100% - 55px);
     bottom: 0;
     right: 0;
-    background-color: rgb(158, 158, 214);
   }
 
   .home {
     height: unset;
     width: 100%;
     flex-direction: column-reverse;
-    background-color: rgb(255, 255, 0);
   }
 
 
@@ -512,7 +510,6 @@
   }
 
   .home .right {
-    background-color: rgb(146, 183, 205);
     width: 100%;
     height: max-content;
     gap: 7vw;

@@ -1,13 +1,23 @@
+
 import React, { useState } from "react";
 import "./login.css";
 import Common from "./common";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+
+// Login.js
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+import "./login.css";
+import Common from "./common";
+
 import facebook from '../assets/facebookicon.svg';
 import google from '../assets/googleicon.svg';
 
 const Login = () => {
     const navigate = useNavigate();
+
 
     const [formData, setFormData] = useState({
         email: '',
@@ -45,6 +55,16 @@ const Login = () => {
         }
     };
 
+    const handleSignupRedirect = () => {
+        navigate('/signup');
+    };
+
+    const handleHomeRedirect = () => {
+        navigate('/home');
+    }
+
+
+
     return (
         <div className="login-container">
             <div className="left">
@@ -53,12 +73,21 @@ const Login = () => {
             <div className="right">
                 <div className="form-box">
                     <div className="close">
+
                         <i className="bx bx-x"></i>
                     </div>
                     <h2 className="login-title">Log in</h2>
                     <div className="signupbutton">
                         <p>Don't have an account?</p>
                         <button onClick={() => navigate('/signup')}>Sign Up</button>
+
+                        <i class='bx bx-x'onClick={handleHomeRedirect}></i>
+                    </div>
+                    <h2 className="login-title">Log in</h2>
+                    <div className="signupbutton">
+                        <p>don't have account ?</p>
+                        <button onClick={handleSignupRedirect}>signup</button>
+
                     </div>
 
                     <div className="social-login">
