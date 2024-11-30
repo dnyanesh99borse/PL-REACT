@@ -113,37 +113,54 @@ const verifyEmail = async (req, res) => {
 
 
 // <============ Login =============>
-const login = async (req, res) => {
-	const { email, password } = req.body;
-	console.log("email, password", email, password);
-	try {
-		const user = await User.findOne({ email });
-		if (!user) {
-			return res.status(400).json({ success: false, message: "Invalid credentials" });
+	const login = async (req, res) => {
+		const { email, password } = req.body;
+	
+		try {
+			// Find user by email
+			const user = await User.findOne({ email });
+			if (!user) {
+				return res.status(400).json({ 
+					success: false, 
+					message: "Invalid email or password" 
+				});
+			}
+	
+			// Validate password
+			const isPasswordValid = await bcryptjs.compare(password, user.password);
+			if (!isPasswordValid) {
+				return res.status(400).json({ 
+					success: false, 
+					message: "Invalid email or password" 
+				});
+			}
+	
+			// Generate token and set it in cookies
+			generateTokenAndSetCookie(res, user._id);
+	
+			// Update last login timestamp
+			user.lastLogin = new Date();
+			await user.save();
+	
+			// Respond with user details, excluding sensitive fields
+			const { password: _, ...safeUser } = user._doc;
+			res.status(200).json({
+				success: true,
+				message: "Logged in successfully",
+				user: safeUser,
+			});
+		} catch (error) {
+			// Log the error for debugging
+			console.error("Error in login:", error);
+	
+			// Send generic error response to client
+			res.status(500).json({ 
+				success: false, 
+				message: "An error occurred while logging in. Please try again later." 
+			});
 		}
-		const isPasswordValid = await bcryptjs.compare(password, user.password);
-		if (!isPasswordValid) {
-			return res.status(400).json({ success: false, message: "Invalid credentials" });
-		}
-
-		generateTokenAndSetCookie(res, user._id);
-
-		user.lastLogin = new Date();
-		await user.save();
-
-		res.status(200).json({
-			success: true,
-			message: "Logged in successfully",
-			user: {
-				...user._doc,
-				password: undefined,
-			},
-		});
-	} catch (error) {
-		console.log("Error in login ", error);
-		res.status(400).json({ success: false, message: error.message });
-	}
-};
+	};
+	
 
 
 // <============ Logout =============>

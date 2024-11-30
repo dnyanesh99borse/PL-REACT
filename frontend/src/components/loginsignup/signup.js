@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import "./signup.css";
 import Common from "./common";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import facebook from '../assets/facebookicon.svg';
 import google from '../assets/googleicon.svg';
 
@@ -13,6 +14,7 @@ import google from '../assets/googleicon.svg';
 //----AND ALSO MANAGE THE ONCLICK OF THE SIGNUP AND LOGIN OF THE BUTTON OF THE HEADER....
 //--THERE ALSO ONLY THAT PARTICULAR SECTION SHOULD CHANGE AND NOT THE WHOLE PAGE.8IZXaSDFK/  
 const Signup = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -54,7 +56,7 @@ const Signup = () => {
                     <h2 className="login-title">Sign up</h2>
                     <div className="signupbutton">
                         <p>Already have an account ?</p>
-                        <button>login</button>
+                        <button onClick={() => navigate('/login')}>Login</button>
                     </div>
 
 
