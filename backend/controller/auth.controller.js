@@ -1,21 +1,21 @@
 const bcryptjs = require("bcryptjs");
 const crypto = require("crypto");
 
-const { generateTokenAndSetCookie } = require("../utils/generateTokenAndSetCookie.js");
+const generateTokenAndSetCookie = require("../utils/generateTokenAndSetCookie.js");
 const {
 	sendPasswordResetEmail,
 	sendResetSuccessEmail,
 	sendVerificationEmail,
 	sendWelcomeEmail,
 } = require("../mailtrap/emails.js");
-const { User } = require("../models/user.model.js");
+const User = require("../models/user.model.js");
 
 
 
-const main = async (req,res) => {
+const main = async (req, res) => {
 	try {
 		res.send("Hello World!");
-	}catch(error){
+	} catch (error) {
 		console.log("Error in main ", error);
 	}
 };
@@ -23,17 +23,21 @@ const main = async (req,res) => {
 
 
 // <============ Sign Up =============>
-	const signup = async (req, res) => {
-		const { email, password, name } = req.body;
-		
-		try {
-			if (!email || !password || !name) {
-				throw new Error("All fields are required");
-			}
+const signup = async (req, res) => {
+	console.log("request body", req.body);
+	const { username, email, password, confirmPassword } = req.body;
 
-		const userAlreadyExists = await User.findOne({ email });
+	try {
+		if ( !username || !email || !password || !confirmPassword) {
+			throw new Error("All fields are required");
+		}
+		if (password !== confirmPassword) {
+			throw new Error("Passwords do not match");
+		}
+
+		const userAlreadyExists = await User.findOne({ email, username });
 		console.log("userAlreadyExists", userAlreadyExists);
-		
+
 		if (userAlreadyExists) {
 			return res.status(400).json({ success: false, message: "User already exists" });
 		}
@@ -44,11 +48,11 @@ const main = async (req,res) => {
 		const user = new User({
 			email,
 			password: hashedPassword,
-			name,
+			username,
 			verificationToken,
 			verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
 		});
-		
+
 		await user.save();
 
 		// jwt
@@ -109,36 +113,54 @@ const verifyEmail = async (req, res) => {
 
 
 // <============ Login =============>
-const login = async (req, res) => {
-	const { email, password } = req.body;
-	try {
-		const user = await User.findOne({ email });
-		if (!user) {
-			return res.status(400).json({ success: false, message: "Invalid credentials" });
+	const login = async (req, res) => {
+		const { email, password } = req.body;
+	
+		try {
+			// Find user by email
+			const user = await User.findOne({ email });
+			if (!user) {
+				return res.status(400).json({ 
+					success: false, 
+					message: "Invalid email or password" 
+				});
+			}
+	
+			// Validate password
+			const isPasswordValid = await bcryptjs.compare(password, user.password);
+			if (!isPasswordValid) {
+				return res.status(400).json({ 
+					success: false, 
+					message: "Invalid email or password" 
+				});
+			}
+	
+			// Generate token and set it in cookies
+			generateTokenAndSetCookie(res, user._id);
+	
+			// Update last login timestamp
+			user.lastLogin = new Date();
+			await user.save();
+	
+			// Respond with user details, excluding sensitive fields
+			const { password: _, ...safeUser } = user._doc;
+			res.status(200).json({
+				success: true,
+				message: "Logged in successfully",
+				user: safeUser,
+			});
+		} catch (error) {
+			// Log the error for debugging
+			console.error("Error in login:", error);
+	
+			// Send generic error response to client
+			res.status(500).json({ 
+				success: false, 
+				message: "An error occurred while logging in. Please try again later." 
+			});
 		}
-		const isPasswordValid = await bcryptjs.compare(password, user.password);
-		if (!isPasswordValid) {
-			return res.status(400).json({ success: false, message: "Invalid credentials" });
-		}
-
-		generateTokenAndSetCookie(res, user._id);
-
-		user.lastLogin = new Date();
-		await user.save();
-
-		res.status(200).json({
-			success: true,
-			message: "Logged in successfully",
-			user: {
-				...user._doc,
-				password: undefined,
-			},
-		});
-	} catch (error) {
-		console.log("Error in login ", error);
-		res.status(400).json({ success: false, message: error.message });
-	}
-};
+	};
+	
 
 
 // <============ Logout =============>
@@ -234,11 +256,11 @@ const checkAuth = async (req, res) => {
 
 module.exports = {
 	main,
-    login,
-    logout,
-    signup,
-    verifyEmail,
-    forgotPassword,
-    resetPassword,
-    checkAuth,
+	login,
+	logout,
+	signup,
+	verifyEmail,
+	forgotPassword,
+	resetPassword,
+	checkAuth,
 };

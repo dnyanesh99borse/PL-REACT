@@ -22,7 +22,7 @@
 
 .login-container .right {
     width: 50%;
-    height: 100%;
+    height:100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -231,6 +231,32 @@
 
 .google-button:hover {
     border: 1px solid orange;
+}
+
+
+.message {
+    font-size: 1vw;
+    padding: 10px 15px; /* Slightly increase padding for better spacing */
+    width: 100%;
+    text-align: center;
+    color: #fff; /* White text for contrast */
+    background-color:#f71f1f ; /* Bright red background for error */
+    border: 1px solid #fa8e86 ; /* Slightly darker red border */
+    border-radius: 55px; /* Rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    margin: 10px 0; /* Space around the message */
+    font-weight: bold; /* Emphasize the message text */
+    animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in effect */
+}
+
+/* Optional: Animation for a smooth fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 

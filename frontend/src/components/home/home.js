@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './home.css';
 
 
@@ -42,24 +42,32 @@ const Home = () => {
         }
     };
 
-    // Hide suggestions when the input loses focus
-    const handleBlur = (type) => {
-        if (type === 'school') {
-            setFilteredSchools([]);  // Clear the suggestions for schools when input loses focus
-        } else if (type === 'course') {
-            setFilteredCourses([]);  // Clear the suggestions for courses when input loses focus
-        }
-    };
+    const suggestionRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (suggestionRef.current && !suggestionRef.current.contains(event.target)) {
+                setFilteredSchools([]);
+                setFilteredCourses([]);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
 
     const handleSchoolSelect = (selectedSchool) => {
-        setSchool(selectedSchool);
-        setFilteredSchools([]);
+        setSchool(selectedSchool);  // Update the input value
+        setFilteredSchools([]);     // Clear the suggestions
     };
 
     const handleCourseSelect = (selectedCourse) => {
-        setCourse(selectedCourse);
-        setFilteredCourses([]);
+        setCourse(selectedCourse);  // Update the input value
+        setFilteredCourses([]);     // Clear the suggestions
     };
+
 
 
 
@@ -93,7 +101,7 @@ const Home = () => {
 
         return () => clearInterval(typingInterval);
     }, [text, isDeleting, typingSpeed, wordIndex, words]);
-  
+
 
 
     const counterData = [
@@ -172,14 +180,21 @@ const Home = () => {
                                     setSchool(e.target.value);
                                     filterSuggestions('school', e.target.value);
                                 }}
-                                onBlur={() => handleBlur('school')}  // OnBlur function applied here
                                 autoComplete="off"
                             />
                             <label className="form-label">University/College</label>
                             {filteredSchools.length > 0 && (
                                 <div className="suggestions">
                                     {filteredSchools.map((s, index) => (
-                                        <div key={index} onClick={() => handleSchoolSelect(s)}>
+                                        <div
+                                            key={index}
+                                            onClick={() => handleSchoolSelect(s)} // Update the input value on selection
+                                            style={{
+                                                padding: '8px',
+                                                cursor: 'pointer',
+                                                borderBottom: '1px solid #ccc',
+                                            }}
+                                        >
                                             {s}
                                         </div>
                                     ))}
@@ -199,7 +214,7 @@ const Home = () => {
                                     setCourse(e.target.value);
                                     filterSuggestions('course', e.target.value);
                                 }}
-                                onBlur={() => handleBlur('course')}  // OnBlur function applied here
+                            
                                 autoComplete="off"
                             />
                             <label className="form-label">Course</label>
