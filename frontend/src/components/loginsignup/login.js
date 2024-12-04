@@ -54,7 +54,7 @@ const Login = () => {
     };
 
     const handleHomeRedirect = () => {
-        navigate('/');
+        navigate('/courseandsem');
     }
 
 

@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './home.css';
 
 
@@ -27,7 +29,8 @@ const Home = () => {
     const [course, setCourse] = useState('');
     const [filteredSchools, setFilteredSchools] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
-    const [formSection, setFormSection] = useState(null); {/* i think this is that enter button logic of form filling--- */ }
+    const suggestionRef = useRef(null);
+    const navigate = useNavigate();
 
 
     const filterSuggestions = (type, value) => {
@@ -42,22 +45,7 @@ const Home = () => {
         }
     };
 
-    const suggestionRef = useRef(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (suggestionRef.current && !suggestionRef.current.contains(event.target)) {
-                setFilteredSchools([]);
-                setFilteredCourses([]);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-
+{/*------------logic for getting the selected suggestion value inside the input field------------ */}
     const handleSchoolSelect = (selectedSchool) => {
         setSchool(selectedSchool);  // Update the input value
         setFilteredSchools([]);     // Clear the suggestions
@@ -66,6 +54,33 @@ const Home = () => {
     const handleCourseSelect = (selectedCourse) => {
         setCourse(selectedCourse);  // Update the input value
         setFilteredCourses([]);     // Clear the suggestions
+    };
+
+     // ----------Logic to hide suggestions when clicking outside
+     useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                suggestionRef.current &&
+                !suggestionRef.current.contains(event.target)
+            ) {
+                if (!school.trim()) setFilteredSchools([]);
+                if (!course.trim()) setFilteredCourses([]);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [school, course]);
+
+//============================logic for redirect to the selected field as per college and course=================================
+    const handleEnter = () => {
+        if (school === "NMIMS, Shirpur" && course === "Engineering") {
+            navigate("/courseandsem");
+        } else {
+            alert("Please enter valid school and course values!");
+        }
     };
 
 
@@ -167,6 +182,8 @@ const Home = () => {
                         </span>
                     </div>
 
+                    {/*-------------------home university and course form section starts------------------ */}
+
                     <section className="info" id="info">
                         <h1 className="title">Select Your University/College</h1>
                         <div className="form-group">
@@ -184,7 +201,7 @@ const Home = () => {
                             />
                             <label className="form-label">University/College</label>
                             {filteredSchools.length > 0 && (
-                                <div className="suggestions">
+                                <div className="suggestions" ref={suggestionRef}>
                                     {filteredSchools.map((s, index) => (
                                         <div
                                             key={index}
@@ -203,7 +220,7 @@ const Home = () => {
                         </div>
 
                         <h1 className="title two">Select Your Course</h1>
-                        <div className="form-group">
+                        <div className="form-group" ref={suggestionRef}>
                             <input
                                 type="text"
                                 id="course"
@@ -214,7 +231,7 @@ const Home = () => {
                                     setCourse(e.target.value);
                                     filterSuggestions('course', e.target.value);
                                 }}
-                            
+
                                 autoComplete="off"
                             />
                             <label className="form-label">Course</label>
@@ -230,8 +247,7 @@ const Home = () => {
                         </div>
 
                         <div className="enter">
-                            {/* onClick={checkAndRedirect} */}
-                            <button >
+                            <button type="submit" onClick={handleEnter}>
                                 <i className="bx bx-right-arrow-alt"></i>
                                 <span>Enter</span>
                             </button>
