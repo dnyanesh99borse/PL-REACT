@@ -142,23 +142,22 @@ html {
 }
 
 .search-box {
+  position: relative;
   background: var(--text-100);
   width: 100%;
   height: 100%;
   font-size: 18px;
-  cursor: pointer;
 }
 
 .search-container i {
-  font-size: 3rem;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   background-color: #00E77F;
   border-radius: 5px;
   border: .1vw solid var(--black);
   height: 100%;
-  padding: .2vw;
-  cursor: pointer;
+  padding: .4vw;
 }
 
 .search-container:focus-within {
