@@ -18,43 +18,43 @@ const CourseAndSem = () => {
                 },
                 {
                     id: 2,
-                    image: "https://via.placeholder.com/150",
+                    image: require("../assets/ce.jpg"),
                     shortName: "C.E.",
                     fullName: "Computer Engineering"
                 },
                 {
                     id:3,
-                    image:"https://via.placeholder.com/150",
-                    shortName: "I.T.",
-                    fullName: "Information Technology"
-                },
-                {
-                    id:4,
-                    image:"https://via.placeholder.com/150",
+                    image:require("../assets/IT.jpg"),
                     shortName: "I.T.",
                     fullName: "Information Technology"
                 },
                 {
                     id:5,
-                    image:"https://via.placeholder.com/150",
+                    image:require("../assets/ds.jpg"),
                     shortName: "D.S.",
                     fullName: "Data Science"
                 },
                 {
+                    id: 2,
+                    image: require("../assets/AI.jpg"),
+                    shortName: "A.I.",
+                    fullName: "Artificial Intelligence"
+                },
+                {
                     id:6,
-                    image:"https://via.placeholder.com/150",
+                    image:require("../assets/mbatech.jpg"),
                     shortName: "MBA Tech",
                     fullName: "Management & Technology / Integrated"
                 },
                 {
                     id:7,
-                    image:"https://via.placeholder.com/150",
+                    image:require("../assets/m.jpg"),
                     shortName: "M.",
                     fullName: "Mechantronics"
                 },
                 {
                     id:8,
-                    image:"https://via.placeholder.com/150",
+                    image:require("../assets/cse.jpg"),
                     shortName: "C.S.E.",
                     fullName: "Cyber Security"
                 }
