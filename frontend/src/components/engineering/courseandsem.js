@@ -12,7 +12,7 @@ const CourseAndSem = () => {
             const response = [
                 {
                     id: 1,
-                    image:"",
+                    image:require("../assets/cs.jpg"),
                     shortName: "C.S.",
                     fullName: "Computer Science"
                 },

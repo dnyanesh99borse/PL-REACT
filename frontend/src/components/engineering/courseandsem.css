@@ -29,7 +29,7 @@
 }
 
 .cleft, .cright {
-    height: 80vh;
+    height: 80vh;  
     flex: 1;
     padding: 1.7vw;
     overflow: scroll;
@@ -72,34 +72,34 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.img {
+.coursebox .img{
     flex: 0 0 30%;
     max-width: 15%;
-}
+} 
 
-.img img {
+.coursebox .img img {
     width: 100%;
     border-radius: 5px;
 }
 
-.name {
+.coursebox .name {
     flex: 1;
     padding-left: 15px;
     text-align: left;
 }
 
-.short-name {
+.name .short-name {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.full-name {
+.name .full-name {
     font-size: 14px;
     color: #555;
 }
 
-.semester-grid {
+.cright .semester-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5vw;
