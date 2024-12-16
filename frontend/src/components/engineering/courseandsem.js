@@ -5,6 +5,7 @@ import Header from "../header/header";
 const CourseAndSem = () => {
     const [courses, setCourses] = useState([]);
 
+    
     // Simulate fetching data from a REST API
     useEffect(() => {
         // Mock data (replace this with actual API call)

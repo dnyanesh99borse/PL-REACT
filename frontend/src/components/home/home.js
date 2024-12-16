@@ -7,81 +7,191 @@ import './home.css';
 const Home = () => {
 
     /*----------LOGIC FOR SHOWING SUGGESTIONS IN FORM------------*/
-    const schools = [
-        "NMIMS, Mumbai",
-        "NMIMS, Shirpur",
-        "RC Patel, Shirpur",
-        "D.Y. Patil, Pune",
-        "Sandeep University, Nashik",
-        "Fergusson College, Pune"
-    ];
+//     const schools = [
+//         "NMIMS, Mumbai",
+//         "NMIMS, Shirpur",
+//         "RC Patel, Shirpur",
+//         "D.Y. Patil, Pune",
+//         "Sandeep University, Nashik",
+//         "Fergusson College, Pune"
+//     ];
 
-    const courses = [
-        "Engineering",
-        "Pharmacy",
-        "BCA",
-        "Pharmatech",
-        "BSc"
-    ];
-
-
-    const [school, setSchool] = useState('');
-    const [course, setCourse] = useState('');
-    const [filteredSchools, setFilteredSchools] = useState([]);
-    const [filteredCourses, setFilteredCourses] = useState([]);
-    const suggestionRef = useRef(null);
-    const navigate = useNavigate();
+//     const courses = [
+//         "Engineering",
+//         "Pharmacy",
+//         "BCA",
+//         "Pharmatech",
+//         "BSc"
+//     ];
 
 
-    const filterSuggestions = (type, value) => {
-        if (type === 'school') {
-            setFilteredSchools(
-                schools.filter(item => item.toLowerCase().includes(value.toLowerCase()))
-            );
-        } else if (type === 'course') {
-            setFilteredCourses(
-                courses.filter(item => item.toLowerCase().includes(value.toLowerCase()))
-            );
+//     const [school, setSchool] = useState('');
+//     const [course, setCourse] = useState('');
+//     const [filteredSchools, setFilteredSchools] = useState([]);
+//     const [filteredCourses, setFilteredCourses] = useState([]);
+//     const suggestionRef = useRef(null);
+//     const navigate = useNavigate();
+
+
+//     const filterSuggestions = (type, value) => {
+//         if (type === 'school') {
+//             setFilteredSchools(
+//                 schools.filter(item => item.toLowerCase().includes(value.toLowerCase()))
+//             );
+//         } else if (type === 'course') {
+//             setFilteredCourses(
+//                 courses.filter(item => item.toLowerCase().includes(value.toLowerCase()))
+//             );
+//         }
+//     };
+
+// {/*------------logic for getting the selected suggestion value inside the input field------------ */}
+//     const handleSchoolSelect = (selectedSchool) => {
+//         setSchool(selectedSchool);  // Update the input value
+//         setFilteredSchools([]);     // Clear the suggestions
+//     };
+
+//     const handleCourseSelect = (selectedCourse) => {
+//         setCourse(selectedCourse);  // Update the input value
+//         setFilteredCourses([]);     // Clear the suggestions
+//     };
+
+//      // ----------Logic to hide suggestions when clicking outside
+//      useEffect(() => {
+//         const handleClickOutside = (event) => {
+//             if (
+//                 suggestionRef.current &&
+//                 !suggestionRef.current.contains(event.target)
+//             ) {
+//                 if (!school.trim()) setFilteredSchools([]);
+//                 if (!course.trim()) setFilteredCourses([]);
+//             }
+//         };
+
+//         document.addEventListener("mousedown", handleClickOutside);
+//         return () => {
+//             document.removeEventListener("mousedown", handleClickOutside);
+//         };
+//     }, [school, course]);
+
+// //============================logic for redirect to the selected field as per college and course=================================
+//     const handleEnter = () => {
+//         if (school === "NMIMS, Shirpur" && course === "Engineering") {
+//             navigate("/courseandsem");
+//         } else {
+//             alert("Please enter valid school and course values!");
+//         }
+//     };
+
+
+const schools = [
+    "NMIMS, Mumbai",
+    "NMIMS, Shirpur",
+    "RC Patel, Shirpur",
+    "D.Y. Patil, Pune",
+    "Sandeep University, Nashik",
+    "Fergusson College, Pune"
+];
+
+const courses = [
+    "Engineering",
+    "Pharmacy",
+    "BCA",
+    "Pharmatech",
+    "BSc"
+];
+
+const [school, setSchool] = useState('');
+const [course, setCourse] = useState('');
+const [filteredSchools, setFilteredSchools] = useState([]);
+const [filteredCourses, setFilteredCourses] = useState([]);
+const suggestionRef = useRef(null);
+const navigate = useNavigate();
+
+// Close suggestions on full match
+useEffect(() => {
+    if (schools.includes(school.trim())) {
+        setFilteredSchools([]); // Clear school suggestions
+    }
+    if (courses.includes(course.trim())) {
+        setFilteredCourses([]); // Clear course suggestions
+    }
+}, [school, course]);
+
+// Normalize input for case-insensitive and flexible matching
+const normalizeInput = (input) => {
+    return input
+        .toLowerCase()
+        .replace(/[\.,]/g, "") // Remove commas, periods, etc.
+        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+        .trim(); // Remove leading/trailing spaces
+};
+
+const filterSuggestions = (type, value) => {
+    const normalizedValue = normalizeInput(value);
+
+    if (type === "school") {
+        setFilteredSchools(
+            schools.filter((item) =>
+                normalizeInput(item).includes(normalizedValue)
+            )
+        );
+    } else if (type === "course") {
+        setFilteredCourses(
+            courses.filter((item) =>
+                normalizeInput(item).includes(normalizedValue)
+            )
+        );
+    }
+};
+
+// Hide suggestions when clicking outside
+useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (
+            suggestionRef.current &&
+            !suggestionRef.current.contains(event.target)
+        ) {
+            setFilteredSchools([]); // Clear school suggestions
+            setFilteredCourses([]); // Clear course suggestions
         }
     };
 
-{/*------------logic for getting the selected suggestion value inside the input field------------ */}
-    const handleSchoolSelect = (selectedSchool) => {
-        setSchool(selectedSchool);  // Update the input value
-        setFilteredSchools([]);     // Clear the suggestions
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
     };
+}, []);
 
-    const handleCourseSelect = (selectedCourse) => {
-        setCourse(selectedCourse);  // Update the input value
-        setFilteredCourses([]);     // Clear the suggestions
-    };
 
-     // ----------Logic to hide suggestions when clicking outside
-     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (
-                suggestionRef.current &&
-                !suggestionRef.current.contains(event.target)
-            ) {
-                if (!school.trim()) setFilteredSchools([]);
-                if (!course.trim()) setFilteredCourses([]);
-            }
-        };
+// Logic for selecting a suggestion value inside the input field
+const handleSchoolSelect = (selectedSchool) => {
+    setSchool(selectedSchool); // Update the input value
+    setFilteredSchools([]); // Clear the suggestions
+};
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [school, course]);
+const handleCourseSelect = (selectedCourse) => {
+    setCourse(selectedCourse); // Update the input value
+    setFilteredCourses([]); // Clear the suggestions
+};
 
-//============================logic for redirect to the selected field as per college and course=================================
-    const handleEnter = () => {
-        if (school === "NMIMS, Shirpur" && course === "Engineering") {
-            navigate("/courseandsem");
-        } else {
-            alert("Please enter valid school and course values!");
-        }
-    };
+
+
+// Redirect logic with flexible matching
+const handleEnter = () => {
+    const normalizedSchool = normalizeInput(school);
+    const normalizedCourse = normalizeInput(course);
+
+    if (
+        (normalizedSchool === "nmims shirpur" ||
+            normalizedSchool === "nmims, shirpur") &&
+        normalizedCourse === "engineering"
+    ) {
+        navigate("/courseandsem");
+    } else {
+        alert("Please enter valid school and course values!");
+    }
+};
 
 
 
