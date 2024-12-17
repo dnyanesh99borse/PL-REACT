@@ -6,6 +6,8 @@ import Display from "./Display";
 import Login from "./components/loginsignup/login";
 import Signup from "./components/loginsignup/signup";
 import CourseAndSem from "./components/engineering/courseandsem";
+import IT1STSEM from "./components/engineering/IT/IT1stsem";
+
 
 function App() {
     return (
@@ -15,6 +17,7 @@ function App() {
                 <Route path="/login" element={<Login/>} />
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/courseandsem" element={<CourseAndSem/>} />
+                <Route path="/IT1STSEM" element={<IT1STSEM/>}/>
             </Routes>
         </div>
     );

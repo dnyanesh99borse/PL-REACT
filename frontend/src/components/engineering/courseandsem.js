@@ -1,75 +1,42 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../engineering/courseandsem.css';
 import Header from "../header/header";
 
 const CourseAndSem = () => {
     const [courses, setCourses] = useState([]);
     const [selectedCourseId, setSelectedCourseId] = useState(null);
-    const [selectedSemesterId, setSelectedSemesterId] = useState(null); // New state for semester selection
+    const [selectedSemesterId, setSelectedSemesterId] = useState(null);
+    const navigate = useNavigate(); // React Router navigation hook
 
     // Handle course click
-    const handleCourseClick = (courseId) => {
-        setSelectedCourseId(courseId);
+    const handleCourseClick = (id) => {
+        setSelectedCourseId(id);
     };
 
     // Handle semester click
-    const handleSemesterClick = (semesterId) => {
-        setSelectedSemesterId(semesterId);
+    const handleSemesterClick = (semester) => {
+        setSelectedSemesterId(semester);
     };
 
-    // Simulate fetching data from a REST API
+    const nextRedirect = () => {
+        if (selectedCourseId === "IT" && selectedSemesterId === 1) {
+            navigate("/IT1STSEM");
+        }
+    };
+
+    // Simulate fetching data (replace with API call if needed)
     useEffect(() => {
-        // Mock data (replace this with actual API call)
         const fetchData = async () => {
             const response = [
-                {
-                    id: 1,
-                    image: require("../assets/cs.jpg"),
-                    shortName: "C.S.",
-                    fullName: "Computer Science"
-                },
-                {
-                    id: 2,
-                    image: require("../assets/ce.jpg"),
-                    shortName: "C.E.",
-                    fullName: "Computer Engineering"
-                },
-                {
-                    id: 3,
-                    image: require("../assets/IT.jpg"),
-                    shortName: "I.T.",
-                    fullName: "Information Technology"
-                },
-                {
-                    id: 5,
-                    image: require("../assets/ds.jpg"),
-                    shortName: "D.S.",
-                    fullName: "Data Science"
-                },
-                {
-                    id: 6,
-                    image: require("../assets/AI.jpg"),
-                    shortName: "A.I.",
-                    fullName: "Artificial Intelligence"
-                },
-                {
-                    id: 7,
-                    image: require("../assets/mbatech.jpg"),
-                    shortName: "MBA Tech",
-                    fullName: "Management & Technology / Integrated"
-                },
-                {
-                    id: 8,
-                    image: require("../assets/m.jpg"),
-                    shortName: "M.",
-                    fullName: "Mechatronics"
-                },
-                {
-                    id: 9,
-                    image: require("../assets/cse.jpg"),
-                    shortName: "C.S.E.",
-                    fullName: "Cyber Security"
-                }
+                { id: "CS", image: require("../assets/cs.jpg"), shortName: "C.S.", fullName: "Computer Science" },
+                { id: "CE", image: require("../assets/ce.jpg"), shortName: "C.E.", fullName: "Computer Engineering" },
+                { id: "IT", image: require("../assets/IT.jpg"), shortName: "I.T.", fullName: "Information Technology" },
+                { id: "DS", image: require("../assets/ds.jpg"), shortName: "D.S.", fullName: "Data Science" },
+                { id: "AI", image: require("../assets/AI.jpg"), shortName: "A.I.", fullName: "Artificial Intelligence" },
+                { id: "MBATECH", image: require("../assets/mbatech.jpg"), shortName: "MBA Tech", fullName: "Management & Technology" },
+                { id: "M", image: require("../assets/m.jpg"), shortName: "M.", fullName: "Mechatronics" },
+                { id: "CSE", image: require("../assets/cse.jpg"), shortName: "C.S.E.", fullName: "Cyber Security" }
             ];
             setCourses(response);
         };
@@ -93,11 +60,11 @@ const CourseAndSem = () => {
                                 <div
                                     className="coursebox"
                                     key={course.id}
-                                    onClick={() => handleCourseClick(course.id)} // Set selected course
+                                    onClick={() => handleCourseClick(course.id)}
                                     style={{
                                         boxShadow: "0px 4px 8px rgba(200, 198, 198, 0.1)",
-                                        backgroundColor: selectedCourseId === course.id ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)", // Highlight selected course
-                                        color: selectedCourseId === course.id ? "black" : "rgba(33, 32, 32, 0.964)", // Adjust text color
+                                        backgroundColor: selectedCourseId === course.id ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)",
+                                        color: selectedCourseId === course.id ? "black" : "rgba(33, 32, 32, 0.964)",
                                         cursor: "pointer",
                                         transition: "0.3s ease",
                                         transform: selectedCourseId === course.id ? "scale(1.05)" : "scale(1)",
@@ -123,11 +90,11 @@ const CourseAndSem = () => {
                                 <div
                                     key={i}
                                     className="semester-box"
-                                    onClick={() => handleSemesterClick(i + 1)} // Set selected semester
+                                    onClick={() => handleSemesterClick(i + 1)}
                                     style={{
                                         boxShadow: "0px 4px 8px rgba(200, 198, 198, 0.1)",
-                                        backgroundColor: selectedSemesterId === i + 1 ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)", // Highlight selected semester
-                                        color: selectedSemesterId === i + 1 ? "black" : "rgba(33, 32, 32, 0.964)", // Adjust text color
+                                        backgroundColor: selectedSemesterId === i + 1 ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)",
+                                        color: selectedSemesterId === i + 1 ? "black" : "rgba(33, 32, 32, 0.964)",
                                         cursor: "pointer",
                                         transition: "0.3s ease",
                                         transform: selectedSemesterId === i + 1 ? "scale(1.05)" : "scale(1)",
@@ -138,7 +105,22 @@ const CourseAndSem = () => {
                                 </div>
                             ))}
                         </div>
-                        <button className="nextbtn">next</button>
+
+                        {/* Next Button */}
+                        <button
+                            className="nextbtn"
+                            onClick={nextRedirect}
+                            style={{
+                                backgroundColor: selectedCourseId && selectedSemesterId ? "rgb(34, 139, 34)" : "gray",
+                                color: "white",
+                                cursor: selectedCourseId && selectedSemesterId ? "pointer" : "not-allowed",
+                                transition: "0.3s ease",
+                                transform: selectedCourseId && selectedSemesterId ? "scale(1.05)" : "scale(1)"
+                            }}
+                            disabled={!selectedCourseId || !selectedSemesterId}
+                        >
+                            Next
+                        </button>
                     </div>
                 </div>
             </div>
