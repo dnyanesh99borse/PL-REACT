@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Playwrite+TZ+Guides&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
 .select {
     height: 100%;
     width: 100%;
     position: relative;
     margin-top: 55px;
-    background-color: #e0e0e0;
+    background-color: #f8f8f8bd;
 }
 
 .select .container {
-    height: calc(100vh - 55px);
+    height:100%;
     text-align: center;
     font-size: 1.1vw;
 }
@@ -19,11 +19,14 @@
     text-align: center;
     padding: .5vw;
     font-size: 1.2vw;
-    font-family: "Parkinsans", sans-serif;
+    font-family: "Playwrite TZ Guides", cursive;
     font-weight: bold;
+    text-shadow: 0px 1px 1px rgb(255, 255, 255);
 }
 
 .mainbox {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     padding: 1.7vw;
@@ -66,6 +69,7 @@
     align-self: flex-end;
     border-radius: 5px;
 }
+
 /* 
 .cright .nextbtn:hover{
     background-color: rgb(78, 200, 147);
@@ -85,7 +89,6 @@
 .coursebox {
     display: flex;
     align-items: center;
-    border: 1px solid #ddd;
     border-radius: .4vw;
     padding: 15px;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -93,8 +96,7 @@
 }
 
 .coursebox .img {
-    flex: 0 0 30%;
-    max-width: 15%;
+    flex: 0 0 15%;
 }
 
 .coursebox .img img {
@@ -137,4 +139,149 @@
 .semester-box:hover {
     transform: scale(1.05);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/*--------------------------------applying responsivenes to this page---------------------------*/
+
+@media (max-width: 600px) {
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
+
+    .select {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        margin-top: 55px;
+        background-color: #f01e1e;
+    }
+
+    .select .container {
+        height: calc(100vh - 55px);
+        text-align: center;
+        font-size: 1.1vw;
+    }
+
+    #title {
+        width: 100%;
+        text-align: center;
+        padding: .5vw;
+        font-size: 1.2vw;
+        font-family: "Parkinsans", sans-serif;
+        font-weight: bold;
+    }
+
+    .mainbox {
+        display: flex;
+        justify-content: space-between;
+        padding: 1.7vw;
+        background-color: aliceblue;
+    }
+
+    .cleft,
+    .cright {
+        height: 80vh;
+        flex: 1;
+        padding: 1.7vw;
+        overflow: scroll;
+        box-shadow: 0px 0px 4px rgba(230, 227, 227, 0.832);
+    }
+
+    .cleft #line,
+    .cright #line {
+        font-size: 1.5vw;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: rgb(31, 201, 105);
+        filter: drop-shadow(2px 2px 2px black);
+        padding: .5vw;
+    }
+
+    .cleft {
+        border-right: 2px solid #ddd;
+    }
+
+    .cright {
+        padding-left: 3.8vw;
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+    }
+
+    .cright .nextbtn {
+        height: 3vw;
+        width: 6vw;
+        font-size: 1.2vw;
+        align-self: flex-end;
+        border-radius: 5px;
+    }
+
+    /* 
+.cright .nextbtn:hover{
+    background-color: rgb(78, 200, 147);
+    color: black;
+}
+
+.cright .nextbtn:active{
+    background-color: rgba(62, 215, 149, 0.855);
+} */
+
+    .course-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+    }
+
+    .coursebox {
+        display: flex;
+        align-items: center;
+        border-radius: .4vw;
+        padding: 15px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+
+    .coursebox .img {
+        flex: 0 0 15%;
+    }
+
+    .coursebox .img img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .coursebox .name {
+        flex: 1;
+        padding-left: 15px;
+        text-align: left;
+    }
+
+    .name .short-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .name .full-name {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .cright .semester-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5vw;
+    }
+
+    .semester-box {
+        border: 1px solid #ddddddd3;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .semester-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
 }
