@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from "react";
+import Header from "../../header/header";
 
 const IT1STSEM = () => {
     return (
-        <div>
-            Hello everybody, we are very near to the success.
+        <>
+        <div className="">
+            HI HOW ARE YOUdgfffg
         </div>
+        <div className="">
+        HI HOW ARE YOUdgfffg
+    </div>
+    <div className="">
+    HI HOW ARE YOUdgfffg
+</div>
+<div className="">
+            HI HOW ARE YOUdgfffg
+        </div>
+        </>
     );
 };
 

@@ -1,15 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Playwrite+TZ+Guides&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
+
+ ::-webkit-scrollbar {
+    width: 8px; 
+    height: 8px; 
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #6ecfba, #44a08d); 
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #44a08d, #2e8b57);
+}
+
+/* Optional: Scrollbar corner styling */
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
+
 .select {
     height: 100%;
-    width: 100%;
+    height: 100%;
     position: relative;
     margin-top: 55px;
     background-color: #f8f8f8bd;
 }
 
 .select .container {
-    height:100%;
     text-align: center;
     font-size: 1.1vw;
 }
@@ -33,13 +60,19 @@
     background-color: aliceblue;
 }
 
-.cleft,
+.cleft ,
 .cright {
+    position: relative;
     height: 80vh;
     flex: 1;
-    padding: 1.7vw;
-    overflow: scroll;
     box-shadow: 0px 0px 4px rgba(230, 227, 227, 0.832);
+}
+
+.cleft .courses,
+.cright .semester{
+    height: 95%;
+    padding: 1vw;
+    overflow: scroll;
 }
 
 .cleft #line,
@@ -51,11 +84,11 @@
     padding: .5vw;
 }
 
-.cleft {
+.cleft .courses {
     border-right: 2px solid #ddd;
 }
 
-.cright {
+.cright .semester {
     padding-left: 3.8vw;
     display: flex;
     flex-direction: column;
@@ -145,20 +178,21 @@
 /*--------------------------------applying responsivenes to this page---------------------------*/
 
 @media (max-width: 600px) {
-    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
-
+     
     .select {
         height: 100%;
         width: 100%;
         position: relative;
         margin-top: 55px;
-        background-color: #f01e1e;
+        background-color: #f8f8f8bd;
     }
 
     .select .container {
-        height: calc(100vh - 55px);
         text-align: center;
         font-size: 1.1vw;
+
+
+        height: 100%;
     }
 
     #title {
@@ -166,20 +200,28 @@
         text-align: center;
         padding: .5vw;
         font-size: 1.2vw;
-        font-family: "Parkinsans", sans-serif;
+        font-family: "Playwrite TZ Guides", cursive;
         font-weight: bold;
+
+
+        font-size: 4vw;
     }
 
     .mainbox {
         display: flex;
         justify-content: space-between;
         padding: 1.7vw;
+        
+
+        gap: 7px;
+        display: flex;
+        flex-direction:column;
         background-color: aliceblue;
     }
 
     .cleft,
     .cright {
-        height: 80vh;
+        max-height: 80vw;
         flex: 1;
         padding: 1.7vw;
         overflow: scroll;
@@ -188,11 +230,13 @@
 
     .cleft #line,
     .cright #line {
-        font-size: 1.5vw;
+        
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         color: rgb(31, 201, 105);
         filter: drop-shadow(2px 2px 2px black);
         padding: .5vw;
+
+        font-size: 7vw;
     }
 
     .cleft {
@@ -200,10 +244,14 @@
     }
 
     .cright {
-        padding-left: 3.8vw;
+        
         display: flex;
         flex-direction: column;
         gap: 2vw;
+
+
+
+        
     }
 
     .cright .nextbtn {
@@ -213,6 +261,8 @@
         align-self: flex-end;
         border-radius: 5px;
     }
+
+   
 
     /* 
 .cright .nextbtn:hover{
@@ -233,14 +283,17 @@
     .coursebox {
         display: flex;
         align-items: center;
-        border-radius: .4vw;
-        padding: 15px;
+        
+        padding: 20px;
         transition: transform 0.2s, box-shadow 0.2s;
         cursor: pointer;
+
+
+        border-radius: 2.5vw;
     }
 
     .coursebox .img {
-        flex: 0 0 15%;
+        flex: .5 0 0;
     }
 
     .coursebox .img img {
@@ -265,23 +318,36 @@
         color: #555;
     }
 
-    .cright .semester-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5vw;
-    }
 
+    
+    .cright .semester-grid {
+        display: flex; /* Use flexbox instead of grid */
+        flex-direction: column; /* Arrange items vertically */
+        gap: 2vw; /* Space between semester boxes */
+        align-items: center; /* Center boxes horizontally */
+        margin-top: 2vw; /* Top spacing */
+    }
+    
     .semester-box {
+        width: 100%; /* Full width of the container */
+        max-width: 500px; /* Optional: Restrict box width for larger screens */
         border: 1px solid #ddddddd3;
         border-radius: 8px;
-        padding: 15px;
+        padding: 20px;
+        font-size: 5vw;
         text-align: center;
         font-weight: bold;
-        transition: transform 0.2s, box-shadow 0.2s;
+        background-color: rgba(113, 147, 128, 0.44);
+        color: rgba(33, 32, 32, 0.964);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     }
-
+    
     .semester-box:hover {
-        transform: scale(1.05);
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transform: none;
+        background-color: rgb(202, 241, 202);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     }
+    
+    
 }
