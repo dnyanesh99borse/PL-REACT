@@ -66,12 +66,13 @@
     height: 80vh;
     flex: 1;
     box-shadow: 0px 0px 4px rgba(230, 227, 227, 0.832);
+    border-bottom: 2px solid #ddd;
 }
 
 .cleft .courses,
 .cright .semester{
     height: 95%;
-    padding: 1vw;
+    padding: 1.2vw;
     overflow: scroll;
 }
 
@@ -84,9 +85,9 @@
     padding: .5vw;
 }
 
-.cleft .courses {
-    border-right: 2px solid #ddd;
-}
+/* .cleft .courses {
+    border-bottom: 2px solid #ddd;
+} */
 
 .cright .semester {
     padding-left: 3.8vw;
@@ -103,6 +104,9 @@
     border-radius: 5px;
 }
 
+.mainbox .nextbtn600px{
+    display: none;
+}
 /* 
 .cright .nextbtn:hover{
     background-color: rgb(78, 200, 147);
@@ -221,12 +225,18 @@
 
     .cleft,
     .cright {
-        max-height: 80vw;
+        height: 80vw;
         flex: 1;
         padding: 1.7vw;
-        overflow: scroll;
         box-shadow: 0px 0px 4px rgba(230, 227, 227, 0.832);
     }
+
+    .cleft .courses,
+.cright .semester{
+    height: 70vw;
+    padding: 1.2vw;
+    overflow: scroll;
+}
 
     .cleft #line,
     .cright #line {
@@ -239,9 +249,9 @@
         font-size: 7vw;
     }
 
-    .cleft {
-        border-right: 2px solid #ddd;
-    }
+    /* .cleft {
+        border: 2px solid #ddd;
+    } */
 
     .cright {
         
@@ -254,25 +264,22 @@
         
     }
 
-    .cright .nextbtn {
-        height: 3vw;
-        width: 6vw;
-        font-size: 1.2vw;
-        align-self: flex-end;
+
+
+    .mainbox .nextbtn600px {
+        width: 90%;
+        font-size: 5vw;
+        align-self:center;
         border-radius: 5px;
+        padding: 2vw;
+        display: block;
     }
 
-   
+    .cright .nextbtn{
+        display: none;
+    }
 
-    /* 
-.cright .nextbtn:hover{
-    background-color: rgb(78, 200, 147);
-    color: black;
-}
-
-.cright .nextbtn:active{
-    background-color: rgba(62, 215, 149, 0.855);
-} */
+    
 
     .course-container {
         display: flex;
