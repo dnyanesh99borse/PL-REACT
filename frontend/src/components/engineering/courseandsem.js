@@ -106,7 +106,7 @@ const CourseAndSem = () => {
                                             onClick={() => handleSemesterClick(i + 1)}
                                             style={{
                                                 boxShadow: "0px 4px 8px rgba(200, 198, 198, 0.1)",
-                                                backgroundColor:selectedSemesterId === i + 1 ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)",
+                                                backgroundColor: selectedSemesterId === i + 1 ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)",
                                                 color: selectedSemesterId === i + 1 ? "black" : "rgba(33, 32, 32, 0.964)",
                                                 cursor: "pointer",
                                                 transition: "0.3s ease",
@@ -138,18 +138,18 @@ const CourseAndSem = () => {
                         </div>
 
                         <button className="nextbtn600px"
-                                    onClick={nextRedirect}
-                                    style={{
-                                        backgroundColor: selectedCourseId && selectedSemesterId ? "rgb(34, 139, 34)" : "gray",
-                                        color: "white",
-                                        cursor: selectedCourseId && selectedSemesterId ? "pointer" : "not-allowed",
-                                        transition: "0.3s ease",
-                                        transform: selectedCourseId && selectedSemesterId ? "scale(1.05)" : "scale(1)",
-                                    }}
-                                    disabled={!selectedCourseId || !selectedSemesterId}
-                                >
-                                    Next
-                                </button>
+                            onClick={nextRedirect}
+                            style={{
+                                backgroundColor: selectedCourseId && selectedSemesterId ? "rgb(34, 139, 34)" : "gray",
+                                color: "white",
+                                cursor: selectedCourseId && selectedSemesterId ? "pointer" : "not-allowed",
+                                transition: "0.3s ease",
+                                transform: selectedCourseId && selectedSemesterId ? "scale(1.05)" : "scale(1)",
+                            }}
+                            disabled={!selectedCourseId || !selectedSemesterId}
+                        >
+                            Next
+                        </button>
 
                     </div>
                 </div>
