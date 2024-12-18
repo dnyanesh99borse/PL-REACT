@@ -1,6 +1,259 @@
-.maini{
-    width: 10vw;
-    height: 10vw;
-}
+/* General container styling */
+/* .maindisplay {
+    display: flex;
+    flex-direction: column;
+  } */
+  
+  /* Top section */
+  /* .maindisplay .top {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 3px solid brown;
+    background-color: #f5f5f5;
+  }
+  
+  .top p {
+    width: 15%;
+    padding: 1vw;
+    border: 2px solid aqua;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+  }
+  
+  .top .subname {
+    width: 85%;
+    padding: 1vw;
+    border: 2px solid rgb(31, 56, 217);
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Arrow rotation */
+  .bx {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .bx.rotate {
+    transform: rotate(180deg);
+  }
+  
+  /* Subdisplay section */
+  .subdisplay {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 105px);
+    border: 3px solid black;
+  }
+  
+  /* Subbar (Left Sidebar) */
+  .subdisplay .subbar {
+    border: 2px solid red;
+    width: 15%;
+    background-color: #fff;
+    transition: width 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .subbar ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .subbar li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .subbar li:hover {
+    background-color: #f0f0f0;
+    color: blue;
+  }
+  
+  /* Hide Subbar */
+  .subbar.hide {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  /* Sidesec (Main Content) */
+  .subdisplay .sidesec {
+    position: relative;
+    width: 85%;
+    background-color: aquamarine;
+    border: 2px solid orange;
+    transition: width 0.3s ease;
+  }
+  
+  .sidesec.expand {
+    width: 100%;
+  }
+  
+  .sidesec .content {
+    padding: 20px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  
+
+ */
 
 
+/*=====================we have to do like, the title like "I.T. 1ST SEMESTER" will display same which is 
+clicked by the user during selecting the course and semester and similarly when the user will select 
+the subject then that subject name will display same on the top heading of the content page 
+we can do this using the angular and veu js===============*/
+
+
+/* General container styling */
+.maindisplay {
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    color: #333;
+  }
+  
+  /* Top section */
+  .maindisplay .top {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 0 20px;
+  }
+  
+  .top p {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .top p:hover {
+    color: #007bff;
+  }
+  
+  .top .subname {
+    width: 80%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: right;
+    color: #555;
+  }
+  
+  /* Arrow rotation */
+  .bx {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .bx.rotate {
+    transform: rotate(180deg);
+  }
+  
+  /* Subdisplay section */
+  .subdisplay {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 60px);
+  }
+  
+  /* Subbar (Left Sidebar) */
+  .subdisplay .subbar {
+    width: 20%;
+    background: #f9f9f9;
+    padding: 15px;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .subbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .subbar li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #555;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .subbar li:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Hide Subbar */
+  .subbar.hide {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  /* Sidesec (Main Content) */
+  .subdisplay .sidesec {
+    width: 80%;
+    background: #fff;
+    padding: 30px;
+    transition: width 0.3s ease;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidesec.expand {
+    width: 100%;
+  }
+  
+  .sidesec .content {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .top p {
+      width: 50%;
+      font-size: 1rem;
+    }
+  
+    .top .subname {
+      width: 50%;
+      font-size: 0.9rem;
+    }
+  
+    .subbar {
+      width: 30%;
+    }
+  
+    .sidesec {
+      width: 70%;
+    }
+  }
+  
+  
