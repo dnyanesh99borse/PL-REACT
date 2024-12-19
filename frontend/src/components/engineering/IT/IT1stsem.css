@@ -17,21 +17,24 @@
 .top p {
   width: 15%;
   padding: 1vw;
-  border: 2px solid aqua;
+  font-size: 1.2vw;
+  /* border: 2px solid aqua; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s ease;
+  color:#00952d;
 }
 
 .top .subname {
   width: 85%;
   padding: 1vw;
+  font-size: 1.2vw;
   border: 2px solid rgb(31, 56, 217);
   font-weight: bold;
-  color: #333;
+  color: #00952d;
 }
 
 /* Arrow rotation */
@@ -62,15 +65,19 @@
 
 .subbar ul {
   list-style: none;
-  padding: 10px;
+  padding: 5px;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
 }
 
 .subbar li {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding: 5px;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
+  font-size:15px;
   transition: 0.3s;
 }
 
@@ -79,6 +86,15 @@
   color: blue;
 }
 
+.subbar li:focus {
+  background-color: #f0f0f0;
+  color: rgb(0, 255, 123);
+}
+
+.subbar li:active{
+  background-color: #f0f0f0;
+  color: rgb(30, 30, 136);
+}
 /* Hide Subbar */
 .subbar.hide {
   display: none;
