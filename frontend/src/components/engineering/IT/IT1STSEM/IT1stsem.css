@@ -1,10 +1,15 @@
+body{
+  overflow: hidden;
+}
+
 .maindisplay {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 55px);
+  margin-top: 55px;
 }
 
-/* Top section */
+/* --------Top section-------- */
 .maindisplay .top {
   width: 100%;
   display: flex;
@@ -104,9 +109,10 @@
 .subdisplay .sidesec {
   position: relative;
   width: 85%;
-  background-color: rgb(232, 241, 238);
+  background-color: rgb(223, 237, 228);
   transition: none;
   border-radius: .2vw;
+  overflow: scroll;
 }
 
 .sidesec.expand {
@@ -114,17 +120,18 @@
 }
 
 .sidesec .content {
-  padding: 20px;
   font-size: 1.2vw;
   line-height: 1.5;
-  height: calc(100vh -60px);
+}
+
+::-webkit-scrollbar{
+  color: rgb(223, 237, 228);
 }
 
 
 
 
-
-/*=====================we have to do like, the title like "I.T. 1ST SEMESTER" will display same which is 
+/*=====================================we have to do like, the title like "I.T. 1ST SEMESTER" will display same which is 
 clicked by the user during selecting the course and semester and similarly when the user will select 
 the subject then that subject name will display same on the top heading of the content page 
-we can do this using the angular and veu js===============*/
+we can do this using the angular and veu js===================================*/

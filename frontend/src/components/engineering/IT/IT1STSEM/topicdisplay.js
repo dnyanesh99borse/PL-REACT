@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "../IT1STSEM/IT1stsem.css";
-import Calculus from "./CALCULUS/calculus"; // Import the Calculus component
+import "../IT1STSEM/IT1stsem.css"; // Import the Calculus component
 import Physics from "../IT1STSEM/physics"; // Import the Physics component
 import Programming from "./pps"; // Import the Programming component
 import Biology from "./biology"; // Import the Biology component
@@ -8,10 +7,11 @@ import Ethics from "./pe"; // Import the Professional Ethics component
 import CriticalThinking from "./ct"; // Import the Critical Thinking component
 import Graphics from "./egd"; // Import the Engineering Graphics component
 import Header from "../../../header/header";
+import RollesTheorem from "../IT1STSEM/CALCULUS//rollesthm";
 
-const IT1STSEM = () => {
+const TOPICDISPLAY = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState("Calculus"); // Default subject
+  const [selectedSubject, setSelectedSubject] = useState("ROLLE'S THEOREM"); // Default subject
 
   const toggleSubbar = () => {
     setIsCollapsed(!isCollapsed);
@@ -20,8 +20,8 @@ const IT1STSEM = () => {
   // Dynamically render the selected component
   const renderContent = () => {
     switch (selectedSubject) {
-      case "Calculus":
-        return <Calculus />;
+      case "rolle's theorem":
+        return <RollesTheorem />;
       case "Physics":
         return <Physics />;
       case "Programming for Problem Solving":
@@ -47,34 +47,34 @@ const IT1STSEM = () => {
       <div className="maindisplay">
         <div className="top">
           <p>
-            I.T. 1ST SEM{" "}
+             CALCULUS{" "}
             <i
               className={`bx bxs-down-arrow ${isCollapsed ? "rotate" : ""}`}
               onClick={toggleSubbar}
             />
           </p>
-          <div className="subname">{selectedSubject.toUpperCase()}</div>
+          <div className="subname">unit-01: {selectedSubject.toUpperCase()}</div>
         </div>
 
         <div className="subdisplay">
           <div className={`subbar ${isCollapsed ? "hide" : ""}`}>
             <ul>
-              <li onClick={() => setSelectedSubject("Calculus")}>CALCULUS</li>
-              <li onClick={() => setSelectedSubject("Physics")}>PHYSICS</li>
-              <li onClick={() => setSelectedSubject("Programming for Problem Solving")}>
-                PROGRAMMING FOR PROBLEM SOLVING
+              <li onClick={() => setSelectedSubject("rolle's theorem")}>ROLLE'S THEOREM</li>
+              <li onClick={() => setSelectedSubject("LAGRANGE'S MEAN VALUE THEOREM")}>LAGRANGE'S MEAN VALUE THEOREM</li>
+              <li onClick={() => setSelectedSubject("CAUCHY'S MEAN VALUE THEOREM")}>
+                CAUCHY'S MEAN VALUE THEOREM
               </li>
-              <li onClick={() => setSelectedSubject("Elements of Biology")}>
-                ELEMENTS OF BIOLOGY
+              <li onClick={() => setSelectedSubject("CONVERGENCE OF SEQUENCES AND SERIES")}>
+                CONVERGENCE OF SEQUENCES AND SERIES
               </li>
-              <li onClick={() => setSelectedSubject("Professional Ethics")}>
-                PROFESSIONAL ETHICS
+              <li onClick={() => setSelectedSubject("TAYLOR'S AND MACLAURIN'S SERIES EXPANSION")}>
+                TAYLOR'S AND MACLAURIN'S SERIES EXPANSION
               </li>
-              <li onClick={() => setSelectedSubject("Critical Thinking")}>
-                CRITICAL THINKING
+              <li onClick={() => setSelectedSubject("INTERMEDIATE FORMS")}>
+                INTERMEDIATE FORMS
               </li>
-              <li onClick={() => setSelectedSubject("Engineering Graphics and Designing")}>
-                ENGINEERING GRAPHICS AND DESIGNING
+              <li onClick={() => setSelectedSubject("L'HOSTPITAL'S RULE")}>
+                L'HOSTPITAL'S RULE
               </li>
             </ul>
           </div>
@@ -88,4 +88,4 @@ const IT1STSEM = () => {
   );
 };
 
-export default IT1STSEM;
+export default TOPICDISPLAY;
