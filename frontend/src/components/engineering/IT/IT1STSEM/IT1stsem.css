@@ -1,6 +1,7 @@
 .maindisplay {
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 55px);
 }
 
 /* Top section */
@@ -10,7 +11,6 @@
   align-items: center;
   justify-content: center;
   background-color:  rgb(211, 215, 215);
-  
 }
 
 .top p {
@@ -19,7 +19,7 @@
   font-size: 1.2vw;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 4vw;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s ease;
@@ -37,12 +37,18 @@
 }
 
 /* Arrow rotation */
-.bx {
-  font-size: 1.5rem;
+.top .bx {
+  font-size: 1.6rem;
+  padding: .5vw;
+  border-radius: 1vw;
   transition: transform 0.3s ease;
 }
 
-.bx.rotate {
+.top .bx:hover{
+  background-color: #f0f0f0;
+}
+
+.top .bx.rotate {
   transform: rotate(180deg);
 }
 
@@ -57,6 +63,7 @@
 .subdisplay .subbar {
   width: 15%;
   background-color: #dae9df;
+  border-right:2px solid rgb(221, 221, 221);
   transition: width 0.3s ease, opacity 0.3s ease;
 }
 
@@ -72,14 +79,15 @@
 .subbar li {
   margin-bottom: 5px;
   padding: 5px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #cfcece;
   cursor: pointer;
   font-size:15px;
   transition: 0.3s;
 }
 
 .subbar li:hover {
-  background-color: #f0f0f0;
+  border-radius: .5vw;
+  background-color: #f0f0f0d0;
   color: rgba(72, 0, 255, 0.886);
 }
 
