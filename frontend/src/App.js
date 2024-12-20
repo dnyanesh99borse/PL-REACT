@@ -6,7 +6,7 @@ import Display from "./Display";
 import Login from "./components/loginsignup/login";
 import Signup from "./components/loginsignup/signup";
 import CourseAndSem from "./components/engineering/courseandsem";
-import IT1STSEM from "./components/engineering/IT/IT1stsem";
+import IT1STSEM from "./components/engineering/IT/IT1STSEM/IT1stsem";
 
 
 function App() {

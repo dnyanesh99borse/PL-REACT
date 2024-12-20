@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../engineering/courseandsem.css";
 import Header from "../header/header";
-import IT1STSEM from "./IT/IT1stsem"; // Import the IT1STSEM component
+import IT1STSEM from "../engineering/IT/IT1STSEM/IT1stsem"// Import the IT1STSEM component
 
 const CourseAndSem = () => {
     const [courses, setCourses] = useState([]);
