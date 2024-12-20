@@ -117,6 +117,7 @@
   padding: 20px;
   font-size: 1.2vw;
   line-height: 1.5;
+  height: calc(100vh -60px);
 }
 
 

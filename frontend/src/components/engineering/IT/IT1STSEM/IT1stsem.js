@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../IT1STSEM/IT1stsem.css";
-import Calculus from "../IT1STSEM/calculus"; // Import the Calculus component
+import Calculus from "./CALCULUS/calculus"; // Import the Calculus component
 import Physics from "../IT1STSEM/physics"; // Import the Physics component
 import Programming from "./pps"; // Import the Programming component
 import Biology from "./biology"; // Import the Biology component

@@ -1,0 +1,78 @@
+
+  .calculuscontent {
+    width:100%;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Unit styling */
+  .unit {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .unit-title {
+    padding: 15px;
+    background: #007f24;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .unit-title:hover {
+    background: #005999;
+  }
+  
+  .unit-title h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  /* Topics styling */
+  .topics {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    background: #f9f9f9;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .topics.open {
+    display: block;
+  }
+  
+  .topics li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .topics li a {
+    text-decoration: none;
+    color: #0077cc;
+    transition: color 0.3s ease;
+  }
+  
+  .topics li a:hover {
+    color: #005999;
+  }
+  
+  .topics li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .unit-title h2 {
+      font-size: 1rem;
+    }
+  
+    .topics li a {
+      font-size: 0.9rem;
+    }
+  }
+  
