@@ -2,6 +2,7 @@ import React from "react";
 import "./rollesthm.css"; // Import the CSS for styling
 
 const RollesTheorem = () => {
+
     return (
         <div className="rolles-container">
             <header className="rolles-header">
@@ -22,7 +23,7 @@ const RollesTheorem = () => {
                 <div className="video">
                     <div className="video-box">
                         <h3>Watch in Hindi</h3>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/bQ_B9cHBYfQ?si=uRy1Gzhi24lSrO5j&amp;start=17" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe width="545" height="315" src="https://www.youtube.com/embed/bQ_B9cHBYfQ?si=uRy1Gzhi24lSrO5j&amp;start=17" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         {/* <iframe
                             className="video-frame"
                             src="https://youtu.be/bQ_B9cHBYfQ?si=bOWi1Um61moYYUNM" // Replace with a relevant Hindi video
@@ -33,7 +34,7 @@ const RollesTheorem = () => {
                     </div>
                     <div className="video-box">
                         <h3>Watch in English</h3>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/LHym1ARc2cE?si=INGuQHoQoOew9-kw&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe width="545" height="315" src="https://www.youtube.com/embed/LHym1ARc2cE?si=INGuQHoQoOew9-kw&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         {/* <iframe
                             className="video-frame"
                             src="https://www.youtube.com/embed/8JmEr5Tmr7g" // Replace with a relevant English video
@@ -119,3 +120,7 @@ const RollesTheorem = () => {
 };
 
 export default RollesTheorem;
+
+
+
+
