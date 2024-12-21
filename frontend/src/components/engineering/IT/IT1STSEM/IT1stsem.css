@@ -1,17 +1,16 @@
-/* Hide the body scrollbar */
-body {
-  overflow: hidden; /* Prevent the body from scrolling */
-}
+
 
 .sembody {
   overflow: hidden;
+  background-color: red;
+  margin-top: 55px;
 }
 
 .maindisplay {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 100px);
-  margin-top: 56px;
+  background-color: yellow;
+  height: calc(100vh - 60px);
 }
 
 /* --------Top section-------- */
@@ -66,7 +65,8 @@ body {
 .subdisplay {
   display: flex;
   width: 100%;
-  height: calc(100vh - 105px);
+  height: calc(100vh - 70px);
+  overflow: hidden;
 }
 
 /* Subbar (Left Sidebar) */

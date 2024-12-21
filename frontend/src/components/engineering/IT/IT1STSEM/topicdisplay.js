@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../IT1STSEM/IT1stsem.css"; // Import the Calculus component
+import "../IT1STSEM/IT1stsem.css"; // Import the Same style as IT1stsem.js
+import "../IT1STSEM/topicdisplay.css";
 import Physics from "../IT1STSEM/physics"; // Import the Physics component
 import Programming from "./pps"; // Import the Programming component
 import Biology from "./biology"; // Import the Biology component
@@ -40,7 +41,7 @@ const TOPICDISPLAY = () => {
   };
 
   return (
-    <>
+    <div className="topicbody">
       <div className="header">
         <Header />
       </div>
@@ -84,7 +85,7 @@ const TOPICDISPLAY = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
