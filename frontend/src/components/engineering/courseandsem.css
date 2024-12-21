@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxanium:wght@200..800&family=Parkinsans:wght@300..800&family=Playwrite+TZ+Guides&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #6ecfba, #44a08d);
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #44a08d, #2e8b57);
+}
+
+/* Optional: Scrollbar corner styling */
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
+
+.select {
+    height: 100%;
+    height: 100%;
+    position: relative;
+    margin-top: 55px;
+    background-color: #f8f8f8bd;
+}
+
+.select .container {
+    text-align: center;
+    font-size: 1.1vw;
+}
+
+#title {
+    width: 100%;
+    text-align: center;
+    padding: .5vw;
+    font-size: 1.2vw;
+    font-family: "Playwrite TZ Guides", cursive;
+    font-weight: bold;
+    text-shadow: 0px 1px 1px rgb(255, 255, 255);
+}
+
+.mainbox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.7vw;
+    background-color: aliceblue;
+}
+
+.cleft,
+.cright {
+    position: relative;
+    height: 78vh;
+    flex: 1;
+    box-shadow: 0px 0px 4px rgba(230, 227, 227, 0.832);
+}
+
+.cleft .courses,
+.cright .semester {
+    height: 95%;
+    padding: 1.2vw;
+    overflow: scroll;
+}
+
+.cleft #line,
+.cright #line {
+    font-size: 1.5vw;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgb(31, 201, 105);
+    filter: drop-shadow(2px 2px 2px black);
+    padding: .5vw;
+}
+
+.cright .semester {
+    padding-left: 3.8vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.cright .nextbtn {
+    height: 3vw;
+    width: 6vw;
+    font-size: 1.2vw;
+    align-self: flex-end;
+    border-radius: 5px;
+}
+
+.mainbox .nextbtn600px {
+    display: none;
+}
+
+.course-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.coursebox {
+    display: flex;
+    align-items: center;
+    border-radius: .4vw;
+    padding: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.coursebox .img {
+    flex: 0 0 15%;
+}
+
+.coursebox .img img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.coursebox .name {
+    flex: 1;
+    padding-left: 15px;
+    text-align: left;
+}
+
+.name .short-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.name .full-name {
+    font-size: 14px;
+    color: #555;
+}
+
+.cright .semester-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5vw;
+}
+
+.semester-box {
+    border: 1px solid #ddddddd3;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.semester-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/*--------------------------------applying responsivenes to this page---------------------------*/
+
+@media (max-width: 600px) {
+
+    .select .container {
+        height: 100%;
+    }
+
+    #title {
+        font-size: 4vw;
+    }
+
+    .mainbox {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cleft,
+    .cright {
+        height: 80vw;
+        padding: 1.7vw;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .cleft .courses,
+    .cright .semester {
+        height: 69vw;
+        padding: 1.2vw;
+        overflow: scroll;
+    }
+
+    .cleft #line,
+    .cright #line {
+        filter: drop-shadow(1px 1px 1px black);
+        font-size: 7vw;
+    }
+
+    .mainbox .nextbtn600px {
+        width: 90%;
+        font-size: 5vw;
+        align-self: center;
+        border-radius: 5px;
+        padding: 2vw;
+        display: block;
+    }
+
+    .cright .nextbtn {
+        display: none;
+    }
+
+    .coursebox {
+        border-radius: 2.5vw;
+    }
+
+    .coursebox .img {
+        flex: .5 0 0;
+    }
+
+    .cright .semester-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+        align-items: center;
+        margin-top: 2vw;
+    }
+
+    .semester-box {
+        width: 98%;
+        max-width: 500px;
+        border: 1px solid #ddddddd3;
+        border-radius: 8px;
+        padding: 20px;
+        font-size: 5vw;
+        text-align: center;
+        font-weight: bold;
+        background-color: rgba(113, 147, 128, 0.44);
+        color: rgba(33, 32, 32, 0.964);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+
+}

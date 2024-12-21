@@ -1,0 +1,184 @@
+/*passkey section starts-*/
+.passkey {
+    width: 90%;
+    box-shadow: .5px 1px 2px 2px var(--border);
+    border-radius: .7vw;
+    background-color: var(--otherbgcl);
+    padding: 1vw;
+}
+
+.passkey .passkey-content {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1vw;
+    flex-wrap: wrap;
+    row-gap: 2vw;
+    padding: 2vw;
+}
+
+.pass {
+    width: 19vw;
+    height: 19vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: .3vw;
+}
+
+.pass .tag {
+    width: 100%;
+    border-radius: 15px 15px;
+    background-color: rgb(221, 219, 219);
+    border-top: .1vw dashed;
+    border-top-color: #000000;
+    box-shadow: .1vw .1vw .2vw black;
+    padding: .9vw;
+    font-size: 1.3vw;
+}
+
+
+.pass .tag:hover {
+    background-color: var(--shade3);
+}
+
+.pass .tag:active{
+    background: linear-gradient(45deg, #2af27d, #55ff00);
+    box-shadow: 0 .2vw .35vw rgba(0, 0, 0, 0.2);
+}
+
+.pass .img {
+    width: 100%;
+    height: 14vw;
+    position: relative;
+    border-radius: .7vw;
+    border: .1vw solid #c5c5c5;
+}
+
+.pass .img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid black;
+    border-radius: .7vw
+}
+
+.pass .img:hover {
+    border: 2px solid #00ff00;
+    box-shadow: 0.9px 0.9px 5px#00ff00;
+}
+
+.passkey h1 span {
+    color: var(--green);
+}
+
+
+.passkey h1 {
+    font-size: 1.4vw;
+    font-weight: 700;
+    color: var(--clr);
+    font-weight: 600;
+    padding: 1vw 1.5vw;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.passkey h1::before {
+    content: "";
+    position: absolute;
+    top: 68%;
+    left: 0vw;
+    width: 1.1vw;
+    height: 1.1vw;
+    border-radius: 50%;
+    background: var(--active-color);
+    transition: transform 0.5s ease;
+}
+
+.passkey h1::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    left: -0vw;
+    width: 35.4%;
+    height: .13vw;
+    background: var(--active-color);
+    transition: transform 0.5s ease;
+}
+
+/*passkey section ends-*/
+
+
+/*------responsiveness for the mobile screens----------------*/
+@media (max-width: 600px) {
+    .passkey {
+        width: 95%;
+        padding: 2vw;
+    }
+
+    .passkey h1 span{
+        color: var(--green);
+        text-shadow: .1px .1px .3px black;
+    }
+
+    .passkey h1 {
+        font-size:4.5vw;
+        padding: 1vw 3vw 2vw 3vw;
+    }
+
+    .passkey h1::before {
+        top: 60%;
+        left: -.2vw;
+        width: 2.8vw;
+        height: 2.8vw;
+    }
+
+    .passkey h1::after {
+        height: .3.5vw;
+        top: 75%;
+        width: 97%;
+    }
+
+    .pass {
+        width: 70vw;
+        height: 70vw;
+        gap: .8vw;
+
+    }
+
+    .pass .img {
+        width: 100%;
+        height: 55vw;
+        border-radius: 2vw;
+    }
+
+    .pass .img img {
+        border-radius: 2vw;
+    }
+
+    .pass .img:hover {
+        border: 1.5px solid #00ff00;
+        box-shadow: 0.9px 0.9px 2px#00ff00;
+    }
+
+    .pass .tag {
+        padding: 2.5vw;
+        font-size: 5vw;
+        border-radius: 10px 10px;
+        width: 100%;
+        border-top: .5vw dashed;
+        box-shadow: 0vw 0vw .5vw black;
+    }
+
+
+    .pass .tag:hover {
+        background-color: var(--shade3);
+    }
+
+    .pass .tag:active{
+        background: linear-gradient(45deg, #2af27d, #55ff00);
+        box-shadow: 0 .2vw .35vw rgba(0, 0, 0, 0.2);
+    }
+
+}

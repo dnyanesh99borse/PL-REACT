@@ -1,0 +1,153 @@
+/* Container styling */
+.faq-container {
+    width: 80vw;
+    margin: auto;
+    padding: 30px;
+    background-color: rgba(178, 233, 205, 0.315);
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Header */
+.faq-container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+    position: relative;
+}
+
+/* FAQ item */
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 2vw 1vw;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    background-color: #f9f9f9;
+    transform: scale(1.01);
+}
+
+/* Question */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1vw;
+    color: #00bfa5;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: #29fd53;
+}
+
+.faq-question h3 {
+    margin: 0;
+}
+
+.faq-question span {
+    font-size: 1vw;
+    color: #29fd53;
+    transition: transform 0.3s ease;
+}
+
+.faq-question:hover span {
+    transform: rotate(90deg);
+}
+
+/* Answer */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding-left: 0;
+}
+
+.faq-answer.active {
+    max-height: 20vw;
+    padding-left: 2vw;
+}
+
+.faq-answer p {
+    color: #555;
+    font-size: 1vw;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Links to additional FAQs or contact */
+.faq-footer {
+    margin-top: 2vw;
+    text-align: center;
+}
+
+.more-questions-link,
+.contact-us-link {
+    display: inline-block;
+    color: #ffffff;
+    background-color: #00bfa5;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
+}
+
+.more-questions-link:hover,
+.contact-us-link:hover {
+    background-color: #319f47ba;
+    transform: scale(1.05);
+}
+
+
+
+@media (max-width: 600px) {
+
+    /* Container styling */
+    .faq-container {
+        width: 90vw;
+        padding: 20px;
+    }
+
+    /* Header */
+    .faq-container h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    /* FAQ item */
+    .faq-item {
+        border-bottom: 1px solid #131313c4;
+    }
+
+
+    /* Question */
+    .faq-question {
+        font-size: 4vw;
+    }
+
+    .faq-question span {
+        font-size: 4vw;
+    }
+
+
+    .faq-answer p {
+        font-size: 4vw;
+    }
+
+    /* Links to additional FAQs or contact */
+    .faq-footer {
+        margin-top: 1.5vw;
+    }
+
+    .more-questions-link,
+    .contact-us-link {
+        font-size: 4vw;
+    }
+}

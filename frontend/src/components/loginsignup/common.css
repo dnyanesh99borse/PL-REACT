@@ -1,0 +1,159 @@
+
+.left-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1vw;
+    gap: 1vw;
+}
+
+
+ .left-box img {
+    width: 15vw;
+    padding: .2vw;
+}
+
+ /* .left-box img[rel="logo"] {
+    filter: drop-shadow(2px 2px 1px rgb(0, 0, 0));
+} */
+
+ .left-box h1 {
+    font-size: 1.5vw;
+    font-variant: small-caps;
+    font-weight: 500;
+}
+
+ .left-box ol {
+    list-style-position: inside;
+    line-height-step: 2;
+    margin-left: 3.5vw;
+}
+
+.left-box ol li {
+    list-style: url('../assets/stylelist.svg');
+    font-size: 1vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgba(64, 66, 66, 0.896);
+}
+
+.left-box p {
+    font-size: 1vw;
+    color-scheme: light dark;
+    color: #333333a4;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Roboto Mono", monospace;
+}
+
+.left-box p span {
+    color: black;
+    text-shadow: 1px 2px 2px green;
+    font-weight: bold;
+}
+
+.left-box .foot {
+    background-color: rgba(43, 255, 0, 0.056);
+    padding-top: 3vw;
+    border-radius: 5vw;
+    border-bottom: 2px solid rgba(142, 142, 146, 0.753);
+}
+
+.left-box .foot p {
+    font-size: 1vw;
+    font-family: initial;
+    text-align: center;
+    background: none;
+    color: rgba(59, 58, 58, 0.836);
+}
+
+
+ 
+@media only screen and (max-width: 600px){
+    
+.left-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1vw;
+    gap: 1vw;
+}
+
+
+ .left-box img {
+    width: 30vw;
+    padding: .1vw;
+
+
+}
+
+ .left-box h1 {
+    font-size: 3.2vw;
+
+
+    font-variant: small-caps;
+    font-weight: 500;
+}
+
+ .left-box ol {
+    list-style-position: inside;
+    line-height-step: 9;
+
+
+    margin-left:12vw;
+}
+
+.left-box ol li {
+    list-style: url('../assets/stylelist.svg');
+
+
+    font-size: 3.5vw;
+
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgba(64, 66, 66, 0.896);
+}
+
+.left-box p {
+    font-size: 2.6vw;
+    text-align: center;
+    background-color: #f7f7f7b9;
+
+    color-scheme: light dark;
+    color: #333333a4;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Roboto Mono", monospace;
+}
+
+.left-box p span {
+    color: black;
+    text-shadow: 1px 2px 2px green;
+    font-weight: bold;
+}
+
+.left-box .foot {
+    padding-top: 2vw;
+    background: none;
+
+
+    border-radius: 1vw;
+    border-bottom: .5px solid rgba(142, 142, 146, 0.753);
+}
+
+.left-box .foot p {
+    font-size: 2vw;
+
+
+    font-family: initial;
+    text-align: center;
+    background: none;
+    color: rgba(59, 58, 58, 0.836);
+}
+} 

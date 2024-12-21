@@ -1,0 +1,151 @@
+.why-we-section {
+    width: 100%;
+    color: #333;
+}
+
+.why-we-section .container {
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6vw;
+    flex-wrap: wrap;
+}
+
+.container .section-title {
+    position: relative;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.container .section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: .15vw;
+    background-color: var(--active-color);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+
+.container .section-title:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+.description {
+    flex: 2;
+    padding: 2vw;
+    max-width: 70vw;
+}
+
+.description h3 {
+    font-size: 1.4vw;
+    font-weight: bold;
+    margin-bottom: .7vw;
+}
+
+.description p {
+    font-size: 1vw;
+    line-height: 1.6;
+    margin-bottom: 1vw;
+}
+
+.image {
+    flex: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    font-size: 2rem;
+    color: black;
+    transition: border 0.3s ease, color 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.social-icon.youtube:hover {
+    border-color: #FF0000;
+    color: #FF0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+.social-icon.instagram:hover {
+    border-color: #C13584;
+    color: #C13584;
+    box-shadow: 0 0 10px rgba(193, 53, 132, 0.8);
+}
+
+.social-icon.x:hover {
+    border-color: #1DA1F2;
+    color: #1DA1F2;
+    box-shadow: 0 0 10px rgba(29, 161, 242, 0.8);
+}
+
+
+@media (max-width:600px) {
+    .container .content {
+        flex-direction: column-reverse;
+    }
+
+    .container .section-title {
+        font-size: 5.5vw;
+    }
+
+    .container .section-title::after {
+        bottom: 0px;
+        width: 0;
+        height: .4vw;
+    }
+
+    .description {
+        max-width: 100%;
+        flex: 2;
+        padding: 3vw;
+    }
+
+    .description h3 {
+        font-size: 4.5vw;
+        margin-bottom: .9vw;
+    }
+
+    .description p {
+        font-size: 3.9vw;
+        line-height: 1.7;
+        margin-bottom: 1.2vw;
+    }
+
+    .image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+}
