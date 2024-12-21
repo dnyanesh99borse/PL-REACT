@@ -22,20 +22,20 @@ const TOPICDISPLAY = () => {
     switch (selectedSubject) {
       case "rolle's theorem":
         return <RollesTheorem />;
-      case "Physics":
+      case "lagrange's mean value theorem":
         return <Physics />;
-      case "Programming for Problem Solving":
+      case "cauchy's mean value theorem":
         return <Programming />;
-      case "Elements of Biology":
+      case "convergence of sequences and series":
         return <Biology />;
-      case "Professional Ethics":
+      case "taylor's and maclaurin's series expansion":
         return <Ethics />;
-      case "Critical Thinking":
+      case "intermediate forms":
         return <CriticalThinking />;
-      case "Engineering Graphics and Designing":
+      case "l's hospital rule":
         return <Graphics />;
       default:
-        return <p>Select a subject to display content.</p>;
+        return <RollesTheorem/>;
     }
   };
 
@@ -60,20 +60,20 @@ const TOPICDISPLAY = () => {
           <div className={`subbar ${isCollapsed ? "hide" : ""}`}>
             <ul>
               <li onClick={() => setSelectedSubject("rolle's theorem")}>ROLLE'S THEOREM</li>
-              <li onClick={() => setSelectedSubject("LAGRANGE'S MEAN VALUE THEOREM")}>LAGRANGE'S MEAN VALUE THEOREM</li>
-              <li onClick={() => setSelectedSubject("CAUCHY'S MEAN VALUE THEOREM")}>
+              <li onClick={() => setSelectedSubject("lagrange's mean value theorem")}>LAGRANGE'S MEAN VALUE THEOREM</li>
+              <li onClick={() => setSelectedSubject("cauchy's mean value theorem")}>
                 CAUCHY'S MEAN VALUE THEOREM
               </li>
-              <li onClick={() => setSelectedSubject("CONVERGENCE OF SEQUENCES AND SERIES")}>
+              <li onClick={() => setSelectedSubject("convergence of sequences and series")}>
                 CONVERGENCE OF SEQUENCES AND SERIES
               </li>
-              <li onClick={() => setSelectedSubject("TAYLOR'S AND MACLAURIN'S SERIES EXPANSION")}>
+              <li onClick={() => setSelectedSubject("taylor's and maclaurin's series expansion")}>
                 TAYLOR'S AND MACLAURIN'S SERIES EXPANSION
               </li>
-              <li onClick={() => setSelectedSubject("INTERMEDIATE FORMS")}>
+              <li onClick={() => setSelectedSubject("intermediate forms")}>
                 INTERMEDIATE FORMS
               </li>
-              <li onClick={() => setSelectedSubject("L'HOSTPITAL'S RULE")}>
+              <li onClick={() => setSelectedSubject("l's hospital rule")}>
                 L'HOSTPITAL'S RULE
               </li>
             </ul>
