@@ -1,124 +1,84 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from "../api/axiosInstance"; // Import the instance
 
 import './home.css';
 
-
 const Home = () => {
+    const [schools, setSchools] = useState([]); // State for schools fetched from API
+    const [courses, setCourses] = useState([]); // State for courses fetched from API
+    const [query, setQuery] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-const schools = [
-    "NMIMS, Mumbai",
-    "NMIMS, Shirpur",
-    "RC Patel, Shirpur",
-    "D.Y. Patil, Pune",
-    "Sandeep University, Nashik",
-    "Fergusson College, Pune"
-];
-
-const courses = [
-    "Engineering",
-    "Pharmacy",
-    "BCA",
-    "Pharmatech",
-    "BSc"
-];
-
-const [school, setSchool] = useState('');
-const [course, setCourse] = useState('');
-const [filteredSchools, setFilteredSchools] = useState([]);
-const [filteredCourses, setFilteredCourses] = useState([]);
-const suggestionRef = useRef(null);
-const navigate = useNavigate();
-
-// Close suggestions on full match
-useEffect(() => {
-    if (schools.includes(school.trim())) {
-        setFilteredSchools([]); // Clear school suggestions
-    }
-    if (courses.includes(course.trim())) {
-        setFilteredCourses([]); // Clear course suggestions
-    }
-}, [school, course]);
-
-// Normalize input for case-insensitive and flexible matching
-const normalizeInput = (input) => {
-    return input
-        .toLowerCase()
-        .replace(/[\.,]/g, "") // Remove commas, periods, etc.
-        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
-        .trim(); // Remove leading/trailing spaces
-};
-
-const filterSuggestions = (type, value) => {
-    const normalizedValue = normalizeInput(value);
-
-    if (type === "school") {
-        setFilteredSchools(
-            schools.filter((item) =>
-                normalizeInput(item).includes(normalizedValue)
-            )
-        );
-    } else if (type === "course") {
-        setFilteredCourses(
-            courses.filter((item) =>
-                normalizeInput(item).includes(normalizedValue)
-            )
-        );
-    }
-};
-
-// Hide suggestions when clicking outside
-useEffect(() => {
-    const handleClickOutside = (event) => {
-        if (
-            suggestionRef.current &&
-            !suggestionRef.current.contains(event.target)
-        ) {
-            setFilteredSchools([]); // Clear school suggestions
-            setFilteredCourses([]); // Clear course suggestions
+    // Fetch suggestions using axiosInstance
+    const fetchSuggestions = async (input) => {
+        if (!input.trim()) {
+            setSuggestions([]);
+            return;
+        }
+        setLoading(true);
+        try {
+            const response = await axiosInstance.get('/suggestions', {
+                params: { query: input }, // Pass the query as a parameter
+            });
+            setSuggestions(response.data.suggestions); // Adjust to your API's response format
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+    const debounce = (func, delay) => {
+        let timeoutId;
+        return (...args) => {
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func(...args);
+            }, delay);
+        };
     };
-}, []);
 
+    // Debounced function for fetching suggestions
+    const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []);
 
-// Logic for selecting a suggestion value inside the input field
-const handleSchoolSelect = (selectedSchool) => {
-    setSchool(selectedSchool); // Update the input value
-    setFilteredSchools([]); // Clear the suggestions
-};
+    const [school, setSchool] = useState('');
+    const [course, setCourse] = useState('');
+    const [filteredSchools, setFilteredSchools] = useState([]);
+    const [filteredCourses, setFilteredCourses] = useState([]);
 
-const handleCourseSelect = (selectedCourse) => {
-    setCourse(selectedCourse); // Update the input value
-    setFilteredCourses([]); // Clear the suggestions
-};
+    // Handle input change
+    const handleInputChange = (e) => {
+        const input = e.target.value;
+        setQuery(input);
+        debouncedFetchSuggestions(input); // Use the debounced function
+    };
 
+    // Close suggestions on full match
+    useEffect(() => {
+        if (schools.includes(school.trim())) {
+            setFilteredSchools([]); // Clear school suggestions
+        }
+        if (courses.includes(course.trim())) {
+            setFilteredCourses([]); // Clear course suggestions
+        }
+    }, [school, course, schools, courses]);
 
+    const navigate = useNavigate();
 
-// Redirect logic with flexible matching
-const handleEnter = () => {
-    const normalizedSchool = normalizeInput(school);
-    const normalizedCourse = normalizeInput(course);
+    // Logic for selecting a suggestion value inside the input field
+    const handleSchoolSelect = (selectedSchool) => {
+        setSchool(selectedSchool); // Update the input value
+        setFilteredSchools([]); // Clear the suggestions
+    };
 
-    if (
-        (normalizedSchool === "nmims shirpur" ||
-            normalizedSchool === "nmims, shirpur") &&
-        normalizedCourse === "engineering"
-    ) {
-        navigate("/courseandsem");
-    } else {
-        alert("Please enter valid school and course values!");
-    }
-};
+    // const handleCourseSelect = (selectedCourse) => {
+    //     setCourse(selectedCourse); // Update the input value
+    //     setFilteredCourses([]); // Clear the suggestions
+    // };
 
-
-
-
-    /*---------logic for the typing texxt------------*/
+    /*---------logic for the typing text------------*/
     const words = ["𝕿𝖍𝖊 𝕾𝖚𝖈𝖈𝖊𝖘𝖘.!", "Lectures", "Tutorials", "Notes", "Free Resources"];
     const [text, setText] = useState('');
     const [wordIndex, setWordIndex] = useState(0);
@@ -126,7 +86,6 @@ const handleEnter = () => {
     const [typingSpeed, setTypingSpeed] = useState(150);
 
     useEffect(() => {
-
         let typingInterval = setInterval(() => {
             const currentWord = words[wordIndex];
 
@@ -149,8 +108,6 @@ const handleEnter = () => {
         return () => clearInterval(typingInterval);
     }, [text, isDeleting, typingSpeed, wordIndex, words]);
 
-
-
     const counterData = [
         { icon: "fas fa-server", number: "150+", label: "Resources" },
         { icon: "fas fa-user-graduate", number: "1300+", label: "Students" },
@@ -168,9 +125,6 @@ const handleEnter = () => {
             </div>
         </div>
     );
-
-
-
 
     /*-----------------------structuring starts here---------------------------- */
     return (
@@ -225,61 +179,52 @@ const handleEnter = () => {
                                 name="school"
                                 placeholder="Enter University/College"
                                 value={school}
-                                onChange={(e) => {
-                                    setSchool(e.target.value);
-                                    filterSuggestions('school', e.target.value);
-                                }}
+                                onChange={handleInputChange}
                                 autoComplete="off"
                             />
                             <label className="form-label">University/College</label>
-                            {filteredSchools.length > 0 && (
-                                <div className="suggestions" ref={suggestionRef}>
-                                    {filteredSchools.map((s, index) => (
+
+                            <div className="suggestions" >
+                                {suggestions.length > 0 ? (
+                                    suggestions.map((suggestion) => (
                                         <div
-                                            key={index}
-                                            onClick={() => handleSchoolSelect(s)} // Update the input value on selection
+                                            key={suggestion.id}
+                                            className="suggestion-item"
+                                            onClick={() => handleSchoolSelect(suggestion.name)}
                                             style={{
-                                                padding: '8px',
-                                                cursor: 'pointer',
-                                                borderBottom: '1px solid #ccc',
+                                                padding: "8px",
+                                                cursor: "pointer",
+                                                borderBottom: "1px solid #ccc",
                                             }}
                                         >
-                                            {s}
+                                            {suggestion.name} {/* Adjust based on your API response */}
                                         </div>
-                                    ))}
-                                </div>
-                            )}
+                                    ))
+                                ) : (
+                                    !loading && query.length > 2 && (
+                                        <div className="no-suggestions" style={{ padding: "8px", color: "#666" }}>
+                                            No suggestions available
+                                        </div>
+                                    )
+                                )}
+                            </div>
                         </div>
 
                         <h1 className="title two">Select Your Course</h1>
-                        <div className="form-group" ref={suggestionRef}>
+                        <div className="form-group" >
                             <input
                                 type="text"
                                 id="course"
                                 name="course"
                                 placeholder="Enter Course"
-                                value={course}
-                                onChange={(e) => {
-                                    setCourse(e.target.value);
-                                    filterSuggestions('course', e.target.value);
-                                }}
-
+                                onChange={handleInputChange}
                                 autoComplete="off"
                             />
                             <label className="form-label">Course</label>
-                            {filteredCourses.length > 0 && (
-                                <div className="suggestions">
-                                    {filteredCourses.map((c, index) => (
-                                        <div key={index} onClick={() => handleCourseSelect(c)}>
-                                            {c}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
                         </div>
 
                         <div className="enter">
-                            <button type="submit" onClick={handleEnter}>
+                            <button type="submit" >
                                 <i className="bx bx-right-arrow-alt"></i>
                                 <span>Enter</span>
                             </button>
@@ -301,16 +246,8 @@ const handleEnter = () => {
                     ))}
                 </div>
             </section>
-        </section >
+        </section>
     );
 };
 
-
-
 export default Home;
-
-
-
-
-
-
