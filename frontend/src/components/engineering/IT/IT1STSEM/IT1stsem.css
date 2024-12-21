@@ -106,19 +106,24 @@ body{
 }
 
 /* Sidesec (Main Content) */
+/*--this is the section display which displays the content--*/
 .subdisplay .sidesec {
   position: relative;
   width: 85%;
-  background-color: rgb(223, 237, 228);
+  /* background: url(../../../assets/board.jpg) no-repeat center center; */
+  background-color:#f0f0f0;
+  background-size: cover;
   transition: none;
-  border-radius: .2vw;
-  overflow: scroll;
+  border-radius: 0.2vw;
+  overflow: auto; /* Avoid constant scrollbars */
 }
+
 
 .sidesec.expand {
   width: 100%;
 }
 
+/*--this is the section of the content only--*/
 .sidesec .content {
   font-size: 1.2vw;
   line-height: 1.5;
