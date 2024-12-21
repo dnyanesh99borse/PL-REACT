@@ -40,7 +40,7 @@ const IT1STSEM = () => {
   };
 
   return (
-    <>
+    <div className="sembody">
       <div className="header">
         <Header />
       </div>
@@ -84,7 +84,7 @@ const IT1STSEM = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

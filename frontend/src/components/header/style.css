@@ -136,17 +136,17 @@ html {
   height: 5vh;
   align-items: center;
   justify-content: space-between;
-  border-radius: 9px;
-  border: 1px solid black;
-  padding-left: .5vw;
+  border-radius:9px;
+  border: 1px solid var(--lavender-grey);
 }
 
 .search-box {
   position: relative;
-  background: var(--text-100);
   width: 100%;
   height: 100%;
-  font-size: 18px;
+  font-size: 1.1vw;
+  padding: .5vw;
+  border-radius:9px;
 }
 
 .search-container i {
@@ -154,14 +154,14 @@ html {
   display: flex;
   align-items: center;
   background-color: #00E77F;
-  border-radius: 5px;
-  border: .1vw solid var(--black);
+  border-radius: 6px;
+  border: .1vw solid var(--lavender-grey);
   height: 100%;
   padding: .4vw;
 }
 
 .search-container:focus-within {
-  border: 2px solid green;
+  border: 1px solid green;
   /* You can change the border color */
 }
 

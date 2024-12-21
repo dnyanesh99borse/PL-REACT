@@ -1,12 +1,17 @@
-body{
+/* Hide the body scrollbar */
+body {
+  overflow: hidden; /* Prevent the body from scrolling */
+}
+
+.sembody {
   overflow: hidden;
 }
 
 .maindisplay {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 55px);
-  margin-top: 55px;
+  height: calc(100vh - 100px);
+  margin-top: 56px;
 }
 
 /* --------Top section-------- */
@@ -15,7 +20,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:  rgb(211, 215, 215);
+  background-color: rgb(211, 215, 215);
 }
 
 .top p {
@@ -28,7 +33,7 @@ body{
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s ease;
-  color:#00952d;
+  color: #00952d;
   background-color: rgb(211, 215, 215);
 }
 
@@ -44,12 +49,12 @@ body{
 /* Arrow rotation */
 .top .bx {
   font-size: 1.6rem;
-  padding: .5vw;
+  padding: 0.5vw;
   border-radius: 1vw;
   transition: transform 0.3s ease;
 }
 
-.top .bx:hover{
+.top .bx:hover {
   background-color: #f0f0f0;
 }
 
@@ -68,7 +73,7 @@ body{
 .subdisplay .subbar {
   width: 15%;
   background-color: #dae9df;
-  border-right:2px solid rgb(221, 221, 221);
+  border-right: 2px solid rgb(221, 221, 221);
   transition: width 0.3s ease, opacity 0.3s ease;
 }
 
@@ -86,51 +91,63 @@ body{
   padding: 5px;
   border-bottom: 1px solid #cfcece;
   cursor: pointer;
-  font-size:15px;
+  font-size: 15px;
   transition: 0.3s;
 }
 
 .subbar li:hover {
-  border-radius: .5vw;
+  border-radius: 0.5vw;
   background-color: #f0f0f0d0;
   color: rgba(72, 0, 255, 0.886);
 }
 
-.subbar li:active{
+.subbar li:active {
   background-color: #f0f0f0;
   color: rgb(30, 30, 136);
 }
+
 /* Hide Subbar */
 .subbar.hide {
   display: none;
 }
 
 /* Sidesec (Main Content) */
-/*--this is the section display which displays the content--*/
 .subdisplay .sidesec {
   position: relative;
   width: 85%;
-  /* background: url(../../../assets/board.jpg) no-repeat center center; */
-  background-color:#f0f0f0;
+  background-color: #f0f0f0;
   background-size: cover;
   transition: none;
   border-radius: 0.2vw;
-  overflow: auto; /* Avoid constant scrollbars */
+  overflow: auto; /* Allow scrolling within the section */
 }
-
 
 .sidesec.expand {
   width: 100%;
 }
 
-/*--this is the section of the content only--*/
 .sidesec .content {
   font-size: 1.2vw;
   line-height: 1.5;
 }
 
-::-webkit-scrollbar{
-  color: rgb(223, 237, 228);
+/* Customize Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(173, 216, 200);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(143, 196, 180);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(223, 237, 228);
 }
 
 

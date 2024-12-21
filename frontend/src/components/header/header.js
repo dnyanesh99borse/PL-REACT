@@ -114,7 +114,7 @@ function Header() {
                             type="text"
                             className="search-box"
                             id="search"
-                            placeholder="Search Resources here.!"
+                            placeholder="Search Resources here..."
                         />
                         <i className="bx bx-search-alt-2"></i>
                     </div>

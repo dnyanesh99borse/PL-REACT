@@ -55,7 +55,7 @@ const CourseAndSem = () => {
 
                 <div className="mainbox">
                     <div className="cleft">
-                        <p id="line">Your Course</p>
+                        <p id="line">Your Branch</p>
                         <div className="courses">
                             <div className="course-container">
                                 {courses.map((course) => (
