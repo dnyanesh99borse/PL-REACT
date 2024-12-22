@@ -27,6 +27,8 @@ router.post("/api/auth/reset-password/:token", authController.resetPassword);
 
 router.route("/Add/college").get(documentController.insertColleges)
 router.route("/suggestions").get(documentController.getSuggestions)
+router.route("/colleges/:collegeId/courses").get(documentController.getCourses);
+router.route("/add/course").post(documentController.addCourse);
 
 
 

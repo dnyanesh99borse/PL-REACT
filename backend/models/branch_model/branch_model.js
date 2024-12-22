@@ -7,11 +7,12 @@ const collegeSchema = new mongoose.Schema({
     }
 });
 const courseSchema = new mongoose.Schema({
-    course: {
-        type: String,
-        required: true
-    }
+    name: { type: String, required: true },
+    collegeId: { type: mongoose.Schema.Types.ObjectId, ref: "College", required: true },
 });
+
+
+
 const fieldSchema = new mongoose.Schema({
     field: {
         type: String,
