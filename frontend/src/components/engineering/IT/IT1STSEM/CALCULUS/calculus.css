@@ -54,6 +54,7 @@
     text-decoration: none;
     color: #0077cc;
     transition: color 0.3s ease;
+    cursor:pointer;
 }
 
 .topics li a:hover {

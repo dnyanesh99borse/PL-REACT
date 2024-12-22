@@ -422,7 +422,7 @@
   position: absolute;
   z-index: 20;
   /* Ensures suggestions are in front */
-  height: 16vw;
+  max-height: 16vw;
   overflow: scroll;
 }
 

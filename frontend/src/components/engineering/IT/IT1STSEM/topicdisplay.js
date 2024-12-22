@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../IT1STSEM/IT1stsem.css"; // Import the Same style as IT1stsem.js
-import "../IT1STSEM/topicdisplay.css";
+import "../IT1STSEM/topicdisplay.css"; //also import the style of the topicdisplay also to avoid that glitch
 import Physics from "../IT1STSEM/physics"; // Import the Physics component
 import Programming from "./pps"; // Import the Programming component
 import Biology from "./biology"; // Import the Biology component
