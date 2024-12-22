@@ -23,7 +23,7 @@ const Home = () => {
         }
         setLoading(true);
         try {
-            const response = await axiosInstance.get('/suggestions', { params: { query: input } });
+            const response = await axiosInstance.get('/Get/suggestions', { params: { query: input } });
             setSuggestions(response.data.suggestions);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
@@ -235,10 +235,10 @@ const Home = () => {
                                         </div>
                                     )
                                 )}
+
                             </div>
                         </div>
-
-                        <div className="enter" onClick={() => navigate('')}>
+                        <div className="enter" onClick={() => navigate('/courseandsem', { state: { school, course } })}>
                             <button type="submit">
                                 <i className="bx bx-right-arrow-alt"></i>
                                 <span>Enter</span>

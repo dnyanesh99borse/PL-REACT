@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../engineering/courseandsem.css";
 import Header from "../header/header";
+import axiosInstance from "../api/axiosInstance"; // Import the instance
+
 
 const CourseAndSem = () => {
     const [courses, setCourses] = useState([]);
+    const [getbranches, setBranches] = useState([]);
     const [selectedCourseId, setSelectedCourseId] = useState(null);
     const [selectedSemesterId, setSelectedSemesterId] = useState(null);
     const navigate = useNavigate(); // Hook for navigation
 
+    const location = useLocation();
+    const { school, course } = location.state || {};
+
+    useEffect(() => {
+        const fetchBranches = async () => {
+            try {
+                const response = await axiosInstance.get(`/Get/Branch/${school}/${course}`);
+                setBranches(response.data.branches);
+                console.log('Branches:', response.data);
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+            }
+        }
+        fetchBranches();
+    }, []);
+
+
+
+
+
     // Handle course click
-    const handleCourseClick = (id) => {
-        setSelectedCourseId(id);
+    const handleCourseClick = (name) => {
+        setSelectedCourseId(name);
     };
 
     // Handle semester click
@@ -21,28 +44,28 @@ const CourseAndSem = () => {
 
     // Redirect to IT1STSEM page
     const nextRedirect = () => {
-        if (selectedCourseId === "IT" && selectedSemesterId === 1) {
+        if (selectedCourseId === "Information Technology" && selectedSemesterId === 1) {
             navigate("/IT1stsem"); // Update the route as per your routing configuration
         }
     };
 
     // Simulate fetching data (replace with API call if needed)
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = [
-                { id: "CS", image: require("../assets/cs.jpg"), shortName: "C.S.", fullName: "Computer Science" },
-                { id: "CE", image: require("../assets/ce.jpg"), shortName: "C.E.", fullName: "Computer Engineering" },
-                { id: "IT", image: require("../assets/IT.jpg"), shortName: "I.T.", fullName: "Information Technology" },
-                { id: "DS", image: require("../assets/ds.jpg"), shortName: "D.S.", fullName: "Data Science" },
-                { id: "AI", image: require("../assets/AI.jpg"), shortName: "A.I.", fullName: "Artificial Intelligence" },
-                { id: "MBATECH", image: require("../assets/mbatech.jpg"), shortName: "MBA Tech", fullName: "Management & Technology" },
-                { id: "M", image: require("../assets/m.jpg"), shortName: "M.", fullName: "Mechatronics" },
-                { id: "CSE", image: require("../assets/cse.jpg"), shortName: "C.S.E.", fullName: "Cyber Security" },
-            ];
-            setCourses(response);
-        };
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const response = [
+    //             { id: "CS", image: require("../assets/cs.jpg"), shortName: "C.S.", fullName: "Computer Science" },
+    //             { id: "CE", image: require("../assets/ce.jpg"), shortName: "C.E.", fullName: "Computer Engineering" },
+    //             { id: "IT", image: require("../assets/IT.jpg"), shortName: "I.T.", fullName: "Information Technology" },
+    //             { id: "DS", image: require("../assets/ds.jpg"), shortName: "D.S.", fullName: "Data Science" },
+    //             { id: "AI", image: require("../assets/AI.jpg"), shortName: "A.I.", fullName: "Artificial Intelligence" },
+    //             { id: "MBATECH", image: require("../assets/mbatech.jpg"), shortName: "MBA Tech", fullName: "Management & Technology" },
+    //             { id: "M", image: require("../assets/m.jpg"), shortName: "M.", fullName: "Mechatronics" },
+    //             { id: "CSE", image: require("../assets/cse.jpg"), shortName: "C.S.E.", fullName: "Cyber Security" },
+    //         ];
+    //         setCourses(response);
+    //     };
+    //     fetchData();
+    // }, []);
 
     return (
         <div className="select">
@@ -56,34 +79,39 @@ const CourseAndSem = () => {
                 <div className="mainbox">
                     <div className="cleft">
                         <p id="line">Your Branch</p>
+
                         <div className="courses">
                             <div className="course-container">
-                                {courses.map((course) => (
+                                {getbranches.map((branch, index) => (
+                                    
                                     <div
                                         className="coursebox"
-                                        key={course.id}
-                                        onClick={() => handleCourseClick(course.id)}
+                                        key={index} // Use the index or branch.id as the key
+                                        onClick={() => handleCourseClick(branch)} // Pass the branch to handleCourseClick
                                         style={{
                                             boxShadow: "0px 4px 8px rgba(200, 198, 198, 0.1)",
-                                            backgroundColor: selectedCourseId === course.id ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)",
-                                            color: selectedCourseId === course.id ? "black" : "rgba(33, 32, 32, 0.964)",
+                                            backgroundColor: selectedCourseId === branch ? "rgb(202, 241, 202)" : "rgba(113, 147, 128, 0.44)",
+                                            color: selectedCourseId === branch ? "black" : "rgba(33, 32, 32, 0.964)",
                                             cursor: "pointer",
                                             transition: "0.3s ease",
-                                            transform: selectedCourseId === course.id ? "scale(1.01)" : "scale(1)",
+                                            transform: selectedCourseId === branch ? "scale(1.01)" : "scale(1)",
                                             border: "1px solid rgba(103, 103, 103, 0.95)",
                                         }}
                                     >
                                         <div className="img">
-                                            <img src={course.image} alt={`${course.shortName}`} />
+                                            <img src={branch.image} alt={branch.shortName} />
                                         </div>
                                         <div className="name">
-                                            <p className="short-name">{course.shortName}</p>
-                                            <p className="full-name">{course.fullName}</p>
+                                            {/* <p className="short-name">{branch.shortName}</p> */}
+                                            {/* Optionally, you can display more details */}
+                                            <p className="full-name">{branch}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
+
                         </div>
+
                     </div>
 
                     <div className="cright">
