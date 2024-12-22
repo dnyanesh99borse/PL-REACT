@@ -3,7 +3,7 @@ const app = express();
 const connectDB = require('./db/connectDB.js');
 const dotenv = require('dotenv');
 const authRouter = require('./routes/auth.routes.js');
-const user = require('./models/user.model.js')
+const user = require('./models/user_model/user.model.js')
 const PORT = process.env.PORT;
 
 dotenv.config();

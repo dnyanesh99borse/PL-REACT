@@ -1,0 +1,23 @@
+{
+    "colleges":[
+      {
+        "name": "NMIMS, Mumbai"
+      },
+      {
+        "name": "NMIMS, Shirpur"
+      },
+      {
+        "name": "RC Patel, Shirpur"
+      },
+      {
+        "name": "D.Y. Patil, Pune"
+      },
+      {
+        "name": "Sandeep University, Nashik"
+      },
+      {
+        "name": "Fergusson College, Pune"
+      }
+    ]
+  }
+  

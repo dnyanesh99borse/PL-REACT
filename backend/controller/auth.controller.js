@@ -8,26 +8,18 @@ const {
 	sendVerificationEmail,
 	sendWelcomeEmail,
 } = require("../mailtrap/emails.js");
-const User = require("../models/user.model.js");
+const User = require("../models/user_model/user.model.js");
 
 
 
-const main = async (req, res) => {
-	try {
-		res.send("Hello World!");
-	} catch (error) {
-		console.log("Error in main ", error);
-	}
-};
 
 
 
 // <============ Sign Up =============>
 const signup = async (req, res) => {
-	console.log("request body", req.body);
-	const { username, email, password, confirmPassword } = req.body;
-
+	
 	try {
+		const { username, email, password, confirmPassword } = req.body;
 		if ( !username || !email || !password || !confirmPassword) {
 			throw new Error("All fields are required");
 		}
@@ -56,17 +48,17 @@ const signup = async (req, res) => {
 		await user.save();
 
 		// jwt
-		generateTokenAndSetCookie(res, user._id);
+		const token = generateTokenAndSetCookie(res, user._id);
 
 		await sendVerificationEmail(user.email, verificationToken);
 
 		res.status(201).json({
 			success: true,
 			message: "User created successfully",
-			user: {
-				...user._doc,
-				password: undefined,
-			},
+			_id: user._id,
+			email: user.email,
+			username: user.username,
+			token: token,
 		});
 	} catch (error) {
 		res.status(400).json({ success: false, message: error.message });
@@ -94,6 +86,9 @@ const verifyEmail = async (req, res) => {
 		user.verificationTokenExpiresAt = undefined;
 		await user.save();
 
+	
+
+
 		await sendWelcomeEmail(user.email, user.name);
 
 		res.status(200).json({
@@ -115,10 +110,13 @@ const verifyEmail = async (req, res) => {
 // <============ Login =============>
 	const login = async (req, res) => {
 		const { email, password } = req.body;
+		console.log("email", email);
+		console.log("password", password);
 	
 		try {
 			// Find user by email
 			const user = await User.findOne({ email });
+			console.log("user", user);
 			if (!user) {
 				return res.status(400).json({ 
 					success: false, 
@@ -128,6 +126,7 @@ const verifyEmail = async (req, res) => {
 	
 			// Validate password
 			const isPasswordValid = await bcryptjs.compare(password, user.password);
+			console.log("isPasswordValid", isPasswordValid);
 			if (!isPasswordValid) {
 				return res.status(400).json({ 
 					success: false, 
@@ -136,18 +135,18 @@ const verifyEmail = async (req, res) => {
 			}
 	
 			// Generate token and set it in cookies
-			generateTokenAndSetCookie(res, user._id);
+			const token = generateTokenAndSetCookie(res, user._id);
 	
 			// Update last login timestamp
 			user.lastLogin = new Date();
 			await user.save();
 	
-			// Respond with user details, excluding sensitive fields
-			const { password: _, ...safeUser } = user._doc;
+			
 			res.status(200).json({
-				success: true,
-				message: "Logged in successfully",
-				user: safeUser,
+				id: user._id,
+				email: user.email,
+				username: user.username,
+				token: token,
 			});
 		} catch (error) {
 			// Log the error for debugging
@@ -255,7 +254,6 @@ const checkAuth = async (req, res) => {
 
 
 module.exports = {
-	main,
 	login,
 	logout,
 	signup,
