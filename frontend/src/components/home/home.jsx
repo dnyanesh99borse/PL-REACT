@@ -5,13 +5,17 @@ import axiosInstance from "../api/axiosInstance"; // Import the instance
 import './home.css';
 
 const Home = () => {
-    const [schools, setSchools] = useState([]); // State for schools fetched from API
-    const [courses, setCourses] = useState([]); // State for courses fetched from API
+    const [schools, setSchools] = useState([]);
+    const [courses, setCourses] = useState([]);
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // Fetch suggestions using axiosInstance
+    const [school, setSchool] = useState('');
+    const [course, setCourse] = useState('');
+    const [filteredSchools, setFilteredSchools] = useState([]);
+    const [filteredCourses, setFilteredCourses] = useState([]);
+
     const fetchSuggestions = async (input) => {
         if (!input.trim()) {
             setSuggestions([]);
@@ -19,12 +23,26 @@ const Home = () => {
         }
         setLoading(true);
         try {
-            const response = await axiosInstance.get('/suggestions', {
-                params: { query: input }, // Pass the query as a parameter
-            });
-            setSuggestions(response.data.suggestions); // Adjust to your API's response format
+            const response = await axiosInstance.get('/suggestions', { params: { query: input } });
+            setSuggestions(response.data.suggestions);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchCourses = async (input) => {
+        if (!input.trim()) {
+            setFilteredCourses([]);
+            return;
+        }
+        setLoading(true);
+        try {
+            const response = await axiosInstance.get('/courses', { params: { query: input } });
+            setFilteredCourses(response.data.courses);
+        } catch (error) {
+            console.error('Error fetching courses:', error);
         } finally {
             setLoading(false);
         }
@@ -34,51 +52,45 @@ const Home = () => {
         let timeoutId;
         return (...args) => {
             if (timeoutId) clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-                func(...args);
-            }, delay);
+            timeoutId = setTimeout(() => func(...args), delay);
         };
     };
 
-    // Debounced function for fetching suggestions
     const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []);
+    const debouncedFetchCourses = useCallback(debounce(fetchCourses, 300), []);
 
-    const [school, setSchool] = useState('');
-    const [course, setCourse] = useState('');
-    const [filteredSchools, setFilteredSchools] = useState([]);
-    const [filteredCourses, setFilteredCourses] = useState([]);
-
-    // Handle input change
     const handleInputChange = (e) => {
-        const input = e.target.value;
-        setQuery(input);
-        debouncedFetchSuggestions(input); // Use the debounced function
+        const { id, value } = e.target;
+        if (id === "school") {
+            setSchool(value);
+            debouncedFetchSuggestions(value);
+        } else if (id === "course") {
+            setCourse(value);
+            debouncedFetchCourses(value);
+        }
     };
 
-    // Close suggestions on full match
     useEffect(() => {
         if (schools.includes(school.trim())) {
-            setFilteredSchools([]); // Clear school suggestions
+            setFilteredSchools([]);
         }
         if (courses.includes(course.trim())) {
-            setFilteredCourses([]); // Clear course suggestions
+            setFilteredCourses([]);
         }
     }, [school, course, schools, courses]);
 
     const navigate = useNavigate();
 
-    // Logic for selecting a suggestion value inside the input field
     const handleSchoolSelect = (selectedSchool) => {
-        setSchool(selectedSchool); // Update the input value
-        setFilteredSchools([]); // Clear the suggestions
+        setSchool(selectedSchool);
+        setFilteredSchools([]);
     };
 
-    // const handleCourseSelect = (selectedCourse) => {
-    //     setCourse(selectedCourse); // Update the input value
-    //     setFilteredCourses([]); // Clear the suggestions
-    // };
+    const handleCourseSelect = (selectedCourse) => {
+        setCourse(selectedCourse);
+        setFilteredCourses([]);
+    };
 
-    /*---------logic for the typing text------------*/
     const words = ["𝕿𝖍𝖊 𝕾𝖚𝖈𝖈𝖊𝖘𝖘.!", "Lectures", "Tutorials", "Notes", "Free Resources"];
     const [text, setText] = useState('');
     const [wordIndex, setWordIndex] = useState(0);
@@ -86,21 +98,20 @@ const Home = () => {
     const [typingSpeed, setTypingSpeed] = useState(150);
 
     useEffect(() => {
-        let typingInterval = setInterval(() => {
-            const currentWord = words[wordIndex];
-
+        const currentWord = words[wordIndex];
+        const typingInterval = setInterval(() => {
             if (!isDeleting) {
                 setText((prev) => currentWord.slice(0, prev.length + 1));
                 if (text === currentWord) {
                     setIsDeleting(true);
-                    setTypingSpeed(310); // Delay before starting deletion
+                    setTypingSpeed(310);
                 }
             } else {
                 setText((prev) => currentWord.slice(0, prev.length - 1));
                 if (text === '') {
                     setIsDeleting(false);
                     setWordIndex((prev) => (prev + 1) % words.length);
-                    setTypingSpeed(0); // Speed for typing
+                    setTypingSpeed(0);
                 }
             }
         }, typingSpeed);
@@ -115,7 +126,6 @@ const Home = () => {
         { icon: "fas fa-face-smile", number: "100%", label: "Satisfaction" }
     ];
 
-    // Reusable Counter Box component
     const CounterBox = ({ icon, number, label }) => (
         <div className="box">
             <i className={icon}></i>
@@ -211,16 +221,42 @@ const Home = () => {
                         </div>
 
                         <h1 className="title two">Select Your Course</h1>
-                        <div className="form-group" >
+                        <div className="form-group">
                             <input
                                 type="text"
                                 id="course"
                                 name="course"
                                 placeholder="Enter Course"
+                                value={course}
                                 onChange={handleInputChange}
                                 autoComplete="off"
                             />
                             <label className="form-label">Course</label>
+
+                            <div className="suggestions" >
+                                {filteredCourses.length > 0 ? (
+                                    filteredCourses.map((filteredCourse) => (
+                                        <div
+                                            key={filteredCourse.id}
+                                            className="suggestion-item"
+                                            onClick={() => handleCourseSelect(filteredCourse.name)}
+                                            style={{
+                                                padding: "8px",
+                                                cursor: "pointer",
+                                                borderBottom: "1px solid #ccc",
+                                            }}
+                                        >
+                                            {filteredCourse.name} {/* Adjust based on your API response */}
+                                        </div>
+                                    ))
+                                ) : (
+                                    !loading && query.length > 2 && (
+                                        <div className="no-suggestions" style={{ padding: "8px", color: "#666" }}>
+                                            No suggestions available
+                                        </div>
+                                    )
+                                )}
+                            </div>
                         </div>
 
                         <div className="enter">
