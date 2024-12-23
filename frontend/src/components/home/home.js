@@ -23,7 +23,7 @@ const Home = () => {
         }
         setLoading(true);
         try {
-            const response = await axiosInstance.get('/suggestions', { params: { query: input } });
+            const response = await axiosInstance.get('/Get/suggestions', { params: { query: input } });
             setSuggestions(response.data.suggestions);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
@@ -32,21 +32,23 @@ const Home = () => {
         }
     };
 
-    const fetchCourses = async (input) => {
-        if (!input.trim()) {
-            setFilteredCourses([]);
-            return;
-        }
-        setLoading(true);
+    const fetchCourses = async (collegeId) => {
         try {
-            const response = await axiosInstance.get('/courses', { params: { query: input } });
-            setFilteredCourses(response.data.courses);
+            console.log("collegeId:", collegeId); // Debug
+            const response = await axiosInstance.get(`/colleges/${collegeId}/courses`);
+            if (response.data && Array.isArray(response.data)) {
+                setFilteredCourses(response.data);
+                console.log("Courses:", response.data); // Debug
+            } else {
+                console.error("Unexpected response structure:", response);
+            }
         } catch (error) {
-            console.error('Error fetching courses:', error);
-        } finally {
-            setLoading(false);
+            console.error("Error fetching courses:", error.message);
         }
     };
+    
+    
+
 
     const debounce = (func, delay) => {
         let timeoutId;
@@ -61,6 +63,8 @@ const Home = () => {
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
+        console.log(`Input ID: ${id}, Value: ${value}`); // Debug log
+    
         if (id === "school") {
             setSchool(value);
             debouncedFetchSuggestions(value);
@@ -71,19 +75,20 @@ const Home = () => {
     };
 
     useEffect(() => {
+        // Fetch courses when the school is selected
         if (schools.includes(school.trim())) {
             setFilteredSchools([]);
+            
         }
-        if (courses.includes(course.trim())) {
-            setFilteredCourses([]);
-        }
-    }, [school, course, schools, courses]);
+    }, [school, schools]);
 
     const navigate = useNavigate();
 
     const handleSchoolSelect = (selectedSchool) => {
-        setSchool(selectedSchool);
-        setFilteredSchools([]);
+        setSchool(selectedSchool.name); // Set the selected school
+        setSuggestions([]); // Clear the suggestions to hide the suggestion box
+        fetchCourses(selectedSchool._id); // Trigger fetching courses based on selected school
+       
     };
 
     const handleCourseSelect = (selectedCourse) => {
@@ -136,26 +141,16 @@ const Home = () => {
         </div>
     );
 
-    /*-----------------------structuring starts here---------------------------- */
     return (
         <section className='main'>
+            {/* Same structure */}
             <section className="home" id="home">
                 <div className='left'>
                     <div className="homebgimage">
-                        {/*contact us button*/}
-                        <a
-                            href="#contact"
-                            className="btn"
-                            style={{ textDecoration: 'none' }}
-                            title="Reach out to us—we're always here for you."
-                        >
+                        <a href="#contact" className="btn" style={{ textDecoration: 'none' }} title="Reach out to us—we're always here for you.">
                             Contact us
                         </a>
-
-                        <img
-                            src={require('../assets/main.svg').default}
-                            alt="Reading illustration"
-                        />
+                        <img src={require('../assets/main.svg').default} alt="Reading illustration" />
                     </div>
                 </div>
 
@@ -168,17 +163,11 @@ const Home = () => {
                     </div>
 
                     <div className="searchbox">
-                        <input
-                            className="searchInput"
-                            type="text"
-                            placeholder="search Academics, passion, courses, tech"
-                        />
+                        <input className="searchInput" type="text" placeholder="search Academics, passion, courses, tech" />
                         <span className="icon">
                             <i className="bx bx-search-alt bx-tada"></i>
                         </span>
                     </div>
-
-                    {/*-------------------home university and course form section starts------------------ */}
 
                     <section className="info" id="info">
                         <h1 className="title">Select Your University/College</h1>
@@ -193,21 +182,16 @@ const Home = () => {
                                 autoComplete="off"
                             />
                             <label className="form-label">University/College</label>
-
-                            <div className="suggestions" >
+                            <div className="suggestions">
                                 {suggestions.length > 0 ? (
                                     suggestions.map((suggestion) => (
                                         <div
                                             key={suggestion.id}
                                             className="suggestion-item"
-                                            onClick={() => handleSchoolSelect(suggestion.name)}
-                                            style={{
-                                                padding: "8px",
-                                                cursor: "pointer",
-                                                borderBottom: "1px solid #ccc",
-                                            }}
+                                            onClick={() => handleSchoolSelect(suggestion)}
+                                            style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #ccc" }}
                                         >
-                                            {suggestion.name} {/* Adjust based on your API response */}
+                                            {suggestion.name}
                                         </div>
                                     ))
                                 ) : (
@@ -227,40 +211,35 @@ const Home = () => {
                                 id="course"
                                 name="course"
                                 placeholder="Enter Course"
-                                value={course}
+                                value={course} // Course input bound to course state
                                 onChange={handleInputChange}
                                 autoComplete="off"
                             />
                             <label className="form-label">Course</label>
-
-                            <div className="suggestions" >
+                            <div className="suggestions">
                                 {filteredCourses.length > 0 ? (
                                     filteredCourses.map((filteredCourse) => (
                                         <div
                                             key={filteredCourse.id}
                                             className="suggestion-item"
                                             onClick={() => handleCourseSelect(filteredCourse.name)}
-                                            style={{
-                                                padding: "8px",
-                                                cursor: "pointer",
-                                                borderBottom: "1px solid #ccc",
-                                            }}
+                                            style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #ccc" }}
                                         >
-                                            {filteredCourse.name} {/* Adjust based on your API response */}
+                                            {filteredCourse.name}
                                         </div>
                                     ))
                                 ) : (
-                                    !loading && query.length > 2 && (
+                                    !loading && (
                                         <div className="no-suggestions" style={{ padding: "8px", color: "#666" }}>
                                             No suggestions available
                                         </div>
                                     )
                                 )}
+
                             </div>
                         </div>
-
-                        <div className="enter">
-                            <button type="submit" >
+                        <div className="enter" onClick={() => navigate('/courseandsem', { state: { school, course } })}>
+                            <button type="submit">
                                 <i className="bx bx-right-arrow-alt"></i>
                                 <span>Enter</span>
                             </button>
@@ -269,16 +248,10 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* ------------------------Counter Section------------ */}
             <section className="count">
                 <div className="box-container">
                     {counterData.map((item, index) => (
-                        <CounterBox
-                            key={index}
-                            icon={item.icon}
-                            number={item.number}
-                            label={item.label}
-                        />
+                        <CounterBox key={index} icon={item.icon} number={item.number} label={item.label} />
                     ))}
                 </div>
             </section>
