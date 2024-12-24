@@ -1,4 +1,4 @@
-const { College, Course, Branch, Notes } = require('../models/branch_model/branch_model');
+const { College, Course, Branch, Subject } = require('../models/branch_model/branch_model');
 const { ObjectId } = require('mongodb'); // Ensure ObjectId is imported
 
 
@@ -66,18 +66,21 @@ const addBranch = async (req, res) => {
 };
 
 
-
+// Function to get branches
 const getBranches = async (req, res) => {
     const { college, course } = req.params; // Get college and course from URL params
-    console.log("College:", college, "Course:", course);
+
 
     if (!college || !course) {
         return res.status(400).json({ error: "College and course are required." });
     }
 
     try {
-        // Find the document for the given college and course
-        const existingBranch = await Branch.findOne({ college, course });
+        // Use regex for case-insensitive search
+        const existingBranch = await Branch.findOne({
+            college: { $regex: new RegExp(`^${college}$`, 'i') },
+            course: { $regex: new RegExp(`^${course}$`, 'i') }
+        });
 
         if (!existingBranch) {
             return res.status(404).json({ message: "College or course not found." });
@@ -92,8 +95,73 @@ const getBranches = async (req, res) => {
     }
 };
 
+// Function to add subjects
+const addSubjects =  async (req, res) => {
+    const { branch, semister ,subjects } = req.body;
 
-//   Function to get suggestions
+    if (!branch || !semister || !subjects) {
+        return res.status(400).json({ error: "Branch and subject are required." });
+    }
+
+    const subjectexist = await Subject.findOne({ branch, semister });
+    console.log("Existing subject:", subjectexist);
+
+    try {
+        if(!subjectexist){
+            const newSubject = new Subject({ branch, semister, subjects });
+            await newSubject.save();
+            return res.status(201).json({ message: "Added new subject.", data: newSubject });
+
+        }
+
+        const newSubjects = subjects.filter(subject => !subjectexist.subjects.includes(subject));
+        
+        if(newSubjects.length > 0){
+            subjectexist.subjects = subjectexist.subjects.concat(newSubjects);
+            await subjectexist.save();
+            return res.status(201).json({ message: "Added new subjects.", data: subjectexist });
+        }
+        
+        return res.status(400).json({ message: "All subjects already exist." });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to add subject", error });
+    }
+
+};
+
+
+// Function to get subjects
+const getSubjects = async (req, res) => {
+    const { branch, semister } = req.params;
+    console.log("Branch:", branch, "Semister:", semister);
+
+    // Validate request parameters
+    if (!branch || !semister) {
+        return res.status(400).json({ message: "Branch and semister are required." });
+    }
+
+    try {
+        // Case-insensitive search for branch and semister
+        const existingSubject = await Subject.findOne({
+            branch: { $regex: new RegExp(`^${branch}$`, 'i') },
+            semister: semister
+        });
+
+        if (!existingSubject) {
+            return res.status(404).json({ message: "Branch or semister not found." });
+        }
+
+        // Return the matched subjects
+        return res.status(200).json({ subjects: existingSubject.subjects });
+
+    } catch (error) {
+        console.error("Error fetching subjects:", error);
+        return res.status(500).json({ message: "Failed to fetch subjects." });
+    }
+};
+
+
+//  Function to get suggestions
 const getSuggestions = async (req, res) => {
     try {
         let query = req.query; // Get 'query' from the request parameters
@@ -144,5 +212,7 @@ module.exports = {
     addCourse,
     getCourses,
     addBranch,
-    getBranches
+    getBranches,
+    addSubjects,
+    getSubjects
 };  //exporting the function to be used in other files.

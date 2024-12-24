@@ -5,15 +5,12 @@ import axiosInstance from "../api/axiosInstance"; // Import the instance
 import './home.css';
 
 const Home = () => {
-    const [schools, setSchools] = useState([]);
-    const [courses, setCourses] = useState([]);
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const [school, setSchool] = useState('');
     const [course, setCourse] = useState('');
-    const [filteredSchools, setFilteredSchools] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
 
     const fetchSuggestions = async (input) => {
@@ -46,8 +43,8 @@ const Home = () => {
             console.error("Error fetching courses:", error.message);
         }
     };
-    
-    
+
+
 
 
     const debounce = (func, delay) => {
@@ -64,7 +61,7 @@ const Home = () => {
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         console.log(`Input ID: ${id}, Value: ${value}`); // Debug log
-    
+
         if (id === "school") {
             setSchool(value);
             debouncedFetchSuggestions(value);
@@ -74,13 +71,7 @@ const Home = () => {
         }
     };
 
-    useEffect(() => {
-        // Fetch courses when the school is selected
-        if (schools.includes(school.trim())) {
-            setFilteredSchools([]);
-            
-        }
-    }, [school, schools]);
+    
 
     const navigate = useNavigate();
 
@@ -88,7 +79,7 @@ const Home = () => {
         setSchool(selectedSchool.name); // Set the selected school
         setSuggestions([]); // Clear the suggestions to hide the suggestion box
         fetchCourses(selectedSchool._id); // Trigger fetching courses based on selected school
-       
+
     };
 
     const handleCourseSelect = (selectedCourse) => {
@@ -238,7 +229,12 @@ const Home = () => {
 
                             </div>
                         </div>
-                        <div className="enter" onClick={() => navigate('/courseandsem', { state: { school, course } })}>
+                        <div className="enter" onClick={() => {
+                            if (school && course) {
+                                console.log("School:", school, "Course:", course); // Debug
+                                navigate('/courseandsem', { state: { school, course } });
+                            }
+                        }}>                        
                             <button type="submit">
                                 <i className="bx bx-right-arrow-alt"></i>
                                 <span>Enter</span>

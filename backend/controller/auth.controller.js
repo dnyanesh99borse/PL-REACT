@@ -12,7 +12,9 @@ const User = require("../models/user_model/user.model.js");
 
 
 
-
+const dashboard = async (req, res) => {
+	res.status(200).json({ success: true, message: "Dashboard" });
+}
 
 
 // <============ Sign Up =============>
@@ -254,6 +256,7 @@ const checkAuth = async (req, res) => {
 
 
 module.exports = {
+	dashboard,
 	login,
 	logout,
 	signup,
