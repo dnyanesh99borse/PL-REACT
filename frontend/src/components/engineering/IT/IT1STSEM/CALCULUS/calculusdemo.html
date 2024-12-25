@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculus Topics</title>
+  <link rel="stylesheet" href="../CALCULUS/calculus.css">
+  
+</head>
+<body>
+  <div class="calculuscontent">
+    <div class="unit" data-unit="1">
+      <div class="unit-title">1. Differential Calculus of functions of one variable</div>
+      <ul class="topics">
+        <li><a href="/topic-display">Rolle’s theorem</a></li>
+        <li><a href="/lagrange-mean-value">Lagrange’s Mean value theorem</a></li>
+        <li><a href="/cauchy-mean-value">Cauchy’s Mean value theorem</a></li>
+        <li><a href="/convergence">Convergence of Sequences and series</a></li>
+        <li><a href="/taylor-maclaurin">Taylor’s and Maclaurin’s Series Expansion</a></li>
+        <li><a href="/indeterminate-forms">Indeterminate forms</a></li>
+        <li><a href="/l-hospital-rule">L'Hospital's rule</a></li>
+      </ul>
+    </div>
+
+    <div class="unit" data-unit="2">
+      <div class="unit-title">2. Partial Differentiation</div>
+      <ul class="topics">
+        <li><a href="/limits-continuity">Functions of several variables: Limits and continuity</a></li>
+        <li><a href="/partial-differentiation">Partial differentiation</a></li>
+        <li><a href="/taylor-two-variables">Taylor’s theorem of function of two variables</a></li>
+        <li><a href="/maxima-minima">Maxima, Minima</a></li>
+        <li><a href="/lagrange-undetermined">Lagrange’s Method of Undetermined Multiplier</a></li>
+      </ul>
+    </div>
+
+    <div class="unit" data-unit="3">
+      <div class="unit-title">3. Integral Calculus of functions of one variable</div>
+      <ul class="topics">
+        <li><a href="/solid-revolution-volume">Volume of solid of revolution</a></li>
+        <li><a href="/surface-area-revolution">Area of the surface of a solid of revolution</a></li>
+        <li><a href="/improper-integrals">Improper Integrals</a></li>
+        <li><a href="/beta-gamma-functions">Special functions: Beta and Gamma functions</a></li>
+      </ul>
+    </div>
+
+    <div class="unit" data-unit="4">
+      <div class="unit-title">4. Multiple Integrals</div>
+      <ul class="topics">
+        <li><a href="/double-integral">Double Integral</a></li>
+        <li><a href="/change-order-integration">Change of order of Integration</a></li>
+        <li><a href="/jacobian">Jacobian</a></li>
+        <li><a href="/double-integral-area">Application of Double Integral to find area</a></li>
+        <li><a href="/triple-integral">Triple Integral</a></li>
+        <li><a href="/spherical-cylindrical-coordinates">Change of variable to spherical and cylindrical coordinates</a></li>
+        <li><a href="/triple-integral-volume">Application of Triple Integral to find volume</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const units = document.querySelectorAll(".unit");
+
+      units.forEach(unit => {
+        const title = unit.querySelector(".unit-title");
+        const topics = unit.querySelector(".topics");
+
+        title.addEventListener("click", () => {
+          const isOpen = topics.classList.contains("open");
+          document.querySelectorAll(".topics.open").forEach(openTopics => openTopics.classList.remove("open"));
+
+          if (!isOpen) {
+            topics.classList.add("open");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
