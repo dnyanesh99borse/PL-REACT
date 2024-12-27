@@ -46,8 +46,8 @@ const Home = () => {
             console.error("Error fetching courses:", error.message);
         }
     };
-    
-    
+
+
 
 
     const debounce = (func, delay) => {
@@ -64,7 +64,7 @@ const Home = () => {
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         console.log(`Input ID: ${id}, Value: ${value}`); // Debug log
-    
+
         if (id === "school") {
             setSchool(value);
             debouncedFetchSuggestions(value);
@@ -78,7 +78,7 @@ const Home = () => {
         // Fetch courses when the school is selected
         if (schools.includes(school.trim())) {
             setFilteredSchools([]);
-            
+
         }
     }, [school, schools]);
 
@@ -88,7 +88,7 @@ const Home = () => {
         setSchool(selectedSchool.name); // Set the selected school
         setSuggestions([]); // Clear the suggestions to hide the suggestion box
         fetchCourses(selectedSchool._id); // Trigger fetching courses based on selected school
-       
+
     };
 
     const handleCourseSelect = (selectedCourse) => {
@@ -307,26 +307,19 @@ const Home = () => {
                             />
                             <label className="form-label">Course</label>
                             <div className="suggestions">
-                                {filteredCourses.length > 0 ? (
-                                    filteredCourses.map((filteredCourse) => (
+                                {suggestions.length > 0 &&
+                                    suggestions.map((suggestion) => (
                                         <div
-                                            key={filteredCourse.id}
+                                            key={suggestion.id}
                                             className="suggestion-item"
-                                            onClick={() => handleCourseSelect(filteredCourse.name)}
+                                            onClick={() => handleSchoolSelect(suggestion)}
                                             style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #ccc" }}
                                         >
-                                            {filteredCourse.name}
+                                            {suggestion.name}
                                         </div>
-                                    ))
-                                ) : (
-                                    !loading && (
-                                        <div className="no-suggestions" style={{ padding: "8px", color: "#666" }}>
-                                            No suggestions available
-                                        </div>
-                                    )
-                                )}
-
+                                    ))}
                             </div>
+
                         </div>
                         <div className="enter" onClick={() => navigate('/courseandsem', { state: { school, course } })}>
                             <button type="submit">
