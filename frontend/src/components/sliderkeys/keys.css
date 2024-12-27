@@ -129,7 +129,7 @@
   display: none;
 }
 
-.carousel.no-transition {
+/* .carousel.no-transition {
   scroll-behavior: auto;
 }
 
@@ -141,7 +141,7 @@
 .carousel.dragging .card {
   cursor: grab;
   user-select: none;
-}
+} */
 
 .carousel :where(.card, .img) {
   display: flex;
@@ -166,6 +166,10 @@
 .carousel .card:hover {
   background-color: #b3eeb8;
   box-shadow: 0 .5vw 1vw rgba(0, 0, 0, 0.2);
+}
+
+.carousel .card:active{
+  scale: 1.002;
 }
 
 .carousel .card .img {

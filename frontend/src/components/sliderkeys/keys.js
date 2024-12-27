@@ -43,7 +43,7 @@ const Keys = () => {
 
         // Event Listeners
         const handleMouseDown = (e) => {
-            setIsDragging(true);
+            setIsDragging(false);
             carousel.classList.add("dragging");
             setStartX(e.pageX);
             setStartScrollLeft(carousel.scrollLeft);
@@ -81,12 +81,12 @@ const Keys = () => {
         autoPlay();
 
         // Event Listeners for dragging
-        carousel.addEventListener("mousedown", handleMouseDown);
-        carousel.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", handleMouseUp);
-        carousel.addEventListener("scroll", handleScroll);
-        wrapperRef.current.addEventListener("mouseenter", () => clearTimeout(timeoutId));
-        wrapperRef.current.addEventListener("mouseleave", autoPlay);
+        // carousel.addEventListener("mousedown", handleMouseDown);
+        // carousel.addEventListener("mousemove", handleMouseMove);
+        // document.addEventListener("mouseup", handleMouseUp);
+        // carousel.addEventListener("scroll", handleScroll);
+        // wrapperRef.current.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+        // wrapperRef.current.addEventListener("mouseleave", autoPlay);
 
         return () => {
             // Cleanup event listeners
