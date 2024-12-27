@@ -132,6 +132,56 @@ const Home = () => {
         </div>
     );
 
+
+
+    //===========suggestions logic for homepage searchbox starts here====================================
+    const [searchInput, setSearchInput] = useState(""); // State for user input
+    const [filteredSuggestions, setFilteredSuggestions] = useState([]); // State for filtered suggestions
+    const [isInputFocused, setIsInputFocused] = useState(false); // State to track focus
+
+    const subjects = [
+        "Calculus",
+        "Physics",
+        "Programming",
+        "Graphics",
+        "Artificial Intelligence",
+        "Data Science",
+    ];
+
+
+    // Filter suggestions based on user input
+    useEffect(() => {
+        if (searchInput) {
+            const results = subjects.filter((subject) =>
+                subject.toLowerCase().includes(searchInput.toLowerCase())
+            );
+            setFilteredSuggestions(results);
+
+            // If the input matches exactly with one of the subjects, hide suggestions
+            if (results.length === 1 && results[0].toLowerCase() === searchInput.toLowerCase()) {
+                setFilteredSuggestions([]);
+            }
+        } else {
+            setFilteredSuggestions([]);
+        }
+    }, [searchInput]);
+
+    // Clear suggestions when clicking outside
+    useEffect(() => {
+        const handleClickOutside = () => {
+            if (!isInputFocused) setFilteredSuggestions([]);
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, [isInputFocused]);
+
+    // Handle suggestion click
+    const handleSuggestionClick = (suggestion) => {
+        setSearchInput(suggestion); // Set the input to the selected suggestion
+        setFilteredSuggestions([]); // Hide the suggestions list
+    };
+
+
     return (
         <section className='main'>
             {/* Same structure */}
@@ -153,12 +203,52 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="searchbox">
-                        <input className="searchInput" type="text" placeholder="search Academics, passion, courses, tech" />
+                    {/* <div className="searchbox">
+                        <input
+                            className="searchInput"
+                            type="text"
+                            placeholder="search Academics, passion, courses, tech"
+                        />
                         <span className="icon">
                             <i className="bx bx-search-alt bx-tada"></i>
                         </span>
+                    </div> */}
+
+
+                    <div
+                        className="searchbox-container"
+                        onClick={(e) => e.stopPropagation()} // Prevent click outside handling
+                    >
+                        <div className="searchbox">
+                            <input
+                                className="searchInput"
+                                type="text"
+                                placeholder="Search Academics, passion, courses, tech"
+                                value={searchInput}
+                                onChange={(e) => setSearchInput(e.target.value)}
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
+                            />
+                            <span className="icon">
+                                <i className="bx bx-search-alt bx-tada"></i>
+                            </span>
+                        </div>
+                        {searchInput && filteredSuggestions.length > 0 && (
+                            <ul className="suggestions-list">
+                                {filteredSuggestions.map((suggestion, index) => (
+                                    <li
+                                        key={index}
+                                        className="suggestion-item"
+                                        onClick={() => handleSuggestionClick(suggestion)}
+                                    >
+                                        {suggestion}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
+
+                    {/*-------------------home university and course form section starts------------------ */}
 
                     <section className="info" id="info">
                         <h1 className="title">Select Your University/College</h1>

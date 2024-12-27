@@ -9,6 +9,7 @@ import CourseAndSem from "./components/engineering/courseandsem";
 import IT1STSEM from "./components/engineering/IT/IT1STSEM/IT1stsem";
 import RollesTheorem from "./components/engineering/IT/IT1STSEM/CALCULUS/rollesthm";
 import TOPICDISPLAY from "./components/engineering/IT/IT1STSEM/topicdisplay";
+import CALCULUS from "./components/engineering/IT/IT1STSEM/physics";
 
 
 function App() {
