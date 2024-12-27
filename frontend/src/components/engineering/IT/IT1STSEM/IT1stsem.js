@@ -22,6 +22,8 @@ const IT1STSEM = () => {
 
   const location = useLocation();
   const { selectedCourseId, selectedSemesterId } = location.state || {};
+  const { item, schema } = location.state || {};
+  console.log("Item:", item);
 
 
 
@@ -40,12 +42,20 @@ const IT1STSEM = () => {
     fetchSubjects();
   }, []);
 
-
+  useEffect(() => {
+    if (item) {
+      setIsCollapsed(!isCollapsed);
+      setSelectedSubject(item);
+    }
+  }, [item]); 
 
 
   const toggleSubbar = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+
+  
 
   // Dynamically render the selected component
   const renderContent = () => {

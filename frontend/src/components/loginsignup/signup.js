@@ -1,8 +1,8 @@
 // signup.js
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from "js-cookie";
 import "./signup.css";
 import Common from "./common";
 import axios from "axios";
@@ -36,6 +36,18 @@ const Signup = () => {
         try {
             const response = await axios.post('http://localhost:5000/api/auth/signup', formData);
             setMessage(response.data.message); // Success message
+            if (!response.data.success) {
+
+                Cookies.set("token", response.data.token, {
+                    expires: 1,
+                    secure: true,
+                    sameSite: "Strict",
+                });
+                setMessage('Login successful!');
+                navigate('/');
+            }
+
+
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error occurred');
         }
@@ -60,7 +72,7 @@ const Signup = () => {
 
                 <div className="form-box">
                     <div className="close">
-                        <i class='bx bx-x'onClick={handleHomeRedirect}></i>
+                        <i class='bx bx-x' onClick={handleHomeRedirect}></i>
                     </div>
                     <h2 className="signup-title">Sign up</h2>
                     <div className="loginbutton">

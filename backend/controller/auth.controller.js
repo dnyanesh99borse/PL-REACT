@@ -51,6 +51,7 @@ const signup = async (req, res) => {
 
 		// jwt
 		const token = generateTokenAndSetCookie(res, user._id);
+		console.log("Token:",token)
 
 		await sendVerificationEmail(user.email, verificationToken);
 

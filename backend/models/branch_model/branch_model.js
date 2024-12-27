@@ -47,11 +47,23 @@ const subjectSchema = new mongoose.Schema({
     }
 });
 
+const unitsSchema = new mongoose.Schema({
+    subject: {
+        type: String,
+        required: true
+    },
+    units: {
+        type: [String],
+        required: true
+    }
+});
+
 
 const College = mongoose.model("College", collegeSchema);
 const Course = mongoose.model("Course", courseSchema);
 const Branch = mongoose.model("Branch", branchSchema);
 const Subject = mongoose.model("Subject", subjectSchema);
+const Units = mongoose.model("Units", unitsSchema);
 
 
 
@@ -59,5 +71,6 @@ module.exports = {
     College,
     Course,
     Branch,
-    Subject
+    Subject,
+    Units
 };
