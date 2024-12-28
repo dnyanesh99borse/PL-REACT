@@ -21,7 +21,7 @@ const Home = () => {
         }
         setLoading(true);
         try {
-            const response = await axiosInstance.get('/Get/suggestions', { params: { query: input } });
+            const response = await axiosInstance.get(`/Get/suggestions/?query=${input}`);
             setSuggestions(response.data.suggestions);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
@@ -177,11 +177,11 @@ const Home = () => {
         return () => document.removeEventListener("click", handleClickOutside);
     }, [isInputFocused]);
 
-    // Handle suggestion click
-    const handleSuggestionClick = (suggestion) => {
-        setSearchInput(suggestion); // Set the input to the selected suggestion
-        setFilteredSuggestions([]); // Hide the suggestions list
-    };
+    // // Handle suggestion click
+    // const handleSuggestionClick = (suggestion) => {
+    //     setSearchInput(suggestion); // Set the input to the selected suggestion
+    //     setFilteredSuggestions([]); // Hide the suggestions list
+    // };
 
 
     return (
@@ -319,7 +319,7 @@ const Home = () => {
                                         </div>
                                     ))
                                 ) : (
-                                    !loading && (
+                                    !loading && query.length > 2 &&(
                                         <div className="no-suggestions" style={{ padding: "8px", color: "#666" }}>
                                             No suggestions available
                                         </div>

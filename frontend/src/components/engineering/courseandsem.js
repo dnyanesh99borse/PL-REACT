@@ -148,7 +148,6 @@ const CourseAndSem = () => {
                     </div>
 
                     <button className="nextbtn600px" onClick={() => {
-                        console.log("Selected course:", selectedCourseId, "Selected semester:", selectedSemesterId);
                         if (!selectedCourseId || !selectedSemesterId) {
                             alert("Please select both course and semester before proceeding.");
                             return;
