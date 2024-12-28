@@ -1,5 +1,6 @@
-const { College, Course, Branch, Subject, Units } = require('../models/branch_model/branch_model');
+const { College, Course, Branch, Subject, Units, Topics } = require('../models/branch_model/branch_model');
 const { ObjectId } = require('mongodb'); // Ensure ObjectId is imported
+const { options } = require('../routes/auth.routes');
 
 
 //  Function to insert colleges
@@ -136,6 +137,20 @@ const addUnits = async (req, res) => {
     }
 };
 
+// Function to Add Topics
+const addTopics = async (req, res) => {
+    const { title, topics} = req.body;
+    console.log("Title:", title, "topics:", topics);
+
+    if(!title || !topics){
+        return res.status(400).json({ message: "Title and topics are required." });
+    }
+
+    const isTopicExist = await Topics.findOne({
+        title: { $regex : title, options : "i"  }
+    })
+};
+
 // Function to get units
 const getUnits = async (req, res) => {
     const subject = req.params.subject;
@@ -147,7 +162,7 @@ const getUnits = async (req, res) => {
 
     try {
         // Find the units for the given subject
-        const units = await Units.findOne({ subject });
+        const units = await Units.findOne({ subject: { $regex: new RegExp(subject, "i") } });
 
         if (!units) {
             return res.status(404).json({ message: `No units found for subject: ${subject}` });
@@ -156,7 +171,7 @@ const getUnits = async (req, res) => {
         return res.status(200).json({ message: "units retrieved successfully.", data: units.units });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: "Failed to fetch units", error });
+        return res.status(500).json({ message: "Failed to fetch unit" });
     }
 };
 
@@ -257,10 +272,7 @@ const getCourses = async (req, res) => {
     }
 };
 
-
-
 // Function to search all collections
-
 const searchAll = async (req, res) => {
     const { query } = req.query;
 

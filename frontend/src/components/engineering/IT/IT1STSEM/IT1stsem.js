@@ -23,7 +23,7 @@ const IT1STSEM = () => {
   const location = useLocation();
   const { selectedCourseId, selectedSemesterId } = location.state || {};
   const { item, schema } = location.state || {};
-  console.log("Item:", item);
+
 
 
 
@@ -59,25 +59,7 @@ const IT1STSEM = () => {
 
   // Dynamically render the selected component
   const renderContent = () => {
-    console.log("slectedsubject:",selectedSubject);
-    switch (selectedSubject) {
-      case "CALCULUS":
-        return <Calculus />;
-      case "PHYSICS":
-        return <Physics />;
-      case "PROGRAMMING FOR PROBLEM SOLVING":
-        return <Programming />;
-      case "ELEMENTS OF BIOLOGY":
-        return <Biology />;
-      case "PROFESSIONAL ETHICS":
-        return <Ethics />;
-      case "CRITICAL THINKING":
-        return <CriticalThinking />;
-      case "ENGINEERING GRAPHICS AND DESIGNING":
-        return <Graphics />;
-      default:
-        return <p>Select a subject to display content.</p>;
-    }
+    return <Calculus subject={selectedSubject} />;
   };
 
   return (
