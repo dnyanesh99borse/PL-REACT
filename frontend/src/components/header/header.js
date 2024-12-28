@@ -133,7 +133,7 @@ function Header() {
                             <i className="bx bxs-contact"></i>Contact
                         </a>
 
-
+                        {/*========= the bulb for dark and light mode ============ */}
                         <button onClick={toggleTheme} className="theme-toggle">
                             {isDarkMode ? <i className='bx bxs-bulb'></i> : <i className='bx bx-bulb'></i>}
                         </button>
