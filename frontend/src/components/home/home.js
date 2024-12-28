@@ -86,13 +86,6 @@ const Home = () => {
         }
     };
 
-    useEffect(() => {
-        // Fetch courses when the school is selected
-        if (schools.includes(school.trim())) {
-            setFilteredSchools([]);
-
-        }
-    }, [school, schools]);
 
 
     const navigate = useNavigate();
@@ -314,19 +307,26 @@ const Home = () => {
                             />
                             <label className="form-label">Course</label>
                             <div className="suggestions">
-                                {suggestions.length > 0 &&
-                                    suggestions.map((suggestion) => (
+                                {filteredCourses.length > 0 ? (
+                                    filteredCourses.map((filteredCourse) => (
                                         <div
-                                            key={suggestion.id}
+                                            key={filteredCourse.id}
                                             className="suggestion-item"
-                                            onClick={() => handleSchoolSelect(suggestion)}
+                                            onClick={() => handleCourseSelect(filteredCourse.name)}
                                             style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #ccc" }}
                                         >
-                                            {suggestion.name}
+                                            {filteredCourse.name}
                                         </div>
-                                    ))}
-                            </div>
+                                    ))
+                                ) : (
+                                    !loading && (
+                                        <div className="no-suggestions" style={{ padding: "8px", color: "#666" }}>
+                                            No suggestions available
+                                        </div>
+                                    )
+                                )}
 
+                            </div>
                         </div>
                         <div className="enter" onClick={() => {
                             if (school && course) {
