@@ -68,18 +68,18 @@ const addBranch = async (req, res) => {
 
 // Function to add subjects
 const addSubjects =  async (req, res) => {
-    const { branch, semister ,subjects } = req.body;
+    const { college, course, branch, semister ,subjects } = req.body;
     
-    if (!branch || !semister || !subjects) {
+    if (!college || !course || !branch || !semister || !subjects || !Array.isArray(subjects)) {
         return res.status(400).json({ error: "Branch and subject are required." });
     }
     
-    const subjectexist = await Subject.findOne({ branch, semister });
+    const subjectexist = await Subject.findOne({ college, course, branch, semister });
     console.log("Existing subject:", subjectexist);
     
     try {
         if(!subjectexist){
-            const newSubject = new Subject({ branch, semister, subjects });
+            const newSubject = new Subject({ college, course, branch, semister, subjects });
             await newSubject.save();
             return res.status(201).json({ message: "Added new subject.", data: newSubject });
 
@@ -102,16 +102,16 @@ const addSubjects =  async (req, res) => {
 
 // Function to add units
 const addUnits = async (req, res) => {
-    const { subject, units } = req.body;
+    const { college, course, branch, semister, subject, units } = req.body;
     console.log("Subject:", subject, "unit:", units);
 
-    if (!subject || !units) {
+    if ( !college || !course || !branch || !semister || !subject || !units || !Array.isArray(units)) {
         return res.status(400).json({ error: "Subject and unit are required." });
     }
 
     try {
         // Check if the subject exists and the unit is already in the units array
-        const unitExist = await Units.findOne({ subject, units: { $in: [units] } });
+        const unitExist = await Units.findOne({ college, course, branch, semister, subject, units: { $in: [units] } });
 
         if (unitExist) {
             return res.status(400).json({ message: "unit already exists." });

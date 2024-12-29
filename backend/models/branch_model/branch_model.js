@@ -33,6 +33,8 @@ const branchSchema = new mongoose.Schema({
 
 // Subject Schema
 const subjectSchema = new mongoose.Schema({
+    college: { type: String, required: true },
+    course: { type: String, required: true },
     branch: {
         type: String,
         required: true
@@ -49,26 +51,23 @@ const subjectSchema = new mongoose.Schema({
 
 // Unit Schema
 const unitsSchema = new mongoose.Schema({
-    subject: {
-        type: String,
-        required: true
-    },
-    units: {
-        type: [String],
-        required: true
-    }
+    college: { type: String, required: true },
+    course: { type: String, required: true },
+    branch: { type: String, required: true },
+    semister: { type: Number, required: true },
+    subject: { type: String, required: true },
+    units: { type: [String], required: true }
 });
 
 // Topic Schema
 const topicSchema = new mongoose.Schema({
-    title:{
-        type: String,
-        required: true
-    },
-    topics:{
-        type: [String],
-        required: true
-    }
+    college: { type: String, required: true },
+    course: { type: String, required: true },
+    branch: { type: String, required: true },
+    semister: { type: Number, required: true },
+    subject: { type: String, required: true },
+    unit: { type: String, required: true },
+    topics: { type: [String], required: true }
 });
 
 
