@@ -18,8 +18,8 @@ const addColleges = async (req, res) => {
 //  Function to add courses
 const addCourse = async (req, res) => {
     try {
-        const { name, collegeId } = req.body;
-        const course = new Course({ name, collegeId });
+        const { name, college } = req.body;
+        const course = new Course({ name, college });
         await course.save();
         res.status(201).json(course);
     } catch (error) {
@@ -67,18 +67,18 @@ const addBranch = async (req, res) => {
 };
 
 // Function to add subjects
-const addSubjects =  async (req, res) => {
-    const { college, course, branch, semister ,subjects } = req.body;
-    
+const addSubjects = async (req, res) => {
+    const { college, course, branch, semister, subjects } = req.body;
+
     if (!college || !course || !branch || !semister || !subjects || !Array.isArray(subjects)) {
         return res.status(400).json({ error: "Branch and subject are required." });
     }
-    
+
     const subjectexist = await Subject.findOne({ college, course, branch, semister });
     console.log("Existing subject:", subjectexist);
-    
+
     try {
-        if(!subjectexist){
+        if (!subjectexist) {
             const newSubject = new Subject({ college, course, branch, semister, subjects });
             await newSubject.save();
             return res.status(201).json({ message: "Added new subject.", data: newSubject });
@@ -86,13 +86,13 @@ const addSubjects =  async (req, res) => {
         }
 
         const newSubjects = subjects.filter(subject => !subjectexist.subjects.includes(subject));
-        
-        if(newSubjects.length > 0){
+
+        if (newSubjects.length > 0) {
             subjectexist.subjects = subjectexist.subjects.concat(newSubjects);
             await subjectexist.save();
             return res.status(201).json({ message: "Added new subjects.", data: subjectexist });
         }
-        
+
         return res.status(400).json({ message: "All subjects already exist." });
     } catch (error) {
         res.status(500).json({ message: "Failed to add subject", error });
@@ -105,7 +105,7 @@ const addUnits = async (req, res) => {
     const { college, course, branch, semister, subject, units } = req.body;
     console.log("Subject:", subject, "unit:", units);
 
-    if ( !college || !course || !branch || !semister || !subject || !units || !Array.isArray(units)) {
+    if (!college || !course || !branch || !semister || !subject || !units || !Array.isArray(units)) {
         return res.status(400).json({ error: "Subject and unit are required." });
     }
 
@@ -139,15 +139,15 @@ const addUnits = async (req, res) => {
 
 // Function to Add Topics
 const addTopics = async (req, res) => {
-    const { title, topics} = req.body;
+    const { title, topics } = req.body;
     console.log("Title:", title, "topics:", topics);
 
-    if(!title || !topics){
+    if (!title || !topics) {
         return res.status(400).json({ message: "Title and topics are required." });
     }
 
     const isTopicExist = await Topics.findOne({
-        title: { $regex : title, options : "i"  }
+        title: { $regex: title, options: "i" }
     })
 };
 
@@ -239,15 +239,30 @@ const getSuggestions = async (req, res) => {
     try {
         let query = req.query; // Get 'query' from the request parameters
         query = query.query;
+        console.log(query)
         if (!query) {
             return res.status(400).json({ suggestions: [] });
         }
 
-        const suggestions = await College.find({
-            name: { $regex: query, $options: 'i' }, // Case-insensitive search
-        }).limit(10);
 
-        res.status(200).json({ suggestions });
+        if (query !== "admin") {
+
+            const suggestions = await College.find({
+                name: { $regex: query, $options: 'i' }, // Case-insensitive search
+            }).limit(10);
+            res.status(200).json({ suggestions });
+        }
+
+        if (query === "admin") {
+            const suggestions = await College.find({});
+            const colleges = suggestions.map(college => ({
+                id: college._id, // or simply college.id if that's the name of the field
+                name: college.name
+            }));
+            res.status(200).json({ colleges });
+
+        }
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error fetching suggestions' });
@@ -257,12 +272,12 @@ const getSuggestions = async (req, res) => {
 //  Function to get courses
 const getCourses = async (req, res) => {
     try {
-        const collegeId = req.params.collegeId; // Extract the collegeId parameter
-        console.log("College ID:", collegeId);
+        const college = req.query.college; // Extract the collegeId parameter
+        console.log("College ID:", college);
 
 
 
-        const courses = await Course.find({ collegeId: collegeId }); // Use ObjectId
+        const courses = await Course.find({ college: college }); // Use ObjectId
         console.log("Courses:", courses);
 
         res.json(courses);

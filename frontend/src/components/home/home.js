@@ -33,7 +33,7 @@ const Home = () => {
     const fetchCourses = async (collegeId) => {
         try {
             console.log("collegeId:", collegeId); // Debug
-            const response = await axiosInstance.get(`/colleges/${collegeId}/courses`);
+            const response = await axiosInstance.get(`/Get/course/?college=${collegeId}`);
             if (response.data && Array.isArray(response.data)) {
                 setFilteredCourses(response.data);
                 console.log("Courses:", response.data); // Debug
@@ -93,7 +93,7 @@ const Home = () => {
     const handleSchoolSelect = (selectedSchool) => {
         setSchool(selectedSchool.name); // Set the selected school
         setSuggestions([]); // Clear the suggestions to hide the suggestion box
-        fetchCourses(selectedSchool._id); // Trigger fetching courses based on selected school
+        fetchCourses(selectedSchool.name); // Trigger fetching courses based on selected school
 
     };
 

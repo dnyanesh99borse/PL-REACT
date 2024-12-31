@@ -12,7 +12,7 @@ const collegeSchema = new mongoose.Schema({
 // Course Schema
 const courseSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    collegeId: { type: mongoose.Schema.Types.ObjectId, ref: "College", required: true },
+    college: { type: String, required: true },
 });
 
 // Branch Schema

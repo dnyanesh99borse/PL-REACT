@@ -10,7 +10,7 @@ import IT1STSEM from "./components/engineering/IT/IT1STSEM/IT1stsem";
 import RollesTheorem from "./components/engineering/IT/IT1STSEM/CALCULUS/rollesthm";
 import TOPICDISPLAY from "./components/engineering/IT/IT1STSEM/topicdisplay";
 import Profile from "./components/profile/profile";
-
+import Admin from "./components/profile/admin";
 
 function App() {
     return (
@@ -24,6 +24,7 @@ function App() {
                 <Route path="/rolles-theorem" element={<RollesTheorem />} />
                 <Route path="/topic-display" element={<TOPICDISPLAY/>} />
                 <Route path="/profile" element={<Profile/>} />
+                <Route path="/admin" element={<Admin/>} />
             </Routes>
         </div>
     );

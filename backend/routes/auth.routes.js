@@ -25,7 +25,7 @@ router.post("/api/auth/reset-password/:token", authController.resetPassword);
 
 router.route("/Add/college").post(documentController.addColleges)
 router.route("/Get/suggestions").get(documentController.getSuggestions)
-router.route("/colleges/:collegeId/courses").get(documentController.getCourses);
+router.route("/Get/course").get(documentController.getCourses);
 router.route("/Add/course").post(documentController.addCourse);
 router.route("/Add/Branch").post(documentController.addBranch);
 router.route("/Get/Branch/:college/:course").get(documentController.getBranches);
