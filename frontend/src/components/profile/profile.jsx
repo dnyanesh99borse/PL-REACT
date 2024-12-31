@@ -95,8 +95,8 @@ const Profile = () => {
 
                     {/*-----banner edit button------ */}
                     {!isBannerEditing && (
-                        <button onClick={handleEditClick} className='edit-btn'>
-                            edit
+                        <button onClick={handleEditClick} className='banner-edit-btn'>
+                           <i class='bx bx-edit'></i>
                         </button>
                     )}
 
@@ -147,7 +147,7 @@ const Profile = () => {
                                 <button
                                     onClick={handleImageEditClick}
                                     className="pic-edit">
-                                    edit
+                                    <i class='bx bx-edit'></i>
                                 </button>
                             )}
 
@@ -314,7 +314,7 @@ const Profile = () => {
                         ) : (
 
                             <div className="profile-info">
-                                <button onClick={handleInfoEditClick}>Edit</button>
+                                <button onClick={handleInfoEditClick}><i class='bx bx-edit'></i></button>
                                 <div>
                                     <label>Specialisation</label>
                                     <div>{profileData.specialisation}</div>
