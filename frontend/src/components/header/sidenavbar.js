@@ -19,7 +19,7 @@ const SideNavbar = () => {
                     <p className="text" id="profile-text">profile</p>
                 </div>
 
-                <div className="option" id="order" onClick={() => navigateToPage('/order')}>
+                <div className="option" id="order" onClick={() => navigateToPage('/admin')}>
                     <span className="icon">
                         <i className="bx bx-basket"></i>
                     </span>
