@@ -28,6 +28,7 @@
   .banner-edit-btn {
     position: absolute;
     margin: 10px;
+    background-color:transparent;
   }
 
   .banner-edit-btn i{
@@ -35,6 +36,7 @@
     color:#a4a2a2;
     background: none;
   }
+  
   .banner-edit-btn i:hover{
     padding: 5px;
     border-radius: 50%;
@@ -179,6 +181,7 @@
   /*---button for updating profile photo---*/
   .mid .pic-edit{
     transform: translate(5.5vw,-4vw);
+    background-color:transparent;
   }
 
   .mid .pic-edit i{
@@ -250,12 +253,12 @@
     align-items: center;
     padding: 8px;
     height: 40px;
-    border: 1px solid #eae8e8;
+    /* border: 1px solid #eae8e8; */
     border-radius: 5px;
     font-size: 14px;
     font-weight: 400;
     color: #333;
-    background-color: #fff;
+    /* background-color: #fff; */
     transition: all 0.3s ease;
   }
   
@@ -292,6 +295,7 @@
   padding: .1vw .7vw;
   border-radius: .2vw;
   color: #434343;
+  background-color:transparent;
 }
 
 .info-editbox button:hover,.profile-info button:hover{

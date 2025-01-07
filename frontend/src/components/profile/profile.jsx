@@ -323,10 +323,10 @@ const Profile = () => {
                                     <label>Bio</label>
                                     <div>{profileData.bio}</div>
                                 </div> */}
-                                <div>
+                                {/* <div>
                                     <label>Education</label>
                                     <div>{profileData.education}</div>
-                                </div>
+                                </div> */}
                                 <div>
                                     <label>Skills</label>
                                     <div>{profileData.skills}</div>
@@ -335,11 +335,11 @@ const Profile = () => {
                                     <label>University</label>
                                     <div>{profileData.university}</div>
                                 </div>
-                                <div>
+                                {/* <div>
                                     <label>Country</label>
                                     <div>{profileData.country}</div>
-                                </div>
-                                <div>
+                                </div> */}
+                                {/* <div>
                                     <label>City</label>
                                     <div>{profileData.city}</div>
                                 </div>
@@ -354,7 +354,7 @@ const Profile = () => {
                                 <div>
                                     <label>Birthday</label>
                                     <div>{profileData.birthday}</div>
-                                </div>
+                                </div> */}
                             </div>
                         )}
                     </div>
