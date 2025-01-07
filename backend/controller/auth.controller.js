@@ -12,7 +12,9 @@ const User = require("../models/user_model/user.model.js");
 
 
 
-
+const dashboard = async (req, res) => {
+	res.status(200).json({ success: true, message: "Dashboard" });
+}
 
 
 // <============ Sign Up =============>
@@ -49,6 +51,7 @@ const signup = async (req, res) => {
 
 		// jwt
 		const token = generateTokenAndSetCookie(res, user._id);
+		console.log("Token:",token)
 
 		await sendVerificationEmail(user.email, verificationToken);
 
@@ -254,6 +257,7 @@ const checkAuth = async (req, res) => {
 
 
 module.exports = {
+	dashboard,
 	login,
 	logout,
 	signup,

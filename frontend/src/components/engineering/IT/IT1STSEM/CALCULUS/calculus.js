@@ -1,85 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./calculus.css";
+import axiosInstance from "../../../../api/axiosInstance";
 
-const CALCULUS = () => {
-  const units = [
-    {
-      id: 1,
-      title: "Differential Calculus of functions of one variable",
-      topics: [
-        { name: "Rolle’s theorem", path: "/topic-display" },
-        { name: "Lagrange’s Mean value theorem", path: "/lagrange-mean-value" },
-        { name: "Cauchy’s Mean value theorem", path: "/cauchy-mean-value" },
-        { name: "Convergence of Sequences and series", path: "/convergence" },
-        { name: "Taylor’s and Maclaurin’s Series Expansion", path: "/taylor-maclaurin" },
-        { name: "Indeterminate forms", path: "/indeterminate-forms" },
-        { name: "L'Hospital's rule", path: "/l-hospital-rule" },
-      ],
-    },
-    {
-      id: 2,
-      title: "Partial Differentiation",
-      topics: [
-        { name: "Functions of several variables: Limits and continuity", path: "/limits-continuity" },
-        { name: "Partial differentiation", path: "/partial-differentiation" },
-        { name: "Taylor’s theorem of function of two variables", path: "/taylor-two-variables" },
-        { name: "Maxima, Minima", path: "/maxima-minima" },
-        { name: "Lagrange’s Method of Undetermined Multiplier", path: "/lagrange-undetermined" },
-      ],
-    },
-    {
-      id: 3,
-      title: "Integral Calculus of functions of one variable",
-      topics: [
-        { name: "Volume of solid of revolution", path: "/solid-revolution-volume" },
-        { name: "Area of the surface of a solid of revolution", path: "/surface-area-revolution" },
-        { name: "Improper Integrals", path: "/improper-integrals" },
-        { name: "Special functions: Beta and Gamma functions", path: "/beta-gamma-functions" },
-      ],
-    },
-    {
-      id: 4,
-      title: "Multiple Integrals",
-      topics: [
-        { name: "Double Integral", path: "/double-integral" },
-        { name: "Change of order of Integration", path: "/change-order-integration" },
-        { name: "Jacobian", path: "/jacobian" },
-        { name: "Application of Double Integral to find area", path: "/double-integral-area" },
-        { name: "Triple Integral", path: "/triple-integral" },
-        { name: "Change of variable to spherical and cylindrical coordinates", path: "/spherical-cylindrical-coordinates" },
-        { name: "Application of Triple Integral to find volume", path: "/triple-integral-volume" },
-      ],
-    },
-  ];
-
-  const [openUnit, setOpenUnit] = useState(null);
+const CALCULUS = ({ subject }) => {
+  const [getUnits, setUnits] = useState([]); // Holds fetched units
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+  const [openUnit, setOpenUnit] = useState(null); // Track which unit is open
   const navigate = useNavigate();
 
+  // Fetch units from API
+  const fetchUnits = async () => {
+    setLoading(true); // Set loading to true before fetching
+    setError(null); // Reset error state
+    try {
+      const response = await axiosInstance.get(`Get/Units/${subject}`);
+      setUnits(response.data.data);
+      console.log("Units:", response.data.data);
+    } catch (err) {
+      console.error("Error fetching units");
+      setError("Failed to fetch units.");
+    } finally {
+      setLoading(false); // Set loading to false once done
+    }
+  };
+
+  // Trigger fetchUnits when the component mounts or `subject` changes
+  useEffect(() => {
+    if (subject) fetchUnits();
+  }, [subject]);
+
+  // Toggle unit expansion
   const toggleUnit = (id) => {
     setOpenUnit(openUnit === id ? null : id);
   };
 
+  // Navigate to topic path
   const handleTopicClick = (path) => {
     navigate(path);
   };
 
+  if (loading) {
+    return <div className="loading">Loading units...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
+
   return (
     <div className="calculuscontent">
-      {units.map((unit) => (
-        <div key={unit.id} className="unit">
-          <div className="unit-title" onClick={() => toggleUnit(unit.id)}>
+      {getUnits.map((unit, index) => (
+        <div key={index} className="unit">
+          <div className="unit-title" onClick={() => toggleUnit(index)}>
             <h2>
-              {unit.id}. {unit.title}
+              {index + 1}. {unit.title || unit} {/* Handle different structures */}
             </h2>
           </div>
-          <ul className={`topics ${openUnit === unit.id ? "open" : ""}`}>
-            {unit.topics.map((topic, index) => (
-              <li key={index}>
-                <a onClick={() => handleTopicClick(topic.path)}>{topic.name}</a>
-              </li>
-            ))}
-          </ul>
+          {unit.topics && (
+            <ul className={`topics ${openUnit === index ? "open" : ""}`}>
+              {unit.topics.map((topic, idx) => (
+                <li key={idx}>
+                  <a onClick={() => handleTopicClick(topic.path)}>{topic.name}</a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       ))}
     </div>

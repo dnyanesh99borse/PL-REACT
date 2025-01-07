@@ -4,6 +4,8 @@ import "./login.css";
 import Common from "./common";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
+
 
 
 import facebook from '../assets/facebookicon.svg';
@@ -35,11 +37,24 @@ const Login = () => {
         setMessage('');
         try {
             const response = await axios.post('http://localhost:5000/api/auth/login', formData);
-            setMessage('Login successful!');
+
+            console.log("Responce token : ", response.data.token);
+
+            if (!response.data.success) {
+                
+                Cookies.set("token", response.data.token, {
+                    expires: 1,
+                    secure: true,
+                    sameSite: "Strict",
+                });
+                navigate('/');
+            }
+
             setLoading(false);
 
+
+
             // Redirect to dashboard or home page
-            navigate('/'); 
         } catch (error) {
             setMessage(error.response?.data?.message || 'An error occurred');
             setLoading(false);

@@ -3,14 +3,13 @@ const app = express();
 const connectDB = require('./db/connectDB.js');
 const dotenv = require('dotenv');
 const authRouter = require('./routes/auth.routes.js');
-const user = require('./models/user_model/user.model.js')
+const contactRouter = require('./routes/contact.routes.js');
+const cors = require('cors');
 const PORT = process.env.PORT;
 
 dotenv.config();
 
 app.use(express.json());
-
-const cors = require('cors');
 
 // Allow requests from the frontend
 app.use(cors({
@@ -19,11 +18,14 @@ app.use(cors({
     allowedHeaders: 'Content-Type,Authorization',
 }));
 
-
-
+// Routes
 app.use('/', authRouter);
+app.use('/', contactRouter);
 
-app.listen(PORT,  () => {
+// Start server
+app.listen(PORT, () => {
     connectDB();
     console.log(`Server is running on port ${PORT}`);
-})
+});
+
+

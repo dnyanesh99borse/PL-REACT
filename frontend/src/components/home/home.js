@@ -5,16 +5,14 @@ import axiosInstance from "../api/axiosInstance"; // Import the instance
 import './home.css';
 
 const Home = () => {
-    const [schools, setSchools] = useState([]);
-    const [courses, setCourses] = useState([]);
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const [school, setSchool] = useState('');
     const [course, setCourse] = useState('');
-    const [filteredSchools, setFilteredSchools] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
+    const [searchResults, setSearchResults] = useState({});
 
     const fetchSuggestions = async (input) => {
         if (!input.trim()) {
@@ -23,7 +21,7 @@ const Home = () => {
         }
         setLoading(true);
         try {
-            const response = await axiosInstance.get('/Get/suggestions', { params: { query: input } });
+            const response = await axiosInstance.get(`/Get/suggestions/?query=${input}`);
             setSuggestions(response.data.suggestions);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
@@ -35,7 +33,7 @@ const Home = () => {
     const fetchCourses = async (collegeId) => {
         try {
             console.log("collegeId:", collegeId); // Debug
-            const response = await axiosInstance.get(`/colleges/${collegeId}/courses`);
+            const response = await axiosInstance.get(`/Get/course/?college=${collegeId}`);
             if (response.data && Array.isArray(response.data)) {
                 setFilteredCourses(response.data);
                 console.log("Courses:", response.data); // Debug
@@ -44,6 +42,20 @@ const Home = () => {
             }
         } catch (error) {
             console.error("Error fetching courses:", error.message);
+        }
+    };
+
+    const fetchSearchResults = async (input) => {
+        setSearchInput(input);
+        try {
+            if(input){
+                const response = await axiosInstance.get(`/search/?query=${input}`);
+                setSearchResults(response.data.results || {});
+            }else{
+                setSearchResults({});
+            }
+        } catch (error) {
+            console.error("Error fetching search results:", error.message);
         }
     };
 
@@ -74,20 +86,14 @@ const Home = () => {
         }
     };
 
-    useEffect(() => {
-        // Fetch courses when the school is selected
-        if (schools.includes(school.trim())) {
-            setFilteredSchools([]);
 
-        }
-    }, [school, schools]);
 
     const navigate = useNavigate();
 
     const handleSchoolSelect = (selectedSchool) => {
         setSchool(selectedSchool.name); // Set the selected school
         setSuggestions([]); // Clear the suggestions to hide the suggestion box
-        fetchCourses(selectedSchool._id); // Trigger fetching courses based on selected school
+        fetchCourses(selectedSchool.name); // Trigger fetching courses based on selected school
 
     };
 
@@ -148,33 +154,20 @@ const Home = () => {
     const [filteredSuggestions, setFilteredSuggestions] = useState([]); // State for filtered suggestions
     const [isInputFocused, setIsInputFocused] = useState(false); // State to track focus
 
-    const subjects = [
-        "Calculus",
-        "Physics",
-        "Programming",
-        "Graphics",
-        "Artificial Intelligence",
-        "Data Science",
-    ];
+   
 
-
-    // Filter suggestions based on user input
-    useEffect(() => {
-        if (searchInput) {
-            const results = subjects.filter((subject) =>
-                subject.toLowerCase().includes(searchInput.toLowerCase())
-            );
-            setFilteredSuggestions(results);
-
-            // If the input matches exactly with one of the subjects, hide suggestions
-            if (results.length === 1 && results[0].toLowerCase() === searchInput.toLowerCase()) {
-                setFilteredSuggestions([]);
-            }
-        } else {
-            setFilteredSuggestions([]);
+    const handleItemClick = (schema, item) => {
+        console.log("Schema:", schema, "Item:", item); // Debug
+        // Redirect user based on schema
+        if (schema === "Units") {
+            navigate(`/IT1stsem`,{ state: { item } } ); // Redirect to Units page with the item
+        } else if (schema === "Subject") {
+            navigate(`/IT1stsem`, { state: { item } }); // Redirect to Subject page with the item
         }
-    }, [searchInput]);
+    };
 
+
+  
     // Clear suggestions when clicking outside
     useEffect(() => {
         const handleClickOutside = () => {
@@ -184,11 +177,11 @@ const Home = () => {
         return () => document.removeEventListener("click", handleClickOutside);
     }, [isInputFocused]);
 
-    // Handle suggestion click
-    const handleSuggestionClick = (suggestion) => {
-        setSearchInput(suggestion); // Set the input to the selected suggestion
-        setFilteredSuggestions([]); // Hide the suggestions list
-    };
+    // // Handle suggestion click
+    // const handleSuggestionClick = (suggestion) => {
+    //     setSearchInput(suggestion); // Set the input to the selected suggestion
+    //     setFilteredSuggestions([]); // Hide the suggestions list
+    // };
 
 
     return (
@@ -234,7 +227,7 @@ const Home = () => {
                                 type="text"
                                 placeholder="Search Academics, passion, courses, tech"
                                 value={searchInput}
-                                onChange={(e) => setSearchInput(e.target.value)}
+                                onChange={(e) => fetchSearchResults(e.target.value)}
                                 onFocus={() => setIsInputFocused(true)}
                                 onBlur={() => setIsInputFocused(false)}
                             />
@@ -242,15 +235,22 @@ const Home = () => {
                                 <i className="bx bx-search-alt bx-tada"></i>
                             </span>
                         </div>
-                        {searchInput && filteredSuggestions.length > 0 && (
+                        {searchInput && Object.keys(searchResults).length > 0 && (
                             <ul className="suggestions-list">
-                                {filteredSuggestions.map((suggestion, index) => (
-                                    <li
-                                        key={index}
-                                        className="suggestion-item"
-                                        onClick={() => handleSuggestionClick(suggestion)}
-                                    >
-                                        {suggestion}
+                                {Object.entries(searchResults).map(([schema, items]) => (
+                                    <li key={schema} className="suggestion-schema">
+                                        <strong>{schema}</strong>
+                                        <ul>
+                                            {items.map((item, index) => (
+                                                <li
+                                                    key={index}
+                                                    className="suggestion-item"
+                                                    onClick={() => handleItemClick(schema, item)}
+                                                >
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </li>
                                 ))}
                             </ul>
@@ -307,21 +307,33 @@ const Home = () => {
                             />
                             <label className="form-label">Course</label>
                             <div className="suggestions">
-                                {suggestions.length > 0 &&
-                                    suggestions.map((suggestion) => (
+                                {filteredCourses.length > 0 ? (
+                                    filteredCourses.map((filteredCourse) => (
                                         <div
-                                            key={suggestion.id}
+                                            key={filteredCourse.id}
                                             className="suggestion-item"
-                                            onClick={() => handleSchoolSelect(suggestion)}
+                                            onClick={() => handleCourseSelect(filteredCourse.name)}
                                             style={{ padding: "8px", cursor: "pointer", borderBottom: "1px solid #ccc" }}
                                         >
-                                            {suggestion.name}
+                                            {filteredCourse.name}
                                         </div>
-                                    ))}
-                            </div>
+                                    ))
+                                ) : (
+                                    !loading && query.length > 2 &&(
+                                        <div className="no-suggestions" style={{ padding: "8px", color: "#666" }}>
+                                            No suggestions available
+                                        </div>
+                                    )
+                                )}
 
+                            </div>
                         </div>
-                        <div className="enter" onClick={() => navigate('/courseandsem', { state: { school, course } })}>
+                        <div className="enter" onClick={() => {
+                            if (school && course) {
+                                console.log("School:", school, "Course:", course); // Debug
+                                navigate('/courseandsem', { state: { school, course } });
+                            }
+                        }}>
                             <button type="submit">
                                 <i className="bx bx-right-arrow-alt"></i>
                                 <span>Enter</span>
