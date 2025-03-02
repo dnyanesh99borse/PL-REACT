@@ -118,6 +118,8 @@
     border-radius: 10px;
     font-size: 1vw;
     transition: border-color 0.3s ease;
+    color: red ;
+    text-transform: none;
 }
 
 
@@ -129,6 +131,29 @@
 .login-input:focus+.input-icon {
     color: #04e76e;
 }
+
+/*-----------Styling for hiding and showing the password icon functionallity---------*/
+.password-container {
+    position: relative;
+    margin: 10px 0;
+  }
+  
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 60%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: gray;
+  }
+  
+  .eye-icon:hover {
+    color: black;
+  }
+
+  
+
 
 .forgot-button {
     background: none;

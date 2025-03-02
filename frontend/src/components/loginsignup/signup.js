@@ -5,6 +5,7 @@ import "./signup.css";
 import Common from "./common";
 import facebook from "../assets/facebookicon.svg";
 import google from "../assets/googleicon.svg";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import Eye Icons
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -14,6 +15,31 @@ const Signup = () => {
         password: "",
         confirmPassword: ""
     });
+
+    /*----for hiding and showig the password------*/
+    const PasswordField = ({ name, placeholder }) => {
+        const [showPassword, setShowPassword] = useState(false);
+      
+        return (
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              name={name}
+              placeholder={placeholder}
+              className="signup-input"
+            />
+            <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+            </span>
+          </div>
+        );
+      };
+
+
+
+
+
+
     const [message, setMessage] = useState("");
 
     const handleInputChange = (e) => {
@@ -95,24 +121,16 @@ const Signup = () => {
                             onChange={handleInputChange}
                             required
                         />
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            className="signup-input"
-                            value={formData.password}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            placeholder="Confirm Password"
-                            className="signup-input"
-                            value={formData.confirmPassword}
-                            onChange={handleInputChange}
-                            required
-                        />
+                        <div style={{ position: "relative" }}>
+                
+                        <div>
+      <PasswordField name="password" placeholder="Password" />
+      <PasswordField name="confirmPassword" placeholder="Confirm Password" />
+    </div>
+
+
+
+            </div>
                         <button type="submit" className="signup-button">Sign up</button>
                     </form>
                     {message && <p className="message">{message}</p>}

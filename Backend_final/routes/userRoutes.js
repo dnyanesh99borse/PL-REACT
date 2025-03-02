@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 /*const User = require("../models/User");*/
-const User = require("../models/user") //HERE PROVIDE THE RULE OF THAT PARTICULAR FILE WHERE YOUR DATABASES AND THEIR PATHS ARE LOCATED
+const User = require("../models/user") //HERE PROVIDE THE Route OF THAT PARTICULAR FILE WHERE YOUR DATABASES AND THEIR PATHS ARE LOCATED
 const router = express.Router();
 
 // Signup Route

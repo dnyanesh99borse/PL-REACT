@@ -120,6 +120,7 @@
     border-radius: 10px;
     font-size: 1vw;
     transition: border-color 0.3s ease;
+    text-transform: none;
 }
 
 
@@ -233,20 +234,19 @@
     border: 1px solid orange;
 }
 
-
+/*===================THIS IS THE STYLING FOR MESSAGES AND ALL FOR BOTH LOGIN AND SIGNUP PAGES=================*/
 .message {
     font-size: 1vw;
     padding: 10px 15px; /* Slightly increase padding for better spacing */
     width: 100%;
     text-align: center;
-    color: #fff; /* White text for contrast */
-    background-color:#f71f1f ; /* Bright red background for error */
-    border: 1px solid #fa8e86 ; /* Slightly darker red border */
+    color: red;
+    /* border: 1px solid #fa8e86 ;  */
     border-radius: 55px; /* Rounded corners */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    margin: 10px 0; /* Space around the message */
-    font-weight: bold; /* Emphasize the message text */
-    animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in effect */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    margin: 10px 0; 
+    animation: fadeIn 0.5s ease-in-out; 
+    text-transform: none;
 }
 
 /* Optional: Animation for a smooth fade-in */
