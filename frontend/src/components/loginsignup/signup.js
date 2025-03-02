@@ -16,59 +16,80 @@ const Signup = () => {
         confirmPassword: ""
     });
 
-    /*----for hiding and showig the password------*/
-    const PasswordField = ({ name, placeholder }) => {
-        const [showPassword, setShowPassword] = useState(false);
-      
-        return (
-          <div className="password-container">
-            <input
-              type={showPassword ? "text" : "password"}
-              name={name}
-              placeholder={placeholder}
-              className="signup-input"
-            />
-            <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-            </span>
-          </div>
-        );
-      };
-
-
-
-
-
-
+    const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
 
+    // Handle input field changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData((prev) => ({
+            ...prev,
             [name]: value,
-        });
+        }));
     };
 
+    /* ---- Password Field with Show/Hide Toggle ---- */
+    const PasswordField = ({ name, placeholder }) => {
+        const [showPassword, setShowPassword] = useState(false);
+
+        return (
+            <div className="password-container">
+                <input
+                    type={showPassword ? "text" : "password"}
+                    name={name}
+                    placeholder={placeholder}
+                    className="signup-input"
+                    value={formData[name]}  // ✅ Control input with formData
+                    onChange={handleInputChange} // ✅ Update state
+                    required
+                />
+                <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                </span>
+            </div>
+        );
+    };
+
+    /* ---- Signup Function ---- */
     const handleSignup = async (e) => {
         e.preventDefault();
-        
-        if (formData.password !== formData.confirmPassword) {
-            setMessage("Passwords do not match");
+
+        const { username, email, password, confirmPassword } = formData;
+
+        console.log("Password:", password);
+        console.log("Confirm Password:", confirmPassword);
+
+        // Validate password length
+        if (!password || password.length < 8) {
+            setMessage("❌ Password must be at least 8 characters long.");
+            return;
+        }
+
+        // Ensure passwords match
+        if (password !== confirmPassword) {
+            setMessage("❌ Passwords do not match.");
             return;
         }
 
         try {
             const response = await axios.post("http://localhost:5000/api/users/signup", {
-                username: formData.username,
-                email: formData.email,
-                password: formData.password,
+                username,
+                email,
+                password,
             });
-            setMessage(response.data.message);
+
+            setMessage("✅ Signup Successful! 🎉");
+            setShowPopup(true);
+
+            // Clear form fields after successful signup
             setFormData({ username: "", email: "", password: "", confirmPassword: "" });
-            navigate("/"); // Redirect to login after successful signup
+
+            setTimeout(() => {
+                setShowPopup(false);
+                navigate("/");
+            }, 2000);
         } catch (error) {
-            setMessage(error.response?.data?.message || "Error occurred while signing up");
+            setMessage(error.response?.data?.message || "❌ Error occurred while signing up.");
         }
     };
 
@@ -82,6 +103,11 @@ const Signup = () => {
 
     return (
         <div className="signup-container">
+            {showPopup && (
+                <div className="signup-popup">
+                    ✅ Signup Successful! 🎉 Redirecting...
+                </div>
+            )}
             <div className="left">
                 <Common />
             </div>
@@ -121,16 +147,10 @@ const Signup = () => {
                             onChange={handleInputChange}
                             required
                         />
-                        <div style={{ position: "relative" }}>
-                
-                        <div>
-      <PasswordField name="password" placeholder="Password" />
-      <PasswordField name="confirmPassword" placeholder="Confirm Password" />
-    </div>
 
+                        <PasswordField name="password" placeholder="Password" />
+                        <PasswordField name="confirmPassword" placeholder="Confirm Password" />
 
-
-            </div>
                         <button type="submit" className="signup-button">Sign up</button>
                     </form>
                     {message && <p className="message">{message}</p>}
@@ -144,3 +164,7 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
+
+/*------------------ISSUE TO SOLVE ... THAT PASSWORD INPUT FIELDS ARE NOT TAKING THE INPUT CONTINUOSLY-------------*/
